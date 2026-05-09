@@ -24,16 +24,16 @@
 ============================================================ */
 :root {
   /* Colores */
-  --pink:        #D946A6;
-  --pink-light:  #f06ec2;
-  --pink-dark:   #a8337f;
-  --gold:        #D4AF37;
-  --gold-light:  #e9cc6a;
-  --dark:        #1F2937;
-  --dark-2:      #111827;
-  --mid:         #374151;
-  --muted:       #6B7280;
-  --light-bg:    #F9FAFB;
+  --pink:        #C87941;   /* ámbar/cobre — acción principal */
+  --pink-light:  #D4956B;   /* ámbar claro — hover */
+  --pink-dark:   #8B4513;   /* marrón sella — hover oscuro */
+  --gold:        #8B4513;   /* marrón sella — acento secundario */
+  --gold-light:  #C87941;   /* ámbar — igual que pink */
+  --dark:        #3D2314;   /* chocolate oscuro — texto */
+  --dark-2:      #2A1709;   /* chocolate muy oscuro — footer */
+  --mid:         #6B3A1F;   /* marrón medio — texto secundario */
+  --muted:       #A07855;   /* marrón cálido — texto suave */
+  --light-bg:    #F5ECD7;   /* crema — fondos claros */
   --white:       #FFFFFF;
 
   /* Forma */
@@ -74,7 +74,7 @@ a    { color: inherit; text-decoration: none; }
 ul   { list-style: none; }
 button { cursor: pointer; border: none; background: none; font-family: inherit; }
 
-::selection { background: rgba(217, 70, 166, 0.25); }
+::selection { background: rgba(200, 121, 65, 0.25); }
 
 
 /* ============================================================
@@ -143,11 +143,11 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 .btn-primary {
   background: var(--pink);
   color: var(--white);
-  box-shadow: 0 4px 20px rgba(217, 70, 166, 0.35);
+  box-shadow: 0 4px 20px rgba(200, 121, 65, 0.35);
 }
 .btn-primary:hover {
   background: var(--pink-dark);
-  box-shadow: 0 6px 28px rgba(217, 70, 166, 0.5);
+  box-shadow: 0 6px 28px rgba(200, 121, 65, 0.5);
   transform: translateY(-2px);
 }
 
@@ -167,11 +167,11 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 .btn-gold {
   background: var(--gold);
   color: var(--dark-2);
-  box-shadow: 0 4px 20px rgba(212, 175, 55, 0.35);
+  box-shadow: 0 4px 20px rgba(139, 69, 19, 0.35);
 }
 .btn-gold:hover {
   background: var(--gold-light);
-  box-shadow: 0 6px 28px rgba(212, 175, 55, 0.5);
+  box-shadow: 0 6px 28px rgba(139, 69, 19, 0.5);
   transform: translateY(-2px);
 }
 
@@ -201,7 +201,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   padding: 0.35rem 0.85rem;
   font-size: 0.75rem;
   border-radius: 50px;
-  background: rgba(217, 70, 166, 0.08);
+  background: rgba(200, 121, 65, 0.08);
   color: var(--pink);
   font-weight: 600;
   transition: var(--transition);
@@ -373,7 +373,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   display: flex;
   align-items: center;
   padding-top: 70px;
-  background: linear-gradient(135deg, #fff8fd 0%, var(--white) 60%, #fffaf0 100%);
+  background: linear-gradient(135deg, #F5ECD7 0%, var(--white) 60%, #F9F0E3 100%);
   position: relative;
   overflow: hidden;
 }
@@ -385,7 +385,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   top: -20%; right: -10%;
   width: 60vw; height: 60vw;
   max-width: 700px; max-height: 700px;
-  background: radial-gradient(circle, rgba(217, 70, 166, 0.07) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 121, 65, 0.07) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -394,7 +394,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   position: absolute;
   bottom: -10%; left: -5%;
   width: 40vw; height: 40vw;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.06) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(139, 69, 19, 0.06) 0%, transparent 70%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -414,8 +414,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(217, 70, 166, 0.08);
-  border: 1px solid rgba(217, 70, 166, 0.2);
+  background: rgba(200, 121, 65, 0.08);
+  border: 1px solid rgba(200, 121, 65, 0.2);
   border-radius: 50px;
   padding: 0.4rem 1rem;
   font-size: 0.78rem;
@@ -459,7 +459,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, transparent 60%, rgba(217, 70, 166, 0.12) 100%);
+  background: linear-gradient(135deg, transparent 60%, rgba(200, 121, 65, 0.12) 100%);
   z-index: 1;
   pointer-events: none;
 }
@@ -525,7 +525,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 .portfolio-card:hover {
   transform: translateY(-6px);
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
-  border-color: rgba(217, 70, 166, 0.3);
+  border-color: rgba(200, 121, 65, 0.3);
 }
 
 .portfolio-img {
@@ -650,7 +650,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   position: absolute;
   top: 0; right: 0;
   width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(217, 70, 166, 0.2) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200, 121, 65, 0.2) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -714,7 +714,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 }
 .testimonio-card:hover {
   box-shadow: var(--shadow-md);
-  border-color: rgba(217, 70, 166, 0.15);
+  border-color: rgba(200, 121, 65, 0.15);
   transform: translateY(-4px);
 }
 /* Comilla decorativa */
@@ -723,7 +723,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   font-family: var(--font-display);
   font-size: 5rem;
   line-height: 1;
-  color: rgba(217, 70, 166, 0.12);
+  color: rgba(200, 121, 65, 0.12);
   position: absolute;
   top: 1rem; right: 1.5rem;
   pointer-events: none;
@@ -738,7 +738,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
-  border: 2px solid rgba(217, 70, 166, 0.2);
+  border: 2px solid rgba(200, 121, 65, 0.2);
 }
 .testimonio-avatar img { width: 100%; height: 100%; object-fit: cover; }
 .testimonio-name    { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
@@ -746,8 +746,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 
 .featured-testimonio {
   grid-column: 1 / -1;
-  background: linear-gradient(135deg, rgba(217,70,166,0.05) 0%, rgba(212,175,55,0.05) 100%);
-  border-color: rgba(217, 70, 166, 0.15);
+  background: linear-gradient(135deg, rgba(200,121,65,0.05) 0%, rgba(212,175,55,0.05) 100%);
+  border-color: rgba(200, 121, 65, 0.15);
 }
 
 @media (max-width: 700px) {
@@ -760,7 +760,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
    10. CTA PRINCIPAL
 ============================================================ */
 #cta-principal {
-  background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 50%, #e86dc5 100%);
+  background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 50%, #D4956B 100%);
   color: var(--white);
   text-align: center;
   padding: 100px 0;
@@ -781,7 +781,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   position: absolute;
   bottom: -30%; right: -10%;
   width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(212, 175, 55, 0.2) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(139, 69, 19, 0.2) 0%, transparent 60%);
   border-radius: 50%;
 }
 
@@ -839,7 +839,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   align-items: center;
   justify-content: center;
   margin: 0 auto 1.25rem;
-  box-shadow: 0 4px 16px rgba(217, 70, 166, 0.35);
+  box-shadow: 0 4px 16px rgba(200, 121, 65, 0.35);
 }
 
 .paso-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
@@ -881,7 +881,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 }
 .contact-option:hover {
   background: rgba(255, 255, 255, 0.07);
-  border-color: rgba(217, 70, 166, 0.3);
+  border-color: rgba(200, 121, 65, 0.3);
 }
 
 .contact-icon {
@@ -894,8 +894,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   flex-shrink: 0;
 }
 .icon-wa    { background: rgba(37, 211, 102, 0.15); color: #25D366; }
-.icon-email { background: rgba(217, 70, 166, 0.15);  color: var(--pink); }
-.icon-tel   { background: rgba(212, 175, 55, 0.15);  color: var(--gold); }
+.icon-email { background: rgba(200, 121, 65, 0.15);  color: var(--pink); }
+.icon-tel   { background: rgba(139, 69, 19, 0.15);  color: var(--gold); }
 
 .contact-option-body strong {
   font-size: 0.8rem;
@@ -947,7 +947,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 .form-group select:focus,
 .form-group textarea:focus {
   outline: none;
-  border-color: rgba(217, 70, 166, 0.6);
+  border-color: rgba(200, 121, 65, 0.6);
   background: rgba(255, 255, 255, 0.08);
 }
 .form-group select         { cursor: pointer; }
