@@ -1,5 +1,5 @@
 /**
- * script.js — Mi Pastelería Deliciosa
+ * script.js — Espiral Dulce
  *
  * Módulos:
  *   1. Menú hamburguesa (mobile)
@@ -178,7 +178,7 @@ contactForm.addEventListener('submit', function (e) {
   // --- Guardar en localStorage ---
   try {
     const submissions = JSON.parse(
-      localStorage.getItem('mipasteleria_submissions') || '[]'
+      localStorage.getItem('espiraldulce_submissions') || '[]'
     );
 
     submissions.push({
@@ -191,7 +191,7 @@ contactForm.addEventListener('submit', function (e) {
       timestamp:    new Date().toISOString(),
     });
 
-    localStorage.setItem('mipasteleria_submissions', JSON.stringify(submissions));
+    localStorage.setItem('espiraldulce_submissions', JSON.stringify(submissions));
   } catch (err) {
     // localStorage puede no estar disponible en algunos contextos
     console.warn('No se pudo guardar en localStorage:', err);

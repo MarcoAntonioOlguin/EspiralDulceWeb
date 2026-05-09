@@ -1,5 +1,5 @@
 /* ============================================================
-   styles.css — Mi Pastelería Deliciosa
+   styles.css — Espiral Dulce
    Estructura:
      1. Variables & Reset
      2. Tipografía
@@ -250,15 +250,28 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 
 /* Logo */
 .nav-logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--dark);
+  line-height: 1.1;
+}
+.nav-logo img {
+  height: 42px;
+  width: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.nav-logo-text {
   font-family: var(--font-display);
   font-size: 1.4rem;
   font-weight: 700;
-  color: var(--dark);
   display: flex;
   flex-direction: column;
-  line-height: 1.1;
 }
-.nav-logo span {
+.nav-logo-text span {
   font-size: 0.65rem;
   font-family: var(--font-body);
   font-weight: 400;
@@ -974,19 +987,11 @@ footer {
   gap: 1.5rem;
 }
 
-.footer-logo {
-  font-family: var(--font-display);
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--white);
-}
-.footer-logo span {
-  display: block;
-  font-size: 0.6rem;
-  font-family: var(--font-body);
-  color: rgba(255, 255, 255, 0.4);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+.footer-logo img {
+  height: 80px;
+  width: auto;
+  border-radius: 8px;
+  opacity: 0.92;
 }
 
 .footer-links { display: flex; gap: 1.75rem; }
