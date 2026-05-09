@@ -1,0 +1,1868 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pasteles artesanales para eventos corporativos en CDMX. Diseños personalizados para tu empresa. Cotiza por WhatsApp." />
+  <meta name="keywords" content="pasteles corporativos, pastelería eventos, pasteles personalizados CDMX, catering dulce corporativo" />
+  <meta property="og:title" content="Mi Pastelería Deliciosa — Pasteles para Eventos Corporativos" />
+  <meta property="og:description" content="Creaciones artesanales a medida para tus eventos corporativos en CDMX." />
+  <title>Mi Pastelería Deliciosa — Eventos Corporativos</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================
+       CSS VARIABLES & RESET
+    ============================================ */
+    :root {
+      --pink:        #D946A6;
+      --pink-light:  #f06ec2;
+      --pink-dark:   #a8337f;
+      --gold:        #D4AF37;
+      --gold-light:  #e9cc6a;
+      --dark:        #1F2937;
+      --dark-2:      #111827;
+      --mid:         #374151;
+      --muted:       #6B7280;
+      --light-bg:    #F9FAFB;
+      --white:       #FFFFFF;
+
+      --radius:      12px;
+      --radius-sm:   8px;
+      --shadow:      0 4px 24px rgba(0,0,0,0.08);
+      --shadow-md:   0 8px 40px rgba(0,0,0,0.14);
+      --shadow-lg:   0 20px 60px rgba(0,0,0,0.18);
+      --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body:    'DM Sans', -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; height: auto; display: block; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+    button { cursor: pointer; border: none; background: none; font-family: inherit; }
+
+    /* ============================================
+       TYPOGRAPHY
+    ============================================ */
+    h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; }
+
+    h1 { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700; }
+    h2 { font-size: clamp(1.6rem, 3.5vw, 2.6rem); font-weight: 600; }
+    h3 { font-size: clamp(1.1rem, 2vw, 1.5rem); font-weight: 600; }
+
+    .section-label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--pink);
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    /* ============================================
+       LAYOUT UTILITIES
+    ============================================ */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-pad { padding: 90px 0; }
+    @media (max-width: 768px) { .section-pad { padding: 60px 0; } }
+
+    /* ============================================
+       BUTTONS
+    ============================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 50px;
+      font-family: var(--font-body);
+      font-size: 0.88rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: var(--transition);
+      min-height: 48px;
+    }
+
+    .btn-primary {
+      background: var(--pink);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(217,70,166,0.35);
+    }
+    .btn-primary:hover {
+      background: var(--pink-dark);
+      box-shadow: 0 6px 28px rgba(217,70,166,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--pink);
+      border: 2px solid var(--pink);
+    }
+    .btn-outline:hover {
+      background: var(--pink);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-gold {
+      background: var(--gold);
+      color: var(--dark-2);
+      box-shadow: 0 4px 20px rgba(212,175,55,0.35);
+    }
+    .btn-gold:hover {
+      background: var(--gold-light);
+      box-shadow: 0 6px 28px rgba(212,175,55,0.5);
+      transform: translateY(-2px);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--pink);
+      box-shadow: var(--shadow);
+    }
+    .btn-white:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .btn-dark {
+      background: var(--dark-2);
+      color: var(--white);
+    }
+    .btn-dark:hover {
+      background: var(--mid);
+      transform: translateY(-2px);
+    }
+
+    .btn-lg { padding: 1.1rem 2.6rem; font-size: 1rem; }
+
+    /* ============================================
+       1. HEADER / NAV
+    ============================================ */
+    #header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+      transition: var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo span {
+      font-size: 0.65rem;
+      font-family: var(--font-body);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--pink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+    }
+
+    .nav-links a {
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+      transition: color var(--transition);
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0;
+      width: 0; height: 2px;
+      background: var(--pink);
+      transition: width var(--transition);
+    }
+    .nav-links a:hover { color: var(--pink); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-cta { margin-left: 1rem; }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      padding: 8px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--dark);
+      border-radius: 2px;
+      transition: var(--transition);
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* Mobile Nav */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 70px; left: 0; right: 0;
+      background: var(--white);
+      border-bottom: 1px solid rgba(0,0,0,0.08);
+      padding: 1.5rem;
+      flex-direction: column;
+      gap: 1.2rem;
+      z-index: 99;
+      box-shadow: var(--shadow-md);
+      transform: translateY(-10px);
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .mobile-nav.open {
+      display: flex;
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .mobile-nav a {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--dark);
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--light-bg);
+    }
+    .mobile-nav .btn { align-self: flex-start; }
+
+    @media (max-width: 768px) {
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ============================================
+       2. HERO
+    ============================================ */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 70px;
+      background: linear-gradient(135deg, #fff8fd 0%, var(--white) 60%, #fffaf0 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    #hero::before {
+      content: '';
+      position: absolute;
+      top: -20%; right: -10%;
+      width: 60vw; height: 60vw;
+      max-width: 700px; max-height: 700px;
+      background: radial-gradient(circle, rgba(217,70,166,0.07) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    #hero::after {
+      content: '';
+      position: absolute;
+      bottom: -10%; left: -5%;
+      width: 40vw; height: 40vw;
+      background: radial-gradient(circle, rgba(212,175,55,0.06) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-text { max-width: 560px; }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(217,70,166,0.08);
+      border: 1px solid rgba(217,70,166,0.2);
+      border-radius: 50px;
+      padding: 0.4rem 1rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--pink);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text h1 {
+      color: var(--dark);
+      margin-bottom: 1.25rem;
+      font-style: italic;
+    }
+    .hero-text h1 em {
+      font-style: normal;
+      color: var(--pink);
+    }
+
+    .hero-text p {
+      font-size: 1.05rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      line-height: 1.75;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+    .hero-stats {
+      display: flex;
+      gap: 2rem;
+      margin-top: 3rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(0,0,0,0.07);
+    }
+    .hero-stat { }
+    .hero-stat strong {
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: block;
+      line-height: 1;
+    }
+    .hero-stat small {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-weight: 400;
+    }
+
+    .hero-image {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent 60%, rgba(217,70,166,0.12) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+    .hero-image:hover img { transform: scale(1.03); }
+
+    .hero-image-badge {
+      position: absolute;
+      bottom: 1.5rem; left: 1.5rem;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 0.75rem 1.25rem;
+      z-index: 2;
+      box-shadow: var(--shadow);
+    }
+    .hero-image-badge strong {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--dark);
+      display: block;
+    }
+    .hero-image-badge span {
+      font-size: 0.78rem;
+      color: var(--muted);
+    }
+    .stars-gold { color: var(--gold); letter-spacing: 1px; }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+      }
+      .hero-image { order: -1; }
+      .hero-image img { height: 300px; }
+      .hero-text { max-width: 100%; }
+      .hero-stats { gap: 1.5rem; }
+    }
+
+    /* ============================================
+       3. PORTFOLIO / GALLERY
+    ============================================ */
+    #portafolio {
+      background: var(--dark-2);
+      color: var(--white);
+    }
+
+    #portafolio .section-label { color: var(--gold); }
+    #portafolio h2 { color: var(--white); }
+    #portafolio p.subtitle {
+      color: rgba(255,255,255,0.6);
+      max-width: 540px;
+      margin-top: 0.75rem;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .portfolio-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+      border-color: rgba(217,70,166,0.3);
+    }
+
+    .portfolio-img {
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+    .portfolio-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .portfolio-card:hover .portfolio-img img { transform: scale(1.08); }
+
+    .portfolio-info {
+      padding: 1.25rem;
+    }
+    .portfolio-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      color: var(--white);
+      font-family: var(--font-body);
+    }
+    .portfolio-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .portfolio-meta .stars-gold { font-size: 0.75rem; }
+
+    @media (max-width: 1024px) {
+      .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .portfolio-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================
+       4. SERVICIOS
+    ============================================ */
+    #servicios { background: var(--light-bg); }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    .servicios-col-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid rgba(0,0,0,0.07);
+    }
+
+    .cake-cards { display: flex; flex-direction: column; gap: 1rem; }
+
+    .cake-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: stretch;
+      transition: var(--transition);
+    }
+    .cake-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+    .cake-card-img {
+      width: 100px;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .cake-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+    .cake-card:hover .cake-card-img img { transform: scale(1.1); }
+
+    .cake-card-body {
+      padding: 1rem 1.25rem;
+      flex: 1;
+    }
+    .cake-card-body h3 {
+      font-size: 1rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .cake-card-body p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.6rem;
+      line-height: 1.5;
+    }
+    .cake-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .price-tag {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--pink);
+    }
+    .btn-xs {
+      padding: 0.35rem 0.85rem;
+      font-size: 0.75rem;
+      border-radius: 50px;
+      background: rgba(217,70,166,0.08);
+      color: var(--pink);
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    .btn-xs:hover { background: var(--pink); color: var(--white); }
+
+    /* Custom Cake Card */
+    .custom-card {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-2) 100%);
+      border-radius: var(--radius);
+      overflow: hidden;
+      color: var(--white);
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .custom-card::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(217,70,166,0.2) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .custom-card-img {
+      aspect-ratio: 16/9;
+      overflow: hidden;
+    }
+    .custom-card-img img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      opacity: 0.7;
+      transition: transform 0.6s ease, opacity 0.4s ease;
+    }
+    .custom-card:hover .custom-card-img img { transform: scale(1.04); opacity: 0.8; }
+    .custom-card-body {
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+    .custom-card-body h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      color: var(--white);
+    }
+    .custom-card-body p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 1.5rem; }
+    .custom-benefits {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1.75rem;
+    }
+    .custom-benefits li {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.85);
+    }
+    .custom-benefits li::before {
+      content: '✦';
+      color: var(--gold);
+      font-size: 0.65rem;
+    }
+
+    @media (max-width: 900px) {
+      .servicios-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 600px) {
+      .cake-card { flex-direction: column; }
+      .cake-card-img { width: 100%; height: 140px; }
+    }
+
+    /* ============================================
+       5. TESTIMONIOS
+    ============================================ */
+    #testimonios { background: var(--white); }
+
+    .testimonios-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .testimonio-card {
+      background: var(--light-bg);
+      border-radius: var(--radius);
+      padding: 2rem;
+      border: 1px solid rgba(0,0,0,0.05);
+      transition: var(--transition);
+      position: relative;
+    }
+    .testimonio-card:hover {
+      box-shadow: var(--shadow-md);
+      border-color: rgba(217,70,166,0.15);
+      transform: translateY(-4px);
+    }
+    .testimonio-card::before {
+      content: '"';
+      font-family: var(--font-display);
+      font-size: 5rem;
+      line-height: 1;
+      color: rgba(217,70,166,0.12);
+      position: absolute;
+      top: 1rem; right: 1.5rem;
+      pointer-events: none;
+    }
+
+    .testimonio-stars { color: var(--gold); margin-bottom: 1rem; font-size: 0.85rem; }
+    .testimonio-text {
+      font-size: 0.95rem;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+      font-style: italic;
+    }
+    .testimonio-author {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+    .testimonio-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+      border: 2px solid rgba(217,70,166,0.2);
+    }
+    .testimonio-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .testimonio-name { font-weight: 600; font-size: 0.9rem; color: var(--dark); }
+    .testimonio-company { font-size: 0.78rem; color: var(--pink); font-weight: 500; }
+
+    .featured-testimonio {
+      grid-column: 1 / -1;
+      background: linear-gradient(135deg, rgba(217,70,166,0.05) 0%, rgba(212,175,55,0.05) 100%);
+      border-color: rgba(217,70,166,0.15);
+    }
+
+    @media (max-width: 700px) {
+      .testimonios-grid { grid-template-columns: 1fr; }
+      .featured-testimonio { grid-column: auto; }
+    }
+
+    /* ============================================
+       6. CTA PRINCIPAL
+    ============================================ */
+    #cta-principal {
+      background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 50%, #e86dc5 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #cta-principal::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -20%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+    #cta-principal::after {
+      content: '';
+      position: absolute;
+      bottom: -30%; right: -10%;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(212,175,55,0.2) 0%, transparent 60%);
+      border-radius: 50%;
+    }
+
+    .cta-content { position: relative; z-index: 1; }
+    .cta-content .section-label { color: rgba(255,255,255,0.7); }
+    .cta-content h2 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .cta-content p {
+      color: rgba(255,255,255,0.85);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .cta-btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ============================================
+       7. CÓMO FUNCIONA
+    ============================================ */
+    #proceso { background: var(--light-bg); }
+
+    .proceso-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      position: relative;
+    }
+
+    .proceso-steps::before {
+      content: '';
+      position: absolute;
+      top: 48px; left: calc(16.67% + 1rem); right: calc(16.67% + 1rem);
+      height: 2px;
+      background: linear-gradient(to right, var(--pink), var(--gold));
+      z-index: 0;
+    }
+
+    .paso {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(0,0,0,0.04);
+      transition: var(--transition);
+      position: relative;
+      z-index: 1;
+    }
+    .paso:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .paso-number {
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--pink), var(--pink-dark));
+      color: var(--white);
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      box-shadow: 0 4px 16px rgba(217,70,166,0.35);
+    }
+
+    .paso-icon { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .paso h3 {
+      font-size: 1.1rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--dark);
+    }
+    .paso p { font-size: 0.88rem; color: var(--muted); line-height: 1.65; }
+
+    @media (max-width: 768px) {
+      .proceso-steps { grid-template-columns: 1fr; gap: 1rem; }
+      .proceso-steps::before { display: none; }
+    }
+
+    /* ============================================
+       8. CONTACTO & FOOTER
+    ============================================ */
+    #contacto { background: var(--dark-2); color: var(--white); }
+
+    .contacto-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 4rem;
+    }
+
+    .contacto-info .section-label { color: var(--gold); }
+    .contacto-info h2 { color: var(--white); margin-bottom: 1rem; }
+    .contacto-info > p { color: rgba(255,255,255,0.6); margin-bottom: 2.5rem; font-size: 0.95rem; }
+
+    .contact-options { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .contact-option {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      transition: var(--transition);
+    }
+    .contact-option:hover {
+      background: rgba(255,255,255,0.07);
+      border-color: rgba(217,70,166,0.3);
+    }
+
+    .contact-icon {
+      width: 44px; height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .icon-wa { background: rgba(37,211,102,0.15); color: #25D366; }
+    .icon-email { background: rgba(217,70,166,0.15); color: var(--pink); }
+    .icon-tel { background: rgba(212,175,55,0.15); color: var(--gold); }
+
+    .contact-option-body { flex: 1; }
+    .contact-option-body strong {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .contact-option-body p {
+      font-size: 0.95rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+    .contact-option-body .btn-xs-dark {
+      font-size: 0.75rem;
+      padding: 0.3rem 0.8rem;
+      border-radius: 50px;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+    }
+    .contact-option-body .btn-xs-dark:hover { background: rgba(255,255,255,0.15); color: var(--white); }
+
+    /* Contact Form */
+    .contact-form-wrap {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .contact-form-wrap h3 {
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+    }
+    .contact-form-wrap > p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.05em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-sm);
+      color: var(--white);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      padding: 0.75rem 1rem;
+      transition: border-color var(--transition);
+      min-height: 48px;
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: rgba(255,255,255,0.3); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: rgba(217,70,166,0.6);
+      background: rgba(255,255,255,0.08);
+    }
+    .form-group select { cursor: pointer; }
+    .form-group select option { background: var(--dark-2); color: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+
+    .form-success {
+      display: none;
+      background: rgba(37,211,102,0.1);
+      border: 1px solid rgba(37,211,102,0.3);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.25rem;
+      color: #6ee798;
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 1000px) {
+      .contacto-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 1.5rem; }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 2rem 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .footer-logo span {
+      display: block;
+      font-size: 0.6rem;
+      font-family: var(--font-body);
+      color: rgba(255,255,255,0.4);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.75rem;
+    }
+    .footer-links a {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--pink); }
+
+    .footer-social {
+      display: flex;
+      gap: 0.75rem;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      transition: var(--transition);
+    }
+    .footer-social a:hover { background: var(--pink); border-color: var(--pink); color: var(--white); }
+
+    .footer-copy {
+      width: 100%;
+      text-align: center;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.25);
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 0.5rem;
+    }
+
+    /* ============================================
+       FLOATING WA BUTTON (MOBILE)
+    ============================================ */
+    .wa-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 200;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: #25D366;
+      color: var(--white);
+      font-size: 1.6rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+      transition: transform var(--transition), box-shadow var(--transition);
+      text-decoration: none;
+    }
+    .wa-float:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.6);
+    }
+
+    @media (max-width: 768px) {
+      .wa-float { display: flex; }
+    }
+
+    /* ============================================
+       ANIMATIONS ON SCROLL
+    ============================================ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    .reveal-delay-5 { transition-delay: 0.5s; }
+
+    /* ============================================
+       MISC
+    ============================================ */
+    ::selection { background: rgba(217,70,166,0.25); }
+
+    /* Divider ornament */
+    .divider-ornament {
+      text-align: center;
+      color: var(--gold);
+      font-size: 1rem;
+      letter-spacing: 0.5rem;
+      margin: 1rem 0;
+      opacity: 0.4;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =====================
+       1. HEADER / NAV
+  ===================== -->
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Navegación principal">
+        <a href="#" class="nav-logo" aria-label="Mi Pastelería Deliciosa">
+          Mi Pastelería Deliciosa
+          <span>Eventos Corporativos · CDMX</span>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20pastel%20para%20mi%20evento%20corporativo" 
+           class="btn btn-primary nav-cta" 
+           target="_blank" rel="noopener noreferrer" 
+           aria-label="Cotizar por WhatsApp">
+          💬 Cotizar
+        </a>
+
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
+    <a href="#portafolio">Portafolio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+    <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar" 
+       class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+      💬 Cotizar por WhatsApp
+    </a>
+  </nav>
+
+
+  <!-- =====================
+       2. HERO
+  ===================== -->
+  <section id="hero" aria-label="Inicio">
+    <div class="container">
+      <div class="hero-grid">
+
+        <div class="hero-text">
+          <div class="hero-badge">
+            <span>⭐</span> +200 eventos corporativos realizados
+          </div>
+          <h1>Pasteles <em>Artesanales</em> para Eventos Corporativos</h1>
+          <p>Sorprendemos a tus invitados con creaciones a medida. Diseñamos cada detalle para que tu evento sea memorable y tu marca brille.</p>
+          <div class="hero-actions">
+            <a href="#portafolio" class="btn btn-primary btn-lg">Ver Nuestros Trabajos</a>
+            <a href="#proceso" class="btn btn-outline btn-lg">Cómo Funciona</a>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <strong>200+</strong>
+              <small>Eventos realizados</small>
+            </div>
+            <div class="hero-stat">
+              <strong>5.0</strong>
+              <small>Calificación promedio</small>
+            </div>
+            <div class="hero-stat">
+              <strong>48h</strong>
+              <small>Cotización rápida</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <img 
+            src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=800&q=80" 
+            alt="Pastel elegante para evento corporativo con decoración dorada"
+            loading="eager"
+          />
+          <div class="hero-image-badge">
+            <div class="stars-gold">★★★★★</div>
+            <strong>Trabajo reciente</strong>
+            <span>Gala Anual · Tech Corp 2024</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       3. PORTAFOLIO / GALERÍA
+  ===================== -->
+  <section id="portafolio" class="section-pad" aria-labelledby="portafolio-title">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span class="section-label">Portafolio</span>
+        <h2 id="portafolio-title">Eventos Corporativos que Hemos Realizado</h2>
+        <p class="subtitle">Cada creación es única. Explorá algunos de nuestros trabajos favoritos con clientes corporativos de todo México.</p>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <div class="portfolio-card reveal reveal-delay-1">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1464349095431-e9a21285b5f3?w=600&q=80" 
+                 alt="Pastel para gala anual de empresa tecnológica" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>Gala Anual · TechCorp México</h3>
+            <div class="portfolio-meta">
+              <span>350 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-2">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1621303837174-89787a7d4729?w=600&q=80" 
+                 alt="Pastel personalizado para lanzamiento de producto" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>Lanzamiento de Producto · Innovatek</h3>
+            <div class="portfolio-meta">
+              <span>120 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-3">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1535141192574-5d4897c12636?w=600&q=80" 
+                 alt="Pastel para convención anual de ventas" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>Convención de Ventas · Grupo Alfa</h3>
+            <div class="portfolio-meta">
+              <span>500 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-1">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1551404973-761c83cd8339?w=600&q=80" 
+                 alt="Pastel corporativo para aniversario de empresa" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>25 Aniversario · Financiera del Norte</h3>
+            <div class="portfolio-meta">
+              <span>200 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-2">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" 
+                 alt="Mesa de postres para evento de fin de año" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>Cena de Fin de Año · Consultora Méndez</h3>
+            <div class="portfolio-meta">
+              <span>180 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-card reveal reveal-delay-3">
+          <div class="portfolio-img">
+            <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?w=600&q=80" 
+                 alt="Pastel de bienvenida para fusión de empresas" loading="lazy" />
+          </div>
+          <div class="portfolio-info">
+            <h3>Fusión Corporativa · MedGroup & Salud+</h3>
+            <div class="portfolio-meta">
+              <span>280 personas</span>
+              <span class="stars-gold">★★★★★</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       4. SERVICIOS
+  ===================== -->
+  <section id="servicios" class="section-pad" aria-labelledby="servicios-title">
+    <div class="container">
+
+      <div class="section-header reveal">
+        <span class="section-label">Servicios</span>
+        <h2 id="servicios-title">Nuestros Servicios</h2>
+        <p style="color:var(--muted);max-width:500px;margin-top:.75rem">Desde recetas clásicas hasta creaciones únicas con la identidad de tu empresa.</p>
+      </div>
+
+      <div class="servicios-grid">
+
+        <!-- Pasteles Estándar -->
+        <div>
+          <p class="servicios-col-title">Opciones Estándar</p>
+          <div class="cake-cards">
+
+            <div class="cake-card reveal">
+              <div class="cake-card-img">
+                <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?w=300&q=80" 
+                     alt="Pastel de chocolate artesanal" loading="lazy" />
+              </div>
+              <div class="cake-card-body">
+                <h3>Pastel de Chocolate</h3>
+                <p>Ganache oscuro, bizcocho húmedo y decoración elegante. Perfecto para eventos formales.</p>
+                <div class="cake-card-footer">
+                  <span class="price-tag">Desde $500</span>
+                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Chocolate')">Ver Detalles</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="cake-card reveal reveal-delay-1">
+              <div class="cake-card-img">
+                <img src="https://images.unsplash.com/photo-1570145820259-b5b80c5c8bd6?w=300&q=80" 
+                     alt="Pastel de vainilla clásico" loading="lazy" />
+              </div>
+              <div class="cake-card-body">
+                <h3>Pastel de Vainilla</h3>
+                <p>Relleno de crema francesa, acabado satinado y detalles dorados o al gusto del cliente.</p>
+                <div class="cake-card-footer">
+                  <span class="price-tag">Desde $480</span>
+                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Vainilla')">Ver Detalles</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="cake-card reveal reveal-delay-2">
+              <div class="cake-card-img">
+                <img src="https://images.unsplash.com/photo-1565661381565-d3e4bb3b16c3?w=300&q=80" 
+                     alt="Pastel de frutos rojos" loading="lazy" />
+              </div>
+              <div class="cake-card-body">
+                <h3>Pastel Frutos Rojos</h3>
+                <p>Mousse de frambuesa, coulis de frutos rojos y base de galleta artesanal. Refrescante y sofisticado.</p>
+                <div class="cake-card-footer">
+                  <span class="price-tag">Desde $520</span>
+                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Frutos Rojos')">Ver Detalles</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Personalizados -->
+        <div>
+          <p class="servicios-col-title">Diseños Personalizados</p>
+          <div class="custom-card reveal">
+            <div class="custom-card-img">
+              <img src="https://images.unsplash.com/photo-1488477181228-c84c5b97a7ca?w=700&q=80" 
+                   alt="Pastel corporativo personalizado con logo de empresa" loading="lazy" />
+            </div>
+            <div class="custom-card-body">
+              <h3>Adaptamos a tu Marca, Concepto y Visión</h3>
+              <p>Trabajamos contigo desde el diseño hasta la entrega. Cada pastel es una obra única que refleja tu empresa.</p>
+              <ul class="custom-benefits">
+                <li>Tu logo impreso o esculpido en el pastel</li>
+                <li>Paleta de colores corporativos exacta</li>
+                <li>Temáticas especiales y conceptos creativos</li>
+                <li>Tamaños desde 20 hasta 2,000+ personas</li>
+                <li>Entrega e instalación en el venue</li>
+              </ul>
+              <a href="https://wa.me/5215512345678?text=Hola%2C%20quiero%20cotizar%20un%20pastel%20personalizado%20para%20mi%20empresa" 
+                 class="btn btn-gold" target="_blank" rel="noopener noreferrer">
+                Solicitar Presupuesto
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       5. TESTIMONIOS
+  ===================== -->
+  <section id="testimonios" class="section-pad" aria-labelledby="testimonios-title">
+    <div class="container">
+
+      <div class="section-header reveal" style="text-align:center;max-width:540px;margin:0 auto 3rem;">
+        <span class="section-label">Testimonios</span>
+        <h2 id="testimonios-title">Lo que Dicen Nuestros Clientes Corporativos</h2>
+      </div>
+
+      <div class="testimonios-grid">
+
+        <div class="testimonio-card featured-testimonio reveal">
+          <div class="testimonio-stars">★★★★★</div>
+          <p class="testimonio-text">
+            "Contratamos a Mi Pastelería Deliciosa para nuestra gala de aniversario con 350 invitados y superaron todas nuestras expectativas. El pastel fue el tema de conversación de toda la noche. Profesionales, puntuales y con un talento extraordinario."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar">
+              <img src="https://i.pravatar.cc/80?img=47" alt="Foto de Claudia Ramírez" loading="lazy" />
+            </div>
+            <div>
+              <p class="testimonio-name">Claudia Ramírez</p>
+              <p class="testimonio-company">Directora de Eventos · TechCorp México</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonio-card reveal reveal-delay-1">
+          <div class="testimonio-stars">★★★★★</div>
+          <p class="testimonio-text">
+            "Para el lanzamiento de nuestro nuevo producto necesitábamos algo que impresionara. El pastel con nuestro logo y los colores de marca fue perfecto. Los clientes quedaron fascinados."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar">
+              <img src="https://i.pravatar.cc/80?img=12" alt="Foto de Marcos Figueroa" loading="lazy" />
+            </div>
+            <div>
+              <p class="testimonio-name">Marcos Figueroa</p>
+              <p class="testimonio-company">CMO · Innovatek Solutions</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonio-card reveal reveal-delay-2">
+          <div class="testimonio-stars">★★★★★</div>
+          <p class="testimonio-text">
+            "Llevamos 3 años trabajando con ellos para nuestra convención anual de ventas. Siempre creativos, siempre a tiempo. Son parte indispensable de nuestros eventos."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar">
+              <img src="https://i.pravatar.cc/80?img=32" alt="Foto de Valeria Torres" loading="lazy" />
+            </div>
+            <div>
+              <p class="testimonio-name">Valeria Torres</p>
+              <p class="testimonio-company">Coordinadora · Grupo Alfa</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonio-card reveal reveal-delay-3">
+          <div class="testimonio-stars">★★★★★</div>
+          <p class="testimonio-text">
+            "El proceso de cotización fue rapidísimo y la comunicación por WhatsApp muy ágil. El resultado final fue espectacular. Lo recomiendo a cualquier empresa que cuide los detalles."
+          </p>
+          <div class="testimonio-author">
+            <div class="testimonio-avatar">
+              <img src="https://i.pravatar.cc/80?img=61" alt="Foto de Roberto Sánchez" loading="lazy" />
+            </div>
+            <div>
+              <p class="testimonio-name">Roberto Sánchez</p>
+              <p class="testimonio-company">Gerente General · Financiera del Norte</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       6. CTA PRINCIPAL
+  ===================== -->
+  <section id="cta-principal" aria-labelledby="cta-title">
+    <div class="container">
+      <div class="cta-content">
+        <span class="section-label">¿Tienes un evento próximo?</span>
+        <h2 id="cta-title">¿Listo para tu Evento?</h2>
+        <p>Cuéntanos tu fecha, número de personas y visión. Te enviamos una cotización personalizada en menos de 48 horas.</p>
+        <div class="cta-btn-group">
+          <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20pastel%20para%20mi%20evento%20corporativo"
+             class="btn btn-white btn-lg" target="_blank" rel="noopener noreferrer">
+            💬 COTIZAR POR WHATSAPP
+          </a>
+          <a href="#contacto" class="btn btn-lg" style="background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.4);">
+            Enviar Formulario
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       7. CÓMO FUNCIONA
+  ===================== -->
+  <section id="proceso" class="section-pad" aria-labelledby="proceso-title">
+    <div class="container">
+
+      <div class="section-header reveal" style="text-align:center;max-width:520px;margin:0 auto 3rem;">
+        <span class="section-label">Proceso</span>
+        <h2 id="proceso-title">Nuestro Proceso</h2>
+        <p style="color:var(--muted);margin-top:.75rem">Trabajar con nosotros es sencillo, rápido y sin complicaciones.</p>
+      </div>
+
+      <div class="proceso-steps">
+
+        <div class="paso reveal reveal-delay-1">
+          <div class="paso-number">1</div>
+          <div class="paso-icon">📞</div>
+          <h3>Contacta</h3>
+          <p>Cuéntanos sobre tu evento por WhatsApp o formulario. Fecha, cantidad de personas y tu visión inicial.</p>
+        </div>
+
+        <div class="paso reveal reveal-delay-2">
+          <div class="paso-number">2</div>
+          <div class="paso-icon">💡</div>
+          <h3>Cotizamos</h3>
+          <p>Te enviamos un presupuesto personalizado en menos de 48 horas con diseño, detalles y opciones específicas.</p>
+        </div>
+
+        <div class="paso reveal reveal-delay-3">
+          <div class="paso-number">3</div>
+          <div class="paso-icon">🚚</div>
+          <h3>Entregamos</h3>
+          <p>Llegamos a tu venue con tiempo suficiente para montaje e instalación profesional. Tú solo disfrutas.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       8. CONTACTO
+  ===================== -->
+  <section id="contacto" class="section-pad" aria-labelledby="contacto-title">
+    <div class="container">
+      <div class="contacto-grid">
+
+        <!-- Opciones de contacto -->
+        <div class="contacto-info">
+          <span class="section-label">Contacto</span>
+          <h2 id="contacto-title">Hablemos de tu Evento</h2>
+          <p>Elige tu canal favorito. Respondemos en horario de oficina de lunes a sábado.</p>
+
+          <div class="contact-options">
+
+            <div class="contact-option">
+              <div class="contact-icon icon-wa" aria-hidden="true">💬</div>
+              <div class="contact-option-body">
+                <strong>WhatsApp (Principal)</strong>
+                <p>+52 55 1234 5678</p>
+                <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar"
+                   class="btn-xs-dark" target="_blank" rel="noopener noreferrer">
+                  Abrir WhatsApp →
+                </a>
+              </div>
+            </div>
+
+            <div class="contact-option">
+              <div class="contact-icon icon-email" aria-hidden="true">✉️</div>
+              <div class="contact-option-body">
+                <strong>Email</strong>
+                <p>hola@mipasteleria.com</p>
+                <a href="mailto:hola@mipasteleria.com" class="btn-xs-dark">Enviar Email →</a>
+              </div>
+            </div>
+
+            <div class="contact-option">
+              <div class="contact-icon icon-tel" aria-hidden="true">📞</div>
+              <div class="contact-option-body">
+                <strong>Teléfono</strong>
+                <p>+52 55 1234 5678</p>
+                <a href="tel:+5215512345678" class="btn-xs-dark">Llamar ahora →</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="contact-form-wrap reveal">
+          <h3>Solicitud de Cotización</h3>
+          <p>Completa el formulario y te contactaremos a la brevedad posible.</p>
+
+          <form id="contact-form" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="nombre">Nombre *</label>
+                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+              </div>
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" placeholder="tu@empresa.com" required />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="tipo-evento">Tipo de Evento</label>
+                <select id="tipo-evento" name="tipo_evento">
+                  <option value="">Selecciona...</option>
+                  <option>Gala Corporativa</option>
+                  <option>Lanzamiento de Producto</option>
+                  <option>Convención / Congreso</option>
+                  <option>Aniversario de Empresa</option>
+                  <option>Cena de Fin de Año</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="fecha-evento">Fecha del Evento</label>
+                <input type="date" id="fecha-evento" name="fecha_evento" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="personas">Número de Personas</label>
+              <input type="number" id="personas" name="personas" placeholder="Ej: 150" min="1" />
+            </div>
+
+            <div class="form-group">
+              <label for="descripcion">Descripción del Evento *</label>
+              <textarea id="descripcion" name="descripcion" placeholder="Cuéntanos sobre tu evento, tema, colores, logo..." required></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">
+              Enviar Solicitud ✦
+            </button>
+
+            <div class="form-success" id="form-success" role="alert" aria-live="polite">
+              ✅ ¡Gracias! Recibimos tu solicitud. Nos contactaremos pronto.
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================
+       FOOTER
+  ===================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-logo">
+          Mi Pastelería Deliciosa
+          <span>Eventos Corporativos · CDMX, México</span>
+        </div>
+
+        <ul class="footer-links" role="list">
+          <li><a href="#hero">Inicio</a></li>
+          <li><a href="#portafolio">Portafolio</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="#" aria-label="Facebook" title="Facebook">f</a>
+          <a href="#" aria-label="Instagram" title="Instagram">ig</a>
+          <a href="#" aria-label="LinkedIn" title="LinkedIn">in</a>
+        </div>
+
+        <p class="footer-copy">© 2025 Mi Pastelería Deliciosa. Todos los derechos reservados. · CDMX, México</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Floating WhatsApp Button (Mobile) -->
+  <a href="https://wa.me/5215512345678?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20pastel%20corporativo"
+     class="wa-float" 
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Abrir WhatsApp para cotizar"
+     title="Cotizar por WhatsApp">
+    💬
+  </a>
+
+
+  <!-- =====================
+       JAVASCRIPT
+  ===================== -->
+  <script>
+    /* ---- Hamburger Menu ---- */
+    const hamburger = document.getElementById('hamburger');
+    const mobileNav = document.getElementById('mobile-nav');
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      if (isOpen) {
+        mobileNav.classList.add('open');
+      } else {
+        mobileNav.classList.remove('open');
+      }
+    });
+
+    // Close mobile nav on link click
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        mobileNav.classList.remove('open');
+      });
+    });
+
+    /* ---- Smooth Scroll ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const headerH = document.getElementById('header').offsetHeight;
+          const top = target.getBoundingClientRect().top + window.scrollY - headerH - 12;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+    });
+
+    /* ---- Scroll Reveal ---- */
+    const revealEls = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    /* ---- Header Shadow on Scroll ---- */
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('header');
+      if (window.scrollY > 20) {
+        header.style.boxShadow = '0 4px 30px rgba(0,0,0,0.1)';
+      } else {
+        header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.06)';
+      }
+    });
+
+    /* ---- WhatsApp Helper ---- */
+    function openWhatsApp(producto) {
+      const msg = encodeURIComponent(`Hola, me gustaría más información sobre el ${producto} para mi evento corporativo.`);
+      window.open(`https://wa.me/5215512345678?text=${msg}`, '_blank', 'noopener,noreferrer');
+    }
+
+    /* ---- Contact Form ---- */
+    const contactForm = document.getElementById('contact-form');
+    const formSuccess = document.getElementById('form-success');
+
+    contactForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const nombre = document.getElementById('nombre').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const desc = document.getElementById('descripcion').value.trim();
+
+      // Basic validation
+      if (!nombre || !email || !desc) {
+        // Shake invalid fields
+        [document.getElementById('nombre'), document.getElementById('email'), document.getElementById('descripcion')].forEach(field => {
+          if (!field.value.trim()) {
+            field.style.borderColor = '#ef4444';
+            field.style.boxShadow = '0 0 0 3px rgba(239,68,68,0.15)';
+            setTimeout(() => {
+              field.style.borderColor = '';
+              field.style.boxShadow = '';
+            }, 2500);
+          }
+        });
+        return;
+      }
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const emailField = document.getElementById('email');
+        emailField.style.borderColor = '#ef4444';
+        setTimeout(() => { emailField.style.borderColor = ''; }, 2500);
+        return;
+      }
+
+      // Save to localStorage
+      try {
+        const submissions = JSON.parse(localStorage.getItem('mipasteleria_submissions') || '[]');
+        submissions.push({
+          nombre,
+          email,
+          tipo_evento: document.getElementById('tipo-evento').value,
+          fecha_evento: document.getElementById('fecha-evento').value,
+          personas: document.getElementById('personas').value,
+          descripcion: desc,
+          timestamp: new Date().toISOString()
+        });
+        localStorage.setItem('mipasteleria_submissions', JSON.stringify(submissions));
+      } catch(e) {
+        console.warn('LocalStorage not available');
+      }
+
+      // Show success
+      contactForm.reset();
+      formSuccess.style.display = 'flex';
+      formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+      setTimeout(() => { formSuccess.style.display = 'none'; }, 6000);
+    });
+
+    /* ---- Hero image lazy load fallback ---- */
+    // Ensure hero image loads even without IntersectionObserver
+    document.querySelectorAll('img[loading="lazy"]').forEach(img => {
+      if ('loading' in HTMLImageElement.prototype) return; // Native support
+      img.src = img.src; // Fallback trigger
+    });
+  </script>
+
+</body>
+</html>
