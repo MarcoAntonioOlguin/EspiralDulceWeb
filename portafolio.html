@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Portafolio completo de Espiral Dulce — Repostería artesanal a pedido en CDMX. Panques, postres, chocolates y más." />
+  <meta name="keywords" content="repostería artesanal CDMX, panque zanahoria, brownie, tiramisú, gelatina artesanal, postres a pedido" />
+  <meta property="og:title" content="Portafolio — Espiral Dulce · Repostería Artesanal CDMX" />
+  <meta property="og:description" content="Descubre todos nuestros productos artesanales. Todo hecho a mano y a pedido." />
+
+  <title>Portafolio — Espiral Dulce · Repostería Artesanal CDMX</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/portafolio.css" />
+</head>
+
+<body>
+
+  <!-- =====================================================================
+       HEADER / NAVEGACIÓN
+  ====================================================================== -->
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Navegación principal">
+
+        <a href="index.html" class="nav-logo" aria-label="Espiral Dulce — Inicio">
+          <img src="images/logos/logo_final_sin_letras.png" alt="" aria-hidden="true" />
+          <div class="nav-logo-text">
+            Espiral Dulce
+            <span>Repostería Artesanal · CDMX</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="portafolio.html" class="nav-active">Portafolio</a></li>
+          <li><a href="index.html#servicios">Servicios</a></li>
+          <li><a href="index.html#proceso">Proceso</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+
+        <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+           class="btn btn-primary nav-cta"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Cotizar por WhatsApp">
+          Cotizar
+        </a>
+
+        <button class="hamburger" id="hamburger"
+                aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </nav>
+    </div>
+  </header>
+
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
+    <a href="portafolio.html">Portafolio</a>
+    <a href="index.html#servicios">Servicios</a>
+    <a href="index.html#proceso">Proceso</a>
+    <a href="index.html#contacto">Contacto</a>
+    <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+       class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+       Cotizar por WhatsApp
+    </a>
+  </nav>
+
+
+  <!-- =====================================================================
+       HERO DE LA PÁGINA
+  ====================================================================== -->
+  <section id="portafolio-hero">
+    <div class="container">
+      <nav class="ph-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Portafolio</span>
+      </nav>
+      <span class="section-label">Portafolio</span>
+      <h1>Nuestros Productos</h1>
+      <p>Todo elaborado a mano y a pedido. Pasa el cursor —o toca— cada tarjeta para descubrir sus ingredientes.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CATÁLOGO CON FILTROS
+  ====================================================================== -->
+  <section id="portafolio-catalogo" class="section-pad">
+    <div class="container">
+
+      <!-- Filtros por categoría -->
+      <div class="filtros" role="group" aria-label="Filtrar por categoría">
+        <button class="filtro-btn active" data-categoria="todos">Todos</button>
+        <button class="filtro-btn" data-categoria="panes">Panes y Panques</button>
+        <button class="filtro-btn" data-categoria="postres">Postres</button>
+        <button class="filtro-btn" data-categoria="chocolates">Chocolates</button>
+      </div>
+
+      <!-- Grid de tarjetas flip — generado por portafolio.js -->
+      <div class="catalogo-grid" id="catalogo-grid" aria-live="polite"></div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CTA FINAL
+  ====================================================================== -->
+  <section id="portafolio-cta">
+    <div class="container">
+      <div class="pcta-content">
+        <span class="section-label">¿No ves lo que buscas?</span>
+        <h2>Lo Hacemos a tu Medida</h2>
+        <p>Si tienes en mente algo que no aparece aquí, escríbenos. Creamos cualquier producto a pedido: pasteles, galletas decoradas, cupcakes, postres temáticos y más.</p>
+        <a href="https://wa.me/525610003837?text=Hola%2C%20quisiera%20un%20producto%20personalizado"
+           class="btn btn-primary btn-lg"
+           target="_blank" rel="noopener noreferrer">
+          Pedir algo personalizado →
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       FOOTER
+  ====================================================================== -->
+  <footer role="contentinfo">
+    <div class="container">
+      <div class="footer-inner">
+
+        <div class="footer-logo">
+          <img src="images/logos/logo_final.png" alt="Espiral Dulce — Repostería Artesanal" />
+        </div>
+
+        <ul class="footer-links" role="list">
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="portafolio.html">Portafolio</a></li>
+          <li><a href="index.html#servicios">Servicios</a></li>
+          <li><a href="index.html#contacto">Contacto</a></li>
+        </ul>
+
+        <div class="footer-social" aria-label="Redes sociales">
+          <a href="#" aria-label="Facebook"  title="Facebook">f</a>
+          <a href="#" aria-label="Instagram" title="Instagram">ig</a>
+          <a href="#" aria-label="LinkedIn"  title="LinkedIn">in</a>
+        </div>
+
+        <p class="footer-copy">
+          © 2025 Espiral Dulce. Todos los derechos reservados. · CDMX, México
+        </p>
+
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+     class="wa-float"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Abrir WhatsApp para cotizar"
+     title="Cotizar por WhatsApp">
+  </a>
+
+
+  <script src="js/portafolio.js"></script>
+</body>
+</html>

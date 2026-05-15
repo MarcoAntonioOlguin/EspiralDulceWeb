@@ -117,7 +117,8 @@ function openWhatsApp(producto) {
 
 /* ============================================================
    6. FORMULARIO DE CONTACTO
-   - Valida campos requeridos y formato de email
+   - Validación en tiempo real (campo verde cuando es válido)
+   - Valida campos requeridos y formato de email al enviar
    - Muestra feedback visual en campos inválidos
    - Guarda el envío en localStorage como historial
    - Muestra mensaje de éxito tras el envío
@@ -147,6 +148,32 @@ function markFieldInvalid(field) {
 function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
+
+/* Validación en tiempo real — marca el campo verde al escribir */
+(function setupRealtimeValidation() {
+  const nombreField      = document.getElementById('nombre');
+  const emailField       = document.getElementById('email');
+  const descripcionField = document.getElementById('descripcion');
+
+  function markValid(field)   { field.classList.add('valid'); }
+  function clearValid(field)  { field.classList.remove('valid'); }
+
+  nombreField.addEventListener('input', () => {
+    nombreField.value.trim().length > 0
+      ? markValid(nombreField) : clearValid(nombreField);
+  });
+
+  emailField.addEventListener('input', () => {
+    isValidEmail(emailField.value.trim())
+      ? markValid(emailField) : clearValid(emailField);
+  });
+
+  descripcionField.addEventListener('input', () => {
+    descripcionField.value.trim().length > 10
+      ? markValid(descripcionField) : clearValid(descripcionField);
+  });
+})();
+
 
 contactForm.addEventListener('submit', function (e) {
   e.preventDefault();
@@ -199,6 +226,7 @@ contactForm.addEventListener('submit', function (e) {
 
   // --- Mostrar mensaje de éxito ---
   contactForm.reset();
+  contactForm.querySelectorAll('.valid').forEach(f => f.classList.remove('valid'));
   formSuccess.style.display = 'flex';
   formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 
