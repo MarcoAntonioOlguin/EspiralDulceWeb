@@ -8,6 +8,7 @@
  *   4. Renderizado de tarjetas flip
  *   5. Filtros por categoría
  *   6. Toggle de flip por clic
+ *   7. Tilt 3D en hover (desktop)
  */
 
 
@@ -402,7 +403,7 @@ function renderCard(producto) {
           <p class="card-nombre">${producto.nombre}</p>
           <p class="card-hint">
             <span aria-hidden="true">✦</span>
-            <span class="card-hint-hover">Pasa el cursor para ver ingredientes</span>
+            <span class="card-hint-hover">Clic para ver ingredientes</span>
             <span class="card-hint-touch">Toca para ver ingredientes</span>
           </p>
         </div>
@@ -434,8 +435,10 @@ function renderCard(producto) {
 
 const grid = document.getElementById('catalogo-grid');
 
-PRODUCTOS.forEach(producto => {
-  grid.appendChild(renderCard(producto));
+PRODUCTOS.forEach((producto, index) => {
+  const card = renderCard(producto);
+  card.style.setProperty('--i', index);
+  grid.appendChild(card);
 });
 
 
@@ -457,6 +460,7 @@ document.querySelectorAll('.filtro-btn').forEach(btn => {
       } else {
         card.classList.add('hidden');
         card.classList.remove('flipped');
+        resetTilt(card);
       }
     });
   });
@@ -465,16 +469,10 @@ document.querySelectorAll('.filtro-btn').forEach(btn => {
 
 /* ============================================================
    6. TOGGLE DE FLIP POR CLIC / TECLADO
-   El CSS ya maneja el hover en desktop.
-   El clic agrega/quita la clase .flipped para:
-     - Dispositivos táctiles (sin hover)
-     - Usuarios de teclado (Tab + Enter/Space)
+   El flip solo ocurre al hacer clic — el hover ahora hace tilt 3D.
 ============================================================ */
-grid.addEventListener('click', e => {
-  const card = e.target.closest('.flip-card');
-  if (!card) return;
-
-  if (e.target.closest('a')) return;
+function flipCard(card) {
+  resetTilt(card);
 
   const isFlipped = card.classList.toggle('flipped');
   const back = card.querySelector('.flip-card-back');
@@ -482,6 +480,12 @@ grid.addEventListener('click', e => {
 
   back.setAttribute('aria-hidden', !isFlipped);
   cta.setAttribute('tabindex', isFlipped ? '0' : '-1');
+}
+
+grid.addEventListener('click', e => {
+  const card = e.target.closest('.flip-card');
+  if (!card || e.target.closest('a')) return;
+  flipCard(card);
 });
 
 grid.addEventListener('keydown', e => {
@@ -489,11 +493,50 @@ grid.addEventListener('keydown', e => {
   const card = e.target.closest('.flip-card');
   if (!card) return;
   e.preventDefault();
+  flipCard(card);
+});
 
-  const isFlipped = card.classList.toggle('flipped');
-  const back = card.querySelector('.flip-card-back');
-  const cta  = card.querySelector('.back-cta');
 
-  back.setAttribute('aria-hidden', !isFlipped);
-  cta.setAttribute('tabindex', isFlipped ? '0' : '-1');
+/* ============================================================
+   7. TILT 3D EN HOVER (solo dispositivos con cursor real)
+   Mueve el mouse sobre una tarjeta para inclinarla en 3D.
+   El tilt se resetea al hacer clic para no interferir con el flip.
+============================================================ */
+let tiltCard = null;
+
+function applyTilt(card, e) {
+  const rect = card.getBoundingClientRect();
+  const cx = rect.left + rect.width  / 2;
+  const cy = rect.top  + rect.height / 2;
+  const dx = (e.clientX - cx) / (rect.width  / 2); // -1 a 1
+  const dy = (e.clientY - cy) / (rect.height / 2); // -1 a 1
+
+  const rotX = (-dy * 7).toFixed(2);
+  const rotY = ( dx * 7).toFixed(2);
+
+  card.style.transform =
+    `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+}
+
+function resetTilt(card) {
+  if (!card) return;
+  card.style.transform = '';
+  if (tiltCard === card) tiltCard = null;
+}
+
+grid.addEventListener('mousemove', e => {
+  const card = e.target.closest('.flip-card');
+
+  if (tiltCard && tiltCard !== card) {
+    resetTilt(tiltCard);
+  }
+
+  if (!card || card.classList.contains('flipped')) return;
+
+  tiltCard = card;
+  applyTilt(card, e);
+});
+
+grid.addEventListener('mouseleave', () => {
+  resetTilt(tiltCard);
 });
