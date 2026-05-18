@@ -493,6 +493,8 @@ const PRODUCTOS = [
     categoria: 'postres',
     categoriaLabel: 'Postres',
     imagen: 'images/portafolio/pastel_personalizado_sin_fondo.png',
+    ctaUrl: 'visualizador-pastel.html',
+    ctaText: 'Hacer pedido personalizado →',
     ingredientes: [
       'Bizcocho a elegir',
       'Betún a elegir',
@@ -600,13 +602,12 @@ function renderCard(producto) {
         <ul class="ingredientes-list">
           ${ingredientesHTML}
         </ul>
-        <a href="${buildWhatsAppUrl(producto)}"
+        <a href="${producto.ctaUrl || buildWhatsAppUrl(producto)}"
            class="back-cta"
-           target="_blank"
-           rel="noopener noreferrer"
+           ${!producto.ctaUrl ? 'target="_blank" rel="noopener noreferrer"' : ''}
            tabindex="-1"
-           aria-label="Pedir ${producto.nombre} por WhatsApp">
-          Pedir este producto →
+           aria-label="${producto.ctaText ? producto.ctaText : 'Pedir ' + producto.nombre + ' por WhatsApp'}">
+          ${producto.ctaText || 'Pedir este producto →'}
         </a>
       </div>
 
