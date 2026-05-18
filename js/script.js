@@ -175,114 +175,74 @@ function openWhatsApp(producto) {
    - Muestra mensaje de éxito tras el envío
 ============================================================ */
 const contactForm = document.getElementById('contact-form');
-const formSuccess = document.getElementById('form-success');
 
-/**
- * Marca un campo como inválido con borde rojo,
- * luego lo restaura después de 2.5 segundos.
- * @param {HTMLElement} field
- */
-function markFieldInvalid(field) {
-  field.style.borderColor = '#ef4444';
-  field.style.boxShadow   = '0 0 0 3px rgba(239, 68, 68, 0.15)';
-  setTimeout(() => {
-    field.style.borderColor = '';
-    field.style.boxShadow   = '';
-  }, 2500);
-}
+if (contactForm) {
+  const formSuccess = document.getElementById('form-success');
 
-/**
- * Valida el formato básico de un email.
- * @param {string} email
- * @returns {boolean}
- */
-function isValidEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
+  function markFieldInvalid(field) {
+    field.style.borderColor = '#ef4444';
+    field.style.boxShadow   = '0 0 0 3px rgba(239, 68, 68, 0.15)';
+    setTimeout(() => {
+      field.style.borderColor = '';
+      field.style.boxShadow   = '';
+    }, 2500);
+  }
 
-/* Validación en tiempo real — marca el campo verde al escribir */
-(function setupRealtimeValidation() {
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  }
+
   const nombreField      = document.getElementById('nombre');
   const emailField       = document.getElementById('email');
   const descripcionField = document.getElementById('descripcion');
 
-  function markValid(field)   { field.classList.add('valid'); }
-  function clearValid(field)  { field.classList.remove('valid'); }
+  function markValid(f)  { f.classList.add('valid'); }
+  function clearValid(f) { f.classList.remove('valid'); }
 
   nombreField.addEventListener('input', () => {
-    nombreField.value.trim().length > 0
-      ? markValid(nombreField) : clearValid(nombreField);
+    nombreField.value.trim().length > 0 ? markValid(nombreField) : clearValid(nombreField);
   });
-
   emailField.addEventListener('input', () => {
-    isValidEmail(emailField.value.trim())
-      ? markValid(emailField) : clearValid(emailField);
+    isValidEmail(emailField.value.trim()) ? markValid(emailField) : clearValid(emailField);
   });
-
   descripcionField.addEventListener('input', () => {
-    descripcionField.value.trim().length > 10
-      ? markValid(descripcionField) : clearValid(descripcionField);
+    descripcionField.value.trim().length > 10 ? markValid(descripcionField) : clearValid(descripcionField);
   });
-})();
 
+  contactForm.addEventListener('submit', function (e) {
+    e.preventDefault();
 
-contactForm.addEventListener('submit', function (e) {
-  e.preventDefault();
+    const nombre      = nombreField.value.trim();
+    const email       = emailField.value.trim();
+    const descripcion = descripcionField.value.trim();
 
-  // Lectura de valores
-  const nombreField     = document.getElementById('nombre');
-  const emailField      = document.getElementById('email');
-  const descripcionField = document.getElementById('descripcion');
+    let hasErrors = false;
+    if (!nombre)      { markFieldInvalid(nombreField);      hasErrors = true; }
+    if (!email)       { markFieldInvalid(emailField);       hasErrors = true; }
+    if (!descripcion) { markFieldInvalid(descripcionField); hasErrors = true; }
+    if (hasErrors) return;
 
-  const nombre     = nombreField.value.trim();
-  const email      = emailField.value.trim();
-  const descripcion = descripcionField.value.trim();
+    if (!isValidEmail(email)) { markFieldInvalid(emailField); return; }
 
-  // --- Validación de campos requeridos ---
-  let hasErrors = false;
+    try {
+      const submissions = JSON.parse(localStorage.getItem('espiraldulce_submissions') || '[]');
+      submissions.push({
+        nombre, email,
+        tipo_evento:  document.getElementById('tipo-evento').value,
+        fecha_evento: document.getElementById('fecha-evento').value,
+        personas:     document.getElementById('personas').value,
+        descripcion,
+        timestamp: new Date().toISOString(),
+      });
+      localStorage.setItem('espiraldulce_submissions', JSON.stringify(submissions));
+    } catch (err) {
+      console.warn('No se pudo guardar en localStorage:', err);
+    }
 
-  if (!nombre) { markFieldInvalid(nombreField);      hasErrors = true; }
-  if (!email)  { markFieldInvalid(emailField);       hasErrors = true; }
-  if (!descripcion) { markFieldInvalid(descripcionField); hasErrors = true; }
-
-  if (hasErrors) return;
-
-  // --- Validación de formato de email ---
-  if (!isValidEmail(email)) {
-    markFieldInvalid(emailField);
-    return;
-  }
-
-  // --- Guardar en localStorage ---
-  try {
-    const submissions = JSON.parse(
-      localStorage.getItem('espiraldulce_submissions') || '[]'
-    );
-
-    submissions.push({
-      nombre,
-      email,
-      tipo_evento:  document.getElementById('tipo-evento').value,
-      fecha_evento: document.getElementById('fecha-evento').value,
-      personas:     document.getElementById('personas').value,
-      descripcion,
-      timestamp:    new Date().toISOString(),
-    });
-
-    localStorage.setItem('espiraldulce_submissions', JSON.stringify(submissions));
-  } catch (err) {
-    // localStorage puede no estar disponible en algunos contextos
-    console.warn('No se pudo guardar en localStorage:', err);
-  }
-
-  // --- Mostrar mensaje de éxito ---
-  contactForm.reset();
-  contactForm.querySelectorAll('.valid').forEach(f => f.classList.remove('valid'));
-  formSuccess.style.display = 'flex';
-  formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-  // Ocultar el mensaje después de 6 segundos
-  setTimeout(() => {
-    formSuccess.style.display = 'none';
-  }, 6000);
-});
+    contactForm.reset();
+    contactForm.querySelectorAll('.valid').forEach(f => f.classList.remove('valid'));
+    formSuccess.style.display = 'flex';
+    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    setTimeout(() => { formSuccess.style.display = 'none'; }, 6000);
+  });
+}

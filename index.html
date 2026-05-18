@@ -43,7 +43,6 @@
 
         <ul class="nav-links" role="list">
           <li><a href="portafolio.html">Portafolio</a></li>
-          <li><a href="#servicios">Servicios</a></li>
           <li><a href="#proceso">Proceso</a></li>
           <li><a href="#contacto">Contacto</a></li>
         </ul>
@@ -68,7 +67,6 @@
   <!-- Menú desplegable mobile (controlado por script.js) -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
     <a href="portafolio.html">Portafolio</a>
-    <a href="#servicios">Servicios</a>
     <a href="#proceso">Proceso</a>
     <a href="#contacto">Contacto</a>
     <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
@@ -284,111 +282,6 @@
   </section>
 
 
-  <!-- =====================================================================
-       4. SERVICIOS
-       Dos columnas: pasteles estándar (izquierda) + personalizados (derecha)
-  ====================================================================== -->
-  <section id="servicios" class="section-pad" aria-labelledby="servicios-title">
-    <div class="container">
-
-      <div class="section-header reveal">
-        <span class="section-label">Servicios</span>
-        <h2 id="servicios-title">Nuestros Servicios</h2>
-        <p style="color:var(--muted);max-width:500px;margin-top:.75rem">
-          Desde una sola galleta hasta pasteles para cientos de personas. Todo elaborado a mano y a pedido, sin tienda física.
-        </p>
-      </div>
-
-      <div class="servicios-grid">
-
-        <!-- Columna A: Estándar -->
-        <div>
-          <p class="servicios-col-title">Pasteles</p>
-          <div class="cake-cards">
-
-            <div class="cake-card reveal">
-              <div class="cake-card-img">
-                <img src="images/servicios/pastel-chocolate.jpg"
-                     alt="Pastel de chocolate artesanal" loading="lazy" />
-              </div>
-              <div class="cake-card-body">
-                <h3>Pastel de Chocolate</h3>
-                <p>Ganache oscuro, bizcocho húmedo y decoración elegante. Para cumpleaños, eventos y antojos especiales.</p>
-                <div class="cake-card-footer">
-                  <span class="price-tag">Desde $500</span>
-                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Chocolate')">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="cake-card reveal reveal-delay-1">
-              <div class="cake-card-img">
-                <img src="images/servicios/pastel-vainilla.jpg"
-                     alt="Pastel de vainilla clásico" loading="lazy" />
-              </div>
-              <div class="cake-card-body">
-                <h3>Pastel de Vainilla</h3>
-                <p>Relleno de crema francesa, acabado satinado y detalles dorados o al gusto del cliente.</p>
-                <div class="cake-card-footer">
-                  <span class="price-tag">Desde $480</span>
-                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Vainilla')">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-            <div class="cake-card reveal reveal-delay-2">
-              <div class="cake-card-img">
-                <img src="images/servicios/pastel-frutos-rojos.jpg"
-                     alt="Pastel de frutos rojos" loading="lazy" />
-              </div>
-              <div class="cake-card-body">
-                <h3>Pastel Frutos Rojos</h3>
-                <p>Mousse de frambuesa, coulis de frutos rojos y base de galleta artesanal. Refrescante y sofisticado.</p>
-                <div class="cake-card-footer">
-                  <span class="price-tag">Desde $520</span>
-                  <button class="btn-xs" onclick="openWhatsApp('Pastel de Frutos Rojos')">Ver Detalles</button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-
-        <!-- Columna B: Personalizado -->
-        <div>
-          <p class="servicios-col-title">Personalizados y Eventos</p>
-          <div class="custom-card reveal">
-            <div class="custom-card-img">
-              <img src="images/servicios/pastel-personalizado.jpg"
-                   alt="Pastel personalizado para cualquier ocasión" loading="lazy" />
-            </div>
-            <div class="custom-card-body">
-              <h3>Lo Hacemos a tu Medida, para Cualquier Ocasión</h3>
-              <p>Desde galletas decoradas para regalo hasta pasteles para bodas, quinceañeras, cumpleaños o eventos corporativos. Nos adaptamos a tu idea, presupuesto y número de personas.</p>
-              <ul class="custom-benefits">
-                <li>Galletas, pasteles, cupcakes y postres variados</li>
-                <li>Diseños temáticos: cumpleaños, bodas, baby shower y más</li>
-                <li>Eventos corporativos con logo y colores de marca</li>
-                <li>Desde 1 pieza hasta pedidos para 2,000+ personas</li>
-                <li>Entrega a domicilio en CDMX sin costo adicional</li>
-              </ul>
-              <div style="display:flex;flex-wrap:wrap;gap:0.75rem;align-items:center">
-                <a href="visualizador-pastel.html" class="btn btn-gold">
-                  Diseña tu pastel →
-                </a>
-                <a href="https://wa.me/525610003837?text=Hola%2C%20quiero%20hacer%20un%20pedido%20personalizado"
-                   style="font-size:0.85rem;color:var(--muted);text-decoration:underline;text-underline-offset:3px"
-                   target="_blank" rel="noopener noreferrer">
-                  o cotiza por WhatsApp
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
 
   <!-- =====================================================================
@@ -546,133 +439,65 @@
 
   <!-- =====================================================================
        8. CONTACTO
-       Columna izquierda: 3 canales (WA, Email, Tel)
-       Columna derecha: formulario de cotización completo
   ====================================================================== -->
   <section id="contacto" class="section-pad" aria-labelledby="contacto-title">
     <div class="container">
-      <div class="contacto-grid">
 
-        <!-- Canales de contacto -->
-        <div class="contacto-info">
-          <span class="section-label">Contacto</span>
-          <h2 id="contacto-title">Hablemos de tu Pedido</h2>
-          <p>Elige tu canal favorito. Respondemos de lunes a sábado. Estamos en Anzures, Alcaldía Miguel Hidalgo, CDMX — sin tienda física, todo es a pedido y lo llevamos a tu domicilio.</p>
+      <div class="section-header reveal" style="text-align:center;max-width:560px;margin:0 auto 3rem">
+        <span class="section-label">Contacto</span>
+        <h2 id="contacto-title">Hablemos de tu Pedido</h2>
+        <p style="color:rgba(255,255,255,.6);margin-top:.75rem;font-size:.95rem;line-height:1.7">
+          Respondemos de lunes a sábado. Sin tienda física — todo es a pedido y lo llevamos a tu domicilio en toda la CDMX.
+        </p>
+      </div>
 
-          <div class="contact-options">
+      <div class="contact-cards-grid">
 
-            <!-- WhatsApp -->
-            <div class="contact-option">
-              <div class="contact-icon icon-wa" aria-hidden="true"></div>
-              <div class="contact-option-body">
-                <strong>WhatsApp (Principal)</strong>
-                <p>+52 56 1000 3837</p>
-                <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
-                   class="btn-xs-dark" target="_blank" rel="noopener noreferrer">
-                  Abrir WhatsApp →
-                </a>
-              </div>
-            </div>
-
-            <!-- Email -->
-            <div class="contact-option">
-              <div class="contact-icon icon-email" aria-hidden="true">✉️</div>
-              <div class="contact-option-body">
-                <strong>Email</strong>
-                <p>ventas@espiraldulce.com</p>
-                <a href="mailto:ventas@espiraldulce.com" class="btn-xs-dark">Enviar Email →</a>
-              </div>
-            </div>
-
-            <!-- Teléfono -->
-            <div class="contact-option">
-              <div class="contact-icon icon-tel" aria-hidden="true">📞</div>
-              <div class="contact-option-body">
-                <strong>Teléfono</strong>
-                <p>+52 56 1000 3837</p>
-                <a href="tel:+525610003837" class="btn-xs-dark">Llamar ahora →</a>
-              </div>
-            </div>
-
-            <!-- Ubicación y entrega -->
-            <div class="contact-option">
-              <div class="contact-icon icon-tel" aria-hidden="true">📍</div>
-              <div class="contact-option-body">
-                <strong>Ubicación y Entrega</strong>
-                <p>Anzures, Alcaldía Miguel Hidalgo, CDMX</p>
-                <p style="font-size:0.82rem;margin-top:0.25rem;color:var(--muted)">Sin tienda física · Todo a pedido · Entregamos en toda la CDMX</p>
-              </div>
-            </div>
-
+        <!-- WhatsApp + Teléfono -->
+        <div class="contact-card reveal">
+          <div class="contact-card-icon icon-wa" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+          </div>
+          <strong>WhatsApp · Teléfono</strong>
+          <p class="contact-card-value">+52 56 1000 3837</p>
+          <p class="contact-card-note">Lunes a sábado · Respuesta rápida</p>
+          <div class="contact-card-actions">
+            <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+               class="contact-card-btn contact-card-btn--wa"
+               target="_blank" rel="noopener noreferrer">
+              Abrir WhatsApp →
+            </a>
+            <a href="tel:+525610003837" class="contact-card-btn">
+              Llamar →
+            </a>
           </div>
         </div>
 
-        <!-- Formulario de cotización -->
-        <div class="contact-form-wrap reveal">
-          <h3>Haz tu Pedido</h3>
-          <p>Completa el formulario y te contactamos a la brevedad con precio y disponibilidad.</p>
+        <!-- Email -->
+        <div class="contact-card reveal reveal-delay-1">
+          <div class="contact-card-icon icon-email" aria-hidden="true">✉️</div>
+          <strong>Email</strong>
+          <p class="contact-card-value">ventas@espiraldulce.com</p>
+          <p class="contact-card-note">Respuesta en menos de 24 horas</p>
+          <div class="contact-card-actions">
+            <a href="mailto:ventas@espiraldulce.com" class="contact-card-btn">
+              Enviar Email →
+            </a>
+          </div>
+        </div>
 
-          <form id="contact-form" novalidate>
-            <div class="form-row">
-              <div class="form-group">
-                <label for="nombre">Nombre *</label>
-                <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
-              </div>
-              <div class="form-group">
-                <label for="email">Email *</label>
-                <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
-              </div>
-            </div>
-
-            <div class="form-row">
-              <div class="form-group">
-                <label for="tipo-evento">¿Para qué ocasión?</label>
-                <select id="tipo-evento" name="tipo_evento">
-                  <option value="">Selecciona...</option>
-                  <option>Cumpleaños</option>
-                  <option>Boda</option>
-                  <option>Quinceañera</option>
-                  <option>Baby Shower / Género</option>
-                  <option>Graduación</option>
-                  <option>Pedido personal / Antojo</option>
-                  <option>Evento Corporativo</option>
-                  <option>Otro</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="fecha-evento">Fecha del Evento</label>
-                <input type="date" id="fecha-evento" name="fecha_evento" />
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label for="personas">Número de Piezas / Personas</label>
-              <input type="number" id="personas" name="personas" placeholder="Ej: 20 galletas, 50 personas" min="1" />
-            </div>
-
-            <div class="form-group">
-              <label for="descripcion">Descripción del Pedido *</label>
-              <textarea id="descripcion" name="descripcion"
-                        placeholder="Ej: Un pastel de chocolate para 20 personas, temática de dinosaurios, para el sábado 14. Entrega en Col. Polanco." required></textarea>
-            </div>
-
-            <p class="form-promise">
-              <span aria-hidden="true">📬</span>
-              Te contactamos en menos de 48 horas con precio y disponibilidad.
-            </p>
-
-            <button type="submit" class="btn btn-primary"
-                    style="width:100%;justify-content:center;">
-              Enviar Solicitud ✦
-            </button>
-
-            <div class="form-success" id="form-success" role="alert" aria-live="polite">
-              ✅ ¡Gracias! Recibimos tu pedido. Te contactamos pronto con precio y disponibilidad.
-            </div>
-          </form>
+        <!-- Ubicación y entrega -->
+        <div class="contact-card reveal reveal-delay-2">
+          <div class="contact-card-icon icon-location" aria-hidden="true">📍</div>
+          <strong>Ubicación y Entrega</strong>
+          <p class="contact-card-value">Anzures · CDMX</p>
+          <p class="contact-card-note">Entregamos en toda la CDMX · Sin costo adicional · Sin tienda física</p>
         </div>
 
       </div>
+
     </div>
   </section>
 
