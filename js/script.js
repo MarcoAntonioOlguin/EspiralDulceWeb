@@ -116,7 +116,58 @@ function openWhatsApp(producto) {
 
 
 /* ============================================================
-   6. FORMULARIO DE CONTACTO
+   6. FLIP CARDS EN PORTADA
+   Flip por clic y tilt 3D para las tarjetas del portafolio
+   que se muestran en index.html.
+============================================================ */
+(function () {
+  const cards = document.querySelectorAll('.flip-card');
+  if (!cards.length) return;
+
+  let tiltCard = null;
+
+  function resetTilt(card) {
+    card.style.transform = '';
+    if (tiltCard === card) tiltCard = null;
+  }
+
+  function applyTilt(card, e) {
+    const rect = card.getBoundingClientRect();
+    const dx = (e.clientX - (rect.left + rect.width  / 2)) / (rect.width  / 2);
+    const dy = (e.clientY - (rect.top  + rect.height / 2)) / (rect.height / 2);
+    card.style.transform =
+      `perspective(1000px) rotateX(${(-dy * 7).toFixed(2)}deg) rotateY(${(dx * 7).toFixed(2)}deg)`;
+  }
+
+  cards.forEach(card => {
+    card.addEventListener('click', e => {
+      if (e.target.closest('a')) return;
+      resetTilt(card);
+      const isFlipped = card.classList.toggle('flipped');
+      card.querySelector('.flip-card-back').setAttribute('aria-hidden', !isFlipped);
+      card.querySelector('.back-cta').setAttribute('tabindex', isFlipped ? '0' : '-1');
+    });
+
+    card.addEventListener('keydown', e => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      e.preventDefault();
+      card.click();
+    });
+
+    card.addEventListener('mousemove', e => {
+      if (card.classList.contains('flipped')) return;
+      if (tiltCard && tiltCard !== card) resetTilt(tiltCard);
+      tiltCard = card;
+      applyTilt(card, e);
+    });
+
+    card.addEventListener('mouseleave', () => resetTilt(card));
+  });
+})();
+
+
+/* ============================================================
+   7. FORMULARIO DE CONTACTO
    - Validación en tiempo real (campo verde cuando es válido)
    - Valida campos requeridos y formato de email al enviar
    - Muestra feedback visual en campos inválidos
