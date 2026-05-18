@@ -378,7 +378,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   align-items: center;
   padding-top: 70px;
   background:
-    linear-gradient(to bottom, transparent 72%, #5C2D0D 90%, var(--dark-2) 100%),
+    linear-gradient(to bottom, transparent 80%, #5C2D0D 96%, var(--dark-2) 100%),
     linear-gradient(135deg, #F5ECD7 0%, var(--white) 60%, #F9F0E3 100%);
   position: relative;
   overflow: hidden;
@@ -440,9 +440,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 .hero-stats {
   display: flex;
   gap: 2.5rem;
-  margin-top: 4rem;
-  padding-top: 2.5rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.07);
+  margin-top: 3rem;
+  padding-top: 0;
 }
 .hero-stat strong {
   font-family: var(--font-display);
@@ -453,7 +452,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   line-height: 1;
   margin-bottom: 0.3rem;
 }
-.hero-stat small { font-size: 0.78rem; color: var(--muted); font-weight: 400; }
+.hero-stat small { font-size: 0.78rem; color: var(--mid); font-weight: 500; }
 
 /* Imagen del hero — PNG con fondo transparente */
 .hero-image {
@@ -493,6 +492,8 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   .hero-image img           { height: 300px; object-fit: contain; }
   .hero-text                { max-width: 100%; }
   .hero-stats               { gap: 1.5rem; }
+  .hero-stat strong         { color: var(--white); }
+  .hero-stat small          { color: rgba(255, 255, 255, 0.65); }
 }
 
 
@@ -589,14 +590,16 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
   text-transform: uppercase;
   transition: var(--transition);
   min-height: 48px;
-  background: transparent;
+  background: rgba(42, 23, 9, 0.78);
   color: var(--gold-light);
-  border: 2px solid rgba(200, 121, 65, 0.4);
+  border: 2px solid rgba(200, 121, 65, 0.5);
+  backdrop-filter: blur(6px);
 }
 .btn-portfolio-all:hover {
-  background: rgba(200, 121, 65, 0.12);
+  background: rgba(42, 23, 9, 0.95);
   border-color: var(--gold-light);
   transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.3);
 }
 
 
@@ -823,7 +826,7 @@ h3 { font-size: clamp(1.1rem, 2vw, 1.5rem);  font-weight: 600; }
 ============================================================ */
 #cta-principal {
   background:
-    linear-gradient(to top, var(--light-bg) 0%, transparent 110px),
+    linear-gradient(to top, var(--light-bg) 0%, rgba(245, 236, 215, 0) 110px),
     linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 50%, #D4956B 100%);
   color: var(--white);
   text-align: center;
