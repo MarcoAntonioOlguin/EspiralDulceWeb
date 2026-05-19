@@ -16,7 +16,7 @@
 
 /* ── PAGE HERO ──────────────────────────────────────────── */
 #portafolio-hero {
-  background: linear-gradient(135deg, #F5ECD7 0%, var(--white) 60%, #F9F0E3 100%);
+  background: var(--light-bg);
   padding: calc(70px + 64px) 0 60px;
   position: relative;
   overflow: hidden;
@@ -93,6 +93,12 @@
   box-shadow: 0 4px 16px rgba(200, 121, 65, 0.3);
 }
 
+
+/* ── CATÁLOGO ───────────────────────────────────────────── */
+#portafolio-catalogo {
+  background-color: var(--white);
+  background-image: linear-gradient(to bottom, rgba(245, 236, 215, 0) 65%, rgba(139, 69, 19, 0.12) 100%);
+}
 
 /* ── GRID DEL CATÁLOGO ──────────────────────────────────── */
 .catalogo-grid {
