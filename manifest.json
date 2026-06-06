@@ -1,0 +1,24 @@
+{
+  "name": "Espiral Dulce — Repostería Artesanal",
+  "short_name": "Espiral Dulce",
+  "description": "Repostería artesanal a pedido en CDMX. Pasteles, panques, galletas y postres con entrega a domicilio.",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#F5ECD7",
+  "theme_color": "#C87941",
+  "lang": "es-MX",
+  "icons": [
+    {
+      "src": "images/logos/logo_minimalista.svg",
+      "type": "image/svg+xml",
+      "sizes": "any",
+      "purpose": "any"
+    },
+    {
+      "src": "images/logos/logo_final_sin_letras.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    }
+  ]
+}

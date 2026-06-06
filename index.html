@@ -4,13 +4,70 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- SEO & Social -->
+  <!-- SEO -->
   <meta name="description" content="Repostería artesanal a pedido en CDMX. Galletas, pasteles y postres para cumpleaños, bodas, fiestas y eventos corporativos. Entregamos en tu domicilio. Anzures, Miguel Hidalgo." />
   <meta name="keywords"    content="repostería artesanal CDMX, pasteles a pedido, galletas personalizadas, pasteles cumpleaños CDMX, pasteles boda CDMX, Anzures, Miguel Hidalgo" />
+  <meta name="theme-color" content="#C87941" />
+  <link rel="canonical" href="https://espiraldulce.com/" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="Espiral Dulce" />
+  <meta property="og:locale"      content="es_MX" />
   <meta property="og:title"       content="Espiral Dulce — Repostería Artesanal a Pedido en CDMX" />
   <meta property="og:description" content="Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX." />
+  <meta property="og:url"         content="https://espiraldulce.com/" />
+  <meta property="og:image"       content="https://espiraldulce.com/images/hero.png" />
+  <meta property="og:image:alt"   content="Cheesecake de zarzamora artesanal de Espiral Dulce" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="Espiral Dulce — Repostería Artesanal a Pedido en CDMX" />
+  <meta name="twitter:description" content="Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX." />
+  <meta name="twitter:image"       content="https://espiraldulce.com/images/hero.png" />
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/svg+xml" href="images/logos/logo_minimalista.svg" />
+  <link rel="apple-touch-icon" href="images/logos/logo_final_sin_letras.png" />
+  <link rel="manifest" href="manifest.json" />
 
   <title>Espiral Dulce — Repostería Artesanal a Pedido · CDMX</title>
+
+  <!-- Schema.org: Bakery / LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "Espiral Dulce",
+    "description": "Repostería artesanal a pedido. Pasteles, panques, galletas y postres con entrega a domicilio en toda la CDMX.",
+    "url": "https://espiraldulce.com/",
+    "image": "https://espiraldulce.com/images/hero.png",
+    "logo": "https://espiraldulce.com/images/logos/logo_final.png",
+    "telephone": "+525610003837",
+    "priceRange": "$$",
+    "servesCuisine": ["Repostería", "Postres", "Pastelería artesanal"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Anzures",
+      "addressRegion": "Miguel Hidalgo, CDMX",
+      "addressCountry": "MX"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Ciudad de México"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }],
+    "sameAs": [
+      "https://www.instagram.com/espiraldulce",
+      "https://www.facebook.com/espiraldulce"
+    ]
+  }
+  </script>
 
   <!-- Google Fonts: Cormorant Garamond (títulos) + DM Sans (cuerpo) -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,6 +77,15 @@
   <!-- Hoja de estilos propia -->
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/portafolio.css" />
+
+  <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
 </head>
 
 <body>
@@ -113,7 +179,7 @@
         <div class="hero-image">
           <img
             src="images/hero.png"
-            alt="Panque de zanahoria artesanal de Espiral Dulce"
+            alt="Cheesecake de zarzamora artesanal de Espiral Dulce"
             loading="eager"
           />
           <div class="hero-image-badge">
@@ -381,8 +447,7 @@
              class="btn btn-white btn-lg" target="_blank" rel="noopener noreferrer">
              PEDIR POR WHATSAPP
           </a>
-          <a href="visualizador-pastel.html" class="btn btn-lg"
-             style="background:rgba(255,255,255,0.15);color:#fff;border:2px solid rgba(255,255,255,0.4);">
+          <a href="visualizador-pastel.html" class="btn btn-lg btn-ghost-dark">
             Diseña tu pastel →
           </a>
         </div>
@@ -410,21 +475,21 @@
 
         <div class="paso reveal reveal-delay-1">
           <div class="paso-number">1</div>
-          <div class="paso-icon">📞</div>
+          <div class="paso-icon"><i data-lucide="message-circle"></i></div>
           <h3>Contacta</h3>
           <p>Cuéntanos qué necesitas por WhatsApp o formulario: tipo de producto, fecha de entrega, cantidad y tu idea.</p>
         </div>
 
         <div class="paso reveal reveal-delay-2">
           <div class="paso-number">2</div>
-          <div class="paso-icon">💡</div>
+          <div class="paso-icon"><i data-lucide="lightbulb"></i></div>
           <h3>Cotizamos</h3>
           <p>Te enviamos precio, opciones de diseño y disponibilidad en menos de 48 horas. Sin compromiso.</p>
         </div>
 
         <div class="paso reveal reveal-delay-3">
           <div class="paso-number">3</div>
-          <div class="paso-icon">🚚</div>
+          <div class="paso-icon"><i data-lucide="truck"></i></div>
           <h3>Entregamos</h3>
           <p>Llevamos tu pedido a la dirección que nos indiques dentro de CDMX. Nosotros hacemos la entrega personalmente, sin intermediarios.</p>
         </div>
@@ -474,7 +539,9 @@
 
         <!-- Email -->
         <div class="contact-card reveal reveal-delay-1">
-          <div class="contact-card-icon icon-email" aria-hidden="true">✉️</div>
+          <div class="contact-card-icon icon-email" aria-hidden="true">
+            <i data-lucide="mail"></i>
+          </div>
           <strong>Email</strong>
           <p class="contact-card-value">ventas@espiraldulce.com</p>
           <p class="contact-card-note">Respuesta en menos de 24 horas</p>
@@ -487,7 +554,9 @@
 
         <!-- Ubicación y entrega -->
         <div class="contact-card reveal reveal-delay-2">
-          <div class="contact-card-icon icon-location" aria-hidden="true">📍</div>
+          <div class="contact-card-icon icon-location" aria-hidden="true">
+            <i data-lucide="map-pin"></i>
+          </div>
           <strong>Ubicación y Entrega</strong>
           <p class="contact-card-value">Anzures · CDMX</p>
           <p class="contact-card-note">Entregamos en toda la CDMX · Sin costo adicional · Sin tienda física</p>
@@ -507,7 +576,7 @@
       <div class="footer-inner">
 
         <div class="footer-logo">
-          <img src="images/logos/logo_final.png" alt="Espiral Dulce — Repostería Artesanal" />
+          <img src="images/logos/logo_final.png" alt="Espiral Dulce — Repostería Artesanal" loading="lazy" />
         </div>
 
         <ul class="footer-links" role="list">
@@ -518,9 +587,12 @@
         </ul>
 
         <div class="footer-social" aria-label="Redes sociales">
-          <a href="#" aria-label="Facebook"  title="Facebook">f</a>
-          <a href="#" aria-label="Instagram" title="Instagram">ig</a>
-          <a href="#" aria-label="LinkedIn"  title="LinkedIn">in</a>
+          <a href="https://www.instagram.com/espiraldulce" aria-label="Instagram" target="_blank" rel="noopener">
+            <i data-lucide="instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/espiraldulce" aria-label="Facebook" target="_blank" rel="noopener">
+            <i data-lucide="facebook"></i>
+          </a>
         </div>
 
         <p class="footer-copy">
@@ -546,6 +618,8 @@
   <!-- Script propio al final del body (después del HTML, antes del </body>)
        Así el DOM ya está listo cuando el JS lo intenta acceder. -->
   <script src="js/script.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>
 
 </body>
 </html>

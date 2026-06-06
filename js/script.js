@@ -108,7 +108,7 @@ function openWhatsApp(producto) {
   const message = `Hola, me gustaría más información sobre el ${producto} para mi evento corporativo.`;
   const encodedMsg = encodeURIComponent(message);
   window.open(
-    `https://wa.me/5215512345678?text=${encodedMsg}`,
+    `https://wa.me/525610003837?text=${encodedMsg}`,
     '_blank',
     'noopener,noreferrer'
   );
@@ -209,7 +209,10 @@ if (contactForm) {
     descripcionField.value.trim().length > 10 ? markValid(descripcionField) : clearValid(descripcionField);
   });
 
-  contactForm.addEventListener('submit', function (e) {
+  // URL del Google Apps Script web app — ver SETUP_FORMULARIO.md
+  const APPS_SCRIPT_URL = 'PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT';
+
+  contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
 
     const nombre      = nombreField.value.trim();
@@ -224,25 +227,51 @@ if (contactForm) {
 
     if (!isValidEmail(email)) { markFieldInvalid(emailField); return; }
 
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Enviando...'; }
+
+    const payload = {
+      nombre, email,
+      tipo_evento:  document.getElementById('tipo-evento').value,
+      fecha_evento: document.getElementById('fecha-evento').value,
+      personas:     document.getElementById('personas').value,
+      descripcion,
+      timestamp: new Date().toISOString(),
+    };
+
+    // Backup local: siempre guardamos por si el POST falla o el Apps Script no está configurado
     try {
       const submissions = JSON.parse(localStorage.getItem('espiraldulce_submissions') || '[]');
-      submissions.push({
-        nombre, email,
-        tipo_evento:  document.getElementById('tipo-evento').value,
-        fecha_evento: document.getElementById('fecha-evento').value,
-        personas:     document.getElementById('personas').value,
-        descripcion,
-        timestamp: new Date().toISOString(),
-      });
+      submissions.push(payload);
       localStorage.setItem('espiraldulce_submissions', JSON.stringify(submissions));
     } catch (err) {
       console.warn('No se pudo guardar en localStorage:', err);
     }
 
+    // Enviar a Google Apps Script (si está configurado)
+    if (APPS_SCRIPT_URL && !APPS_SCRIPT_URL.startsWith('PEGA_AQUI')) {
+      try {
+        // mode: 'no-cors' porque Apps Script no devuelve headers CORS.
+        // Trade-off: no podemos leer la respuesta, asumimos éxito si no hay throw.
+        await fetch(APPS_SCRIPT_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload),
+        });
+      } catch (err) {
+        console.warn('No se pudo enviar al Apps Script:', err);
+      }
+    }
+
     contactForm.reset();
     contactForm.querySelectorAll('.valid').forEach(f => f.classList.remove('valid'));
     formSuccess.style.display = 'flex';
-    formSuccess.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    const rect = formSuccess.getBoundingClientRect();
+    window.scrollBy({ top: rect.top - 100, behavior: 'smooth' });
     setTimeout(() => { formSuccess.style.display = 'none'; }, 6000);
+
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalText; }
   });
 }

@@ -7,7 +7,7 @@
 
 /* ── LINK ACTIVO EN NAV ─────────────────────────────────── */
 .nav-active {
-  color: var(--pink) !important;
+  color: var(--amber) !important;
 }
 .nav-active::after {
   width: 100% !important;
@@ -16,7 +16,7 @@
 
 /* ── PAGE HERO ──────────────────────────────────────────── */
 #portafolio-hero {
-  background: var(--light-bg);
+  background: var(--cream);
   padding: calc(70px + 64px) 0 60px;
   position: relative;
   overflow: hidden;
@@ -42,12 +42,12 @@
   margin-bottom: 1.25rem;
   list-style: none;
 }
-.ph-breadcrumb a           { color: var(--pink); }
+.ph-breadcrumb a           { color: var(--amber); }
 .ph-breadcrumb a:hover     { text-decoration: underline; }
 
 #portafolio-hero h1 {
   font-style: italic;
-  color: var(--dark);
+  color: var(--ink);
   margin-bottom: 0.75rem;
 }
 
@@ -76,20 +76,20 @@
   letter-spacing: 0.07em;
   text-transform: uppercase;
   background: rgba(61, 35, 20, 0.06);
-  color: var(--mid);
+  color: var(--cocoa-light);
   border: 1.5px solid transparent;
   transition: var(--transition);
   cursor: pointer;
 }
 .filtro-btn:hover {
   background: rgba(200, 121, 65, 0.1);
-  color: var(--pink);
+  color: var(--amber);
   border-color: rgba(200, 121, 65, 0.25);
 }
 .filtro-btn.active {
-  background: var(--pink);
+  background: var(--amber);
   color: var(--white);
-  border-color: var(--pink);
+  border-color: var(--amber);
   box-shadow: 0 4px 16px rgba(200, 121, 65, 0.3);
 }
 
@@ -315,7 +315,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--gold-light);
+  color: var(--amber);
   margin-bottom: 0.3rem;
   position: relative;
 }
@@ -365,7 +365,7 @@
 
 .ingredientes-list li::before {
   content: '✦';
-  color: var(--gold-light);
+  color: var(--amber);
   font-size: 0.45rem;
   flex-shrink: 0;
   position: relative;
@@ -378,7 +378,7 @@
   align-items: center;
   gap: 0.4rem;
   align-self: flex-start;
-  background: var(--pink);
+  background: var(--amber);
   color: var(--white);
   font-family: var(--font-body);
   font-size: 0.77rem;
@@ -394,7 +394,7 @@
 }
 
 .back-cta:hover {
-  background: var(--pink-dark);
+  background: var(--cocoa);
   box-shadow: 0 4px 16px rgba(200, 121, 65, 0.45);
   transform: translateY(-1px);
 }
@@ -402,7 +402,7 @@
 
 /* ── CTA FINAL ──────────────────────────────────────────── */
 #portafolio-cta {
-  background: linear-gradient(135deg, var(--pink-dark) 0%, var(--pink) 50%, #D4956B 100%);
+  background: linear-gradient(135deg, var(--cocoa) 0%, var(--amber) 50%, #D4956B 100%);
   color: var(--white);
   text-align: center;
   padding: 90px 0;
