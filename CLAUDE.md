@@ -9,19 +9,33 @@ artisanal pastry studio based in Anzures, Miguel Hidalgo (CDMX). It sells pastel
 galletas, panques, tartas y postres a pedido — la venta es por WhatsApp y la entrega
 es a domicilio en toda la CDMX. No tienda física, no checkout online.
 
-Plain HTML/CSS/JS — no build system, bundler, or framework. Open `index.html`
-directly or serve via any static file server.
+Plain HTML/CSS/JS output — no framework, no client-side runtime. The site is now built
+with **Eleventy**: sources live in `src/`, the static output is generated into `_site/`.
 
-> See `ARQUITECTURA.md` for the current-state analysis and the proposed Eleventy migration
-> design (in progress, tracked via `develop` branch + feature PRs).
+```
+npm install      # una vez
+npm start        # dev server con recarga (http://localhost:8080)
+npm run build    # compila a _site/
+```
+
+> See `ARQUITECTURA.md` for the current-state analysis and the Eleventy migration design.
+> Migration is in progress, phase by phase, on `develop` + feature PRs.
 
 ## File Structure
 
 | File | Purpose |
 |------|---------|
-| `index.html` | The entire page — all sections are defined here |
-| `css/styles.css` | All styles; sections are numbered and commented to match the HTML |
-| `js/script.js` | All client-side behavior: hamburger menu, smooth scroll, scroll-reveal, header shadow, WhatsApp helper, contact form |
+| `src/index.njk` | Home page — body content only; the chrome comes from the layout |
+| `src/portafolio.html`, `src/visualizador-pastel.html` | Aún páginas HTML completas (migran al layout en la Fase 2) |
+| `src/_includes/layouts/base.njk` | `<head>` + header + footer + botón flotante + scripts — compartido por todas las páginas |
+| `src/_includes/partials/` | `head-seo`, `header-nav`, `footer`, `whatsapp-float`, `scripts` |
+| `src/_data/site.json` | **Única fuente** del número de WhatsApp, mensajes prellenados, email, dirección y redes |
+| `src/css/styles.css` | All styles; sections are numbered and commented to match the HTML |
+| `src/js/script.js` | All client-side behavior: hamburger menu, smooth scroll, scroll-reveal, header shadow, WhatsApp helper, contact form |
+| `.eleventy.js` | Build config + filtros `waUrl` / `waProducto` (arman los links de WhatsApp desde `site.json`) |
+
+**Nunca hardcodees el número de WhatsApp en un template.** Usa
+`{{ site.whatsapp.mensajes.pedido | waUrl }}` o `{{ 'Nombre del producto' | waProducto }}`.
 
 ## Architecture
 

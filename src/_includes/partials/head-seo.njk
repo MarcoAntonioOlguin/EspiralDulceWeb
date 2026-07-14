@@ -1,0 +1,85 @@
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO -->
+  <meta name="description" content="{{ description }}" />
+  <meta name="keywords"    content="{{ keywords }}" />
+  <meta name="theme-color" content="#C87941" />
+  <link rel="canonical" href="{{ site.url }}{{ canonical }}" />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:site_name"   content="{{ site.nombre }}" />
+  <meta property="og:locale"      content="es_MX" />
+  <meta property="og:title"       content="{{ ogTitle }}" />
+  <meta property="og:description" content="{{ ogDescription }}" />
+  <meta property="og:url"         content="{{ site.url }}{{ canonical }}" />
+  <meta property="og:image"       content="{{ site.url }}{{ ogImage }}" />
+  <meta property="og:image:alt"   content="{{ ogImageAlt }}" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card"        content="summary_large_image" />
+  <meta name="twitter:title"       content="{{ ogTitle }}" />
+  <meta name="twitter:description" content="{{ ogDescription }}" />
+  <meta name="twitter:image"       content="{{ site.url }}{{ ogImage }}" />
+
+  <!-- Favicon & Manifest -->
+  <link rel="icon" type="image/svg+xml" href="images/logos/logo_minimalista.svg" />
+  <link rel="apple-touch-icon" href="images/logos/logo_final_sin_letras.png" />
+  <link rel="manifest" href="manifest.json" />
+
+  <title>{{ title }}</title>
+
+  <!-- Schema.org: Bakery / LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Bakery",
+    "name": "{{ site.nombre }}",
+    "description": "Repostería artesanal a pedido. Pasteles, panques, galletas y postres con entrega a domicilio en toda la CDMX.",
+    "url": "{{ site.url }}/",
+    "image": "{{ site.url }}/images/hero.png",
+    "logo": "{{ site.url }}/images/logos/logo_final.png",
+    "telephone": "{{ site.telefono.e164 }}",
+    "priceRange": "$$",
+    "servesCuisine": ["Repostería", "Postres", "Pastelería artesanal"],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "{{ site.ubicacion.colonia }}",
+      "addressRegion": "{{ site.ubicacion.alcaldia }}, {{ site.ubicacion.ciudad }}",
+      "addressCountry": "{{ site.ubicacion.pais }}"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": "Ciudad de México"
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "09:00",
+      "closes": "19:00"
+    }],
+    "sameAs": [
+      "{{ site.redes.instagram }}",
+      "{{ site.redes.facebook }}"
+    ]
+  }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond (títulos) + DM Sans (cuerpo) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <!-- Hoja de estilos propia -->
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/portafolio.css" />
+
+  <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>

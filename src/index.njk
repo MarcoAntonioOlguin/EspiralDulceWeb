@@ -1,147 +1,15 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- SEO -->
-  <meta name="description" content="Repostería artesanal a pedido en CDMX. Galletas, pasteles y postres para cumpleaños, bodas, fiestas y eventos corporativos. Entregamos en tu domicilio. Anzures, Miguel Hidalgo." />
-  <meta name="keywords"    content="repostería artesanal CDMX, pasteles a pedido, galletas personalizadas, pasteles cumpleaños CDMX, pasteles boda CDMX, Anzures, Miguel Hidalgo" />
-  <meta name="theme-color" content="#C87941" />
-  <link rel="canonical" href="https://espiraldulce.com/" />
-
-  <!-- Open Graph -->
-  <meta property="og:type"        content="website" />
-  <meta property="og:site_name"   content="Espiral Dulce" />
-  <meta property="og:locale"      content="es_MX" />
-  <meta property="og:title"       content="Espiral Dulce — Repostería Artesanal a Pedido en CDMX" />
-  <meta property="og:description" content="Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX." />
-  <meta property="og:url"         content="https://espiraldulce.com/" />
-  <meta property="og:image"       content="https://espiraldulce.com/images/hero.png" />
-  <meta property="og:image:alt"   content="Cheesecake de zarzamora artesanal de Espiral Dulce" />
-
-  <!-- Twitter -->
-  <meta name="twitter:card"        content="summary_large_image" />
-  <meta name="twitter:title"       content="Espiral Dulce — Repostería Artesanal a Pedido en CDMX" />
-  <meta name="twitter:description" content="Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX." />
-  <meta name="twitter:image"       content="https://espiraldulce.com/images/hero.png" />
-
-  <!-- Favicon & Manifest -->
-  <link rel="icon" type="image/svg+xml" href="images/logos/logo_minimalista.svg" />
-  <link rel="apple-touch-icon" href="images/logos/logo_final_sin_letras.png" />
-  <link rel="manifest" href="manifest.json" />
-
-  <title>Espiral Dulce — Repostería Artesanal a Pedido · CDMX</title>
-
-  <!-- Schema.org: Bakery / LocalBusiness -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Bakery",
-    "name": "Espiral Dulce",
-    "description": "Repostería artesanal a pedido. Pasteles, panques, galletas y postres con entrega a domicilio en toda la CDMX.",
-    "url": "https://espiraldulce.com/",
-    "image": "https://espiraldulce.com/images/hero.png",
-    "logo": "https://espiraldulce.com/images/logos/logo_final.png",
-    "telephone": "+525610003837",
-    "priceRange": "$$",
-    "servesCuisine": ["Repostería", "Postres", "Pastelería artesanal"],
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Anzures",
-      "addressRegion": "Miguel Hidalgo, CDMX",
-      "addressCountry": "MX"
-    },
-    "areaServed": {
-      "@type": "City",
-      "name": "Ciudad de México"
-    },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "09:00",
-      "closes": "19:00"
-    }],
-    "sameAs": [
-      "https://www.instagram.com/espiraldulce",
-      "https://www.facebook.com/espiraldulce"
-    ]
-  }
-  </script>
-
-  <!-- Google Fonts: Cormorant Garamond (títulos) + DM Sans (cuerpo) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
-
-  <!-- Hoja de estilos propia -->
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/portafolio.css" />
-
-  <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
-</head>
-
-<body>
-
-  <!-- =====================================================================
-       1. HEADER / NAVEGACIÓN
-       - Logo (izquierda) · Links de escritorio (centro-derecha) · CTA
-       - En mobile muestra botón hamburguesa y oculta el resto
-  ====================================================================== -->
-  <header id="header" role="banner">
-    <div class="container">
-      <nav class="nav-inner" aria-label="Navegación principal">
-
-        <a href="#" class="nav-logo" aria-label="Espiral Dulce">
-          <img src="images/logos/logo_final_sin_letras.png" alt="" aria-hidden="true" />
-          <div class="nav-logo-text">
-            Espiral Dulce
-            <span>Repostería Artesanal · CDMX</span>
-          </div>
-        </a>
-
-        <ul class="nav-links" role="list">
-          <li><a href="portafolio.html">Portafolio</a></li>
-          <li><a href="#proceso">Proceso</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-
-        <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
-           class="btn btn-primary nav-cta"
-           target="_blank" rel="noopener noreferrer"
-           aria-label="Cotizar por WhatsApp">
-          Cotizar
-        </a>
-
-        <!-- Botón hamburguesa — visible solo en mobile -->
-        <button class="hamburger" id="hamburger"
-                aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-
-      </nav>
-    </div>
-  </header>
-
-  <!-- Menú desplegable mobile (controlado por script.js) -->
-  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
-    <a href="portafolio.html">Portafolio</a>
-    <a href="#proceso">Proceso</a>
-    <a href="#contacto">Contacto</a>
-    <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
-       class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-       Cotizar por WhatsApp
-    </a>
-  </nav>
-
-
+---
+layout: layouts/base.njk
+permalink: /index.html
+title: "Espiral Dulce — Repostería Artesanal a Pedido · CDMX"
+description: "Repostería artesanal a pedido en CDMX. Galletas, pasteles y postres para cumpleaños, bodas, fiestas y eventos corporativos. Entregamos en tu domicilio. Anzures, Miguel Hidalgo."
+keywords: "repostería artesanal CDMX, pasteles a pedido, galletas personalizadas, pasteles cumpleaños CDMX, pasteles boda CDMX, Anzures, Miguel Hidalgo"
+canonical: "/"
+ogTitle: "Espiral Dulce — Repostería Artesanal a Pedido en CDMX"
+ogDescription: "Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX."
+ogImage: "/images/hero.png"
+ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
+---
   <!-- =====================================================================
        2. HERO
        Desktop: texto (izquierda) + imagen (derecha)
@@ -242,7 +110,7 @@
                 <li>Canela molida</li>
                 <li>Nuez</li>
               </ul>
-              <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%3A%20Panque%20de%20Zanahoria.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%20y%20precio%3F"
+              <a href="{{ 'Panque de Zanahoria' | waProducto }}"
                  class="back-cta" target="_blank" rel="noopener noreferrer"
                  tabindex="-1" aria-label="Pedir Panque de Zanahoria por WhatsApp">
                 Pedir este producto →
@@ -283,7 +151,7 @@
                 <li>Azúcar</li>
                 <li>Extracto de vainilla</li>
               </ul>
-              <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%3A%20Gelatina%20Artesanal.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%20y%20precio%3F"
+              <a href="{{ 'Gelatina Artesanal' | waProducto }}"
                  class="back-cta" target="_blank" rel="noopener noreferrer"
                  tabindex="-1" aria-label="Pedir Gelatina Artesanal por WhatsApp">
                 Pedir este producto →
@@ -324,7 +192,7 @@
                 <li>Cocoa en polvo</li>
                 <li>Galleta savoiardi</li>
               </ul>
-              <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20pedir%3A%20Tiramis%C3%BA%20Cuchareable.%20%C2%BFMe%20podr%C3%ADan%20dar%20m%C3%A1s%20informaci%C3%B3n%20y%20precio%3F"
+              <a href="{{ 'Tiramisú Cuchareable' | waProducto }}"
                  class="back-cta" target="_blank" rel="noopener noreferrer"
                  tabindex="-1" aria-label="Pedir Tiramisú por WhatsApp">
                 Pedir este producto →
@@ -443,7 +311,7 @@
         <h2 id="cta-title">¿Listo para Ordenar?</h2>
         <p>Cuéntanos qué necesitas: el tipo de producto, la fecha de entrega y tu dirección en CDMX. Te respondemos en menos de 48 horas con precio y opciones.</p>
         <div class="cta-btn-group">
-          <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+          <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
              class="btn btn-white btn-lg" target="_blank" rel="noopener noreferrer">
              PEDIR POR WHATSAPP
           </a>
@@ -523,15 +391,15 @@
             </svg>
           </div>
           <strong>WhatsApp · Teléfono</strong>
-          <p class="contact-card-value">+52 56 1000 3837</p>
+          <p class="contact-card-value">{{ site.telefono.display }}</p>
           <p class="contact-card-note">Lunes a sábado · Respuesta rápida</p>
           <div class="contact-card-actions">
-            <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
+            <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
                class="contact-card-btn contact-card-btn--wa"
                target="_blank" rel="noopener noreferrer">
               Abrir WhatsApp →
             </a>
-            <a href="tel:+525610003837" class="contact-card-btn">
+            <a href="tel:{{ site.telefono.e164 }}" class="contact-card-btn">
               Llamar →
             </a>
           </div>
@@ -543,10 +411,10 @@
             <i data-lucide="mail"></i>
           </div>
           <strong>Email</strong>
-          <p class="contact-card-value">ventas@espiraldulce.com</p>
+          <p class="contact-card-value">{{ site.email }}</p>
           <p class="contact-card-note">Respuesta en menos de 24 horas</p>
           <div class="contact-card-actions">
-            <a href="mailto:ventas@espiraldulce.com" class="contact-card-btn">
+            <a href="mailto:{{ site.email }}" class="contact-card-btn">
               Enviar Email →
             </a>
           </div>
@@ -558,7 +426,7 @@
             <i data-lucide="map-pin"></i>
           </div>
           <strong>Ubicación y Entrega</strong>
-          <p class="contact-card-value">Anzures · CDMX</p>
+          <p class="contact-card-value">{{ site.ubicacion.colonia }} · {{ site.ubicacion.ciudad }}</p>
           <p class="contact-card-note">Entregamos en toda la CDMX · Sin costo adicional · Sin tienda física</p>
         </div>
 
@@ -566,60 +434,3 @@
 
     </div>
   </section>
-
-
-  <!-- =====================================================================
-       FOOTER
-  ====================================================================== -->
-  <footer role="contentinfo">
-    <div class="container">
-      <div class="footer-inner">
-
-        <div class="footer-logo">
-          <img src="images/logos/logo_final.png" alt="Espiral Dulce — Repostería Artesanal" loading="lazy" />
-        </div>
-
-        <ul class="footer-links" role="list">
-          <li><a href="#hero">Inicio</a></li>
-          <li><a href="portafolio.html">Portafolio</a></li>
-          <li><a href="#proceso">Proceso</a></li>
-          <li><a href="#contacto">Contacto</a></li>
-        </ul>
-
-        <div class="footer-social" aria-label="Redes sociales">
-          <a href="https://www.instagram.com/espiraldulce" aria-label="Instagram" target="_blank" rel="noopener">
-            <i data-lucide="instagram"></i>
-          </a>
-          <a href="https://www.facebook.com/espiraldulce" aria-label="Facebook" target="_blank" rel="noopener">
-            <i data-lucide="facebook"></i>
-          </a>
-        </div>
-
-        <p class="footer-copy">
-          © 2025 Espiral Dulce. Todos los derechos reservados. · CDMX, México
-        </p>
-      </div>
-    </div>
-  </footer>
-
-
-  <!-- Botón flotante de WhatsApp — solo visible en mobile (CSS lo controla) -->
-  <a href="https://wa.me/525610003837?text=Hola%2C%20me%20gustar%C3%ADa%20hacer%20un%20pedido"
-     class="wa-float"
-     target="_blank" rel="noopener noreferrer"
-     aria-label="Abrir WhatsApp para cotizar"
-     title="Cotizar por WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.867-2.031-.967-.272-.099-.47-.148-.669.15-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.199.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-  </a>
-
-
-  <!-- Script propio al final del body (después del HTML, antes del </body>)
-       Así el DOM ya está listo cuando el JS lo intenta acceder. -->
-  <script src="js/script.js"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <script>lucide.createIcons();</script>
-
-</body>
-</html>

@@ -1,0 +1,31 @@
+{
+  "nombre": "Espiral Dulce",
+  "tagline": "Repostería Artesanal · CDMX",
+  "url": "https://espiraldulce.com",
+  "email": "ventas@espiraldulce.com",
+
+  "telefono": {
+    "e164": "+525610003837",
+    "display": "+52 56 1000 3837"
+  },
+
+  "whatsapp": {
+    "numero": "525610003837",
+    "mensajes": {
+      "pedido": "Hola, me gustaría hacer un pedido",
+      "producto": "Hola, me gustaría pedir: {producto}. ¿Me podrían dar más información y precio?"
+    }
+  },
+
+  "ubicacion": {
+    "colonia": "Anzures",
+    "alcaldia": "Miguel Hidalgo",
+    "ciudad": "CDMX",
+    "pais": "MX"
+  },
+
+  "redes": {
+    "instagram": "https://www.instagram.com/espiraldulce",
+    "facebook": "https://www.facebook.com/espiraldulce"
+  }
+}
