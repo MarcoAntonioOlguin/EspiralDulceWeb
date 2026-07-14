@@ -61,11 +61,19 @@ placeholder sin configurar (`G-XXXXXXXXXX`).
 
 ### Intención del sitio
 Sitio de marketing para "Espiral Dulce", estudio de repostería artesanal en Anzures, CDMX.
-Venta 100% por WhatsApp, entrega a domicilio, sin tienda física ni checkout online. El
-formulario de contacto hoy **no envía nada a un backend real**: guarda en `localStorage`
-como respaldo y tiene una URL de Google Apps Script sin configurar (`SETUP_FORMULARIO.md`
-documenta el plan: Apps Script → Google Sheets). Esto es una decisión de negocio pendiente,
-no un problema de arquitectura de este sitio.
+Venta 100% por WhatsApp, entrega a domicilio, sin tienda física ni checkout online.
+
+### Estado conocido (no son regresiones — están en el roadmap)
+- **No hay formulario de contacto en el sitio.** Ninguna página tiene un `<form>`: la sección
+  de Contacto son tarjetas con links a WhatsApp, teléfono y email. Por lo tanto las ~100
+  líneas del módulo de formulario en `src/js/script.js` (validación, `localStorage`, POST a
+  Google Apps Script) son **código muerto que nunca se ejecuta**, y lo que describe
+  `SETUP_FORMULARIO.md` no está conectado a nada. Se limpia en la Fase 4. Tener un formulario
+  de verdad es una decisión de negocio aparte, no un pendiente técnico de esta migración.
+- **Google Analytics no mide nada**: el ID sigue siendo el placeholder `G-XXXXXXXXXX`.
+- **`openWhatsApp()` en `script.js` no se llama desde ningún lado** — otro resto muerto.
+- **El `<title>` de `portafolio.html` tiene un guión perdido**: dice "Portafolio  Espiral
+  Dulce" (doble espacio). Se corrige al migrar la página al layout, en la Fase 2.
 
 ---
 

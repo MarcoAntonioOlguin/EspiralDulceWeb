@@ -1,0 +1,26 @@
+name: CI
+
+# Corre en cada PR hacia develop/main y en cada push a esas ramas.
+# Compila el sitio y valida la salida (links, anclas, WhatsApp, alt, SEO).
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+
+jobs:
+  build-y-pruebas:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar el sitio y correr las pruebas
+        run: npm test
