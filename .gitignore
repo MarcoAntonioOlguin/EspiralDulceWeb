@@ -1,12 +1,20 @@
+# Salida del build (Eleventy)
+_site/
+dist/
+build/
+
+# Dependencias
+node_modules/
+
+# Config de entorno (ver .env.example)
+.env
+
+# Python (legacy)
 .venv/
 venv/
 __pycache__/
 *.pyc
-.env
-.DS_Store
 .ipynb_checkpoints/
-node_modules/
-.env
+
+# macOS
 .DS_Store
-dist/
-build/
