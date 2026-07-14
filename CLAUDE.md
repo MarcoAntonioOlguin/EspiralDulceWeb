@@ -12,6 +12,9 @@ es a domicilio en toda la CDMX. No tienda física, no checkout online.
 Plain HTML/CSS/JS — no build system, bundler, or framework. Open `index.html`
 directly or serve via any static file server.
 
+> See `ARQUITECTURA.md` for the current-state analysis and the proposed Eleventy migration
+> design (in progress, tracked via `develop` branch + feature PRs).
+
 ## File Structure
 
 | File | Purpose |
