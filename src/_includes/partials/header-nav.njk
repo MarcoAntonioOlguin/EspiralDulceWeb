@@ -1,0 +1,50 @@
+  <!-- =====================================================================
+       1. HEADER / NAVEGACIÓN
+       - Logo (izquierda) · Links de escritorio (centro-derecha) · CTA
+       - En mobile muestra botón hamburguesa y oculta el resto
+  ====================================================================== -->
+  <header id="header" role="banner">
+    <div class="container">
+      <nav class="nav-inner" aria-label="Navegación principal">
+
+        <a href="#" class="nav-logo" aria-label="{{ site.nombre }}">
+          <img src="images/logos/logo_final_sin_letras.png" alt="" aria-hidden="true" />
+          <div class="nav-logo-text">
+            {{ site.nombre }}
+            <span>{{ site.tagline }}</span>
+          </div>
+        </a>
+
+        <ul class="nav-links" role="list">
+          <li><a href="portafolio.html">Portafolio</a></li>
+          <li><a href="#proceso">Proceso</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+
+        <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
+           class="btn btn-primary nav-cta"
+           target="_blank" rel="noopener noreferrer"
+           aria-label="Cotizar por WhatsApp">
+          Cotizar
+        </a>
+
+        <!-- Botón hamburguesa — visible solo en mobile -->
+        <button class="hamburger" id="hamburger"
+                aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+
+      </nav>
+    </div>
+  </header>
+
+  <!-- Menú desplegable mobile (controlado por script.js) -->
+  <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
+    <a href="portafolio.html">Portafolio</a>
+    <a href="#proceso">Proceso</a>
+    <a href="#contacto">Contacto</a>
+    <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
+       class="btn btn-primary" target="_blank" rel="noopener noreferrer">
+       Cotizar por WhatsApp
+    </a>
+  </nav>
