@@ -434,6 +434,13 @@
   margin: 0 auto 2rem;
   line-height: 1.7;
 }
+.pcta-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
 
 .btn-white-outline {
   background: transparent;

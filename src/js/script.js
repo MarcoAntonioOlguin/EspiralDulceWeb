@@ -1,122 +1,18 @@
 /**
- * script.js — Espiral Dulce
+ * script.js — Espiral Dulce · página de inicio
+ *
+ * El chrome compartido (menú hamburguesa, sombra del header, smooth scroll y
+ * scroll reveal) vive en nav.js, que se carga antes que este archivo en todas
+ * las páginas. Aquí solo queda lo específico de la portada.
  *
  * Módulos:
- *   1. Menú hamburguesa (mobile)
- *   2. Smooth scroll con offset del header fijo
- *   3. Scroll reveal (IntersectionObserver)
- *   4. Sombra dinámica del header al hacer scroll
- *   5. Ayudante para abrir WhatsApp
- *   6. Validación y envío del formulario de contacto
+ *   1. Flip cards de la portada (flip por clic + tilt 3D)
+ *   2. Validación y envío del formulario de contacto
  */
 
 
 /* ============================================================
-   1. MENÚ HAMBURGUESA
-   Abre/cierra el menú móvil al hacer clic en el botón ≡
-============================================================ */
-const hamburger = document.getElementById('hamburger');
-const mobileNav  = document.getElementById('mobile-nav');
-
-hamburger.addEventListener('click', () => {
-  const isOpen = hamburger.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen);
-
-  if (isOpen) {
-    mobileNav.classList.add('open');
-  } else {
-    mobileNav.classList.remove('open');
-  }
-});
-
-// Cierra el menú al hacer clic en cualquier enlace interno
-mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileNav.classList.remove('open');
-  });
-});
-
-
-/* ============================================================
-   2. SMOOTH SCROLL CON OFFSET
-   Navega suavemente a la sección y compensa la altura
-   del header fijo para que el título no quede tapado.
-============================================================ */
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    const targetSelector = this.getAttribute('href');
-    const target = document.querySelector(targetSelector);
-
-    if (target) {
-      e.preventDefault();
-      const headerHeight = document.getElementById('header').offsetHeight;
-      const targetTop = target.getBoundingClientRect().top + window.scrollY - headerHeight - 12;
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    }
-  });
-});
-
-
-/* ============================================================
-   3. SCROLL REVEAL
-   Hace aparecer los elementos .reveal al entrar en el viewport.
-   Usa IntersectionObserver para mejor rendimiento que scroll events.
-============================================================ */
-const revealElements = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target); // Solo se anima una vez
-      }
-    });
-  },
-  {
-    threshold: 0.12,
-    rootMargin: '0px 0px -30px 0px',
-  }
-);
-
-revealElements.forEach(el => revealObserver.observe(el));
-
-
-/* ============================================================
-   4. SOMBRA DINÁMICA DEL HEADER
-   Aumenta la sombra del header cuando el usuario hace scroll.
-============================================================ */
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-  if (window.scrollY > 20) {
-    header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.1)';
-  } else {
-    header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.06)';
-  }
-}, { passive: true });
-
-
-/* ============================================================
-   5. AYUDANTE WHATSAPP
-   Abre WhatsApp con un mensaje pre-llenado según el producto.
-   Se llama desde los botones "Ver Detalles" de cada pastel.
-============================================================ */
-function openWhatsApp(producto) {
-  const message = `Hola, me gustaría más información sobre el ${producto} para mi evento corporativo.`;
-  const encodedMsg = encodeURIComponent(message);
-  window.open(
-    `https://wa.me/525610003837?text=${encodedMsg}`,
-    '_blank',
-    'noopener,noreferrer'
-  );
-}
-
-
-/* ============================================================
-   6. FLIP CARDS EN PORTADA
+   1. FLIP CARDS EN PORTADA
    Flip por clic y tilt 3D para las tarjetas del portafolio
    que se muestran en index.html.
 ============================================================ */
@@ -167,7 +63,10 @@ function openWhatsApp(producto) {
 
 
 /* ============================================================
-   7. FORMULARIO DE CONTACTO
+   2. FORMULARIO DE CONTACTO
+   OJO: hoy ninguna página del sitio tiene un <form>, así que este bloque
+   nunca se ejecuta (contactForm siempre es null). Ver ARQUITECTURA.md
+   § Estado conocido — se limpia en la Fase 4.
    - Validación en tiempo real (campo verde cuando es válido)
    - Valida campos requeridos y formato de email al enviar
    - Muestra feedback visual en campos inválidos

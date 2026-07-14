@@ -1,52 +1,20 @@
 /**
- * portafolio.js — Espiral Dulce
+ * portafolio.js — Espiral Dulce · página de portafolio
+ *
+ * El chrome compartido (menú hamburguesa, sombra del header, smooth scroll y
+ * scroll reveal) vive en nav.js, que se carga antes que este archivo.
  *
  * Módulos:
- *   1. Menú hamburguesa (mobile)
- *   2. Sombra dinámica del header
- *   3. Catálogo de productos
- *   4. Renderizado de tarjetas flip
- *   5. Filtros por categoría
- *   6. Toggle de flip por clic
- *   7. Tilt 3D en hover (desktop)
+ *   1. Catálogo de productos
+ *   2. Renderizado de tarjetas flip
+ *   3. Filtros por categoría
+ *   4. Toggle de flip por clic
+ *   5. Tilt 3D en hover (desktop)
  */
 
 
 /* ============================================================
-   1. MENÚ HAMBURGUESA
-============================================================ */
-const hamburger = document.getElementById('hamburger');
-const mobileNav  = document.getElementById('mobile-nav');
-
-hamburger.addEventListener('click', () => {
-  const isOpen = hamburger.classList.toggle('open');
-  hamburger.setAttribute('aria-expanded', isOpen);
-  mobileNav.classList.toggle('open', isOpen);
-});
-
-mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    hamburger.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-    mobileNav.classList.remove('open');
-  });
-});
-
-
-/* ============================================================
-   2. SOMBRA DINÁMICA DEL HEADER
-============================================================ */
-const header = document.getElementById('header');
-
-window.addEventListener('scroll', () => {
-  header.style.boxShadow = window.scrollY > 20
-    ? '0 4px 30px rgba(0, 0, 0, 0.1)'
-    : '0 2px 20px rgba(0, 0, 0, 0.06)';
-}, { passive: true });
-
-
-/* ============================================================
-   3. CATÁLOGO DE PRODUCTOS
+   1. CATÁLOGO DE PRODUCTOS
    Para agregar un producto nuevo, añade un objeto a este array.
    Campos: id, nombre, descripcion, categoria, categoriaLabel,
            imagen, ingredientes (array de strings, máx. 8).
@@ -555,11 +523,12 @@ const PRODUCTOS = [
 
 
 /* ============================================================
-   4. RENDERIZADO DE TARJETAS FLIP
+   2. RENDERIZADO DE TARJETAS FLIP
 ============================================================ */
 function buildWhatsAppUrl(producto) {
-  const msg = `Hola, me gustaría pedir: ${producto.nombre}. ¿Me podrían dar más información y precio?`;
-  return `https://wa.me/525610003837?text=${encodeURIComponent(msg)}`;
+  // La plantilla del mensaje y el número salen de site.json (vía nav.js).
+  const msg = window.SITE.whatsapp.mensajes.producto.replace('{producto}', producto.nombre);
+  return window.waUrl(msg);
 }
 
 function renderCard(producto) {
@@ -627,7 +596,7 @@ PRODUCTOS.forEach((producto, index) => {
 
 
 /* ============================================================
-   5. FILTROS POR CATEGORÍA
+   3. FILTROS POR CATEGORÍA
 ============================================================ */
 document.querySelectorAll('.filtro-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -652,7 +621,7 @@ document.querySelectorAll('.filtro-btn').forEach(btn => {
 
 
 /* ============================================================
-   6. TOGGLE DE FLIP POR CLIC / TECLADO
+   4. TOGGLE DE FLIP POR CLIC / TECLADO
    El flip solo ocurre al hacer clic — el hover ahora hace tilt 3D.
 ============================================================ */
 function flipCard(card) {
@@ -682,7 +651,7 @@ grid.addEventListener('keydown', e => {
 
 
 /* ============================================================
-   7. TILT 3D EN HOVER (solo dispositivos con cursor real)
+   5. TILT 3D EN HOVER (solo dispositivos con cursor real)
    Mueve el mouse sobre una tarjeta para inclinarla en 3D.
    El tilt se resetea al hacer clic para no interferir con el flip.
 ============================================================ */
