@@ -16,7 +16,12 @@ with **Eleventy**: sources live in `src/`, the static output is generated into `
 npm install      # una vez
 npm start        # dev server con recarga (http://localhost:8080)
 npm run build    # compila a _site/
+npm test         # compila y valida la salida (links, anclas, WhatsApp, alt, SEO)
 ```
+
+Corre `npm test` antes de abrir un PR — el CI lo corre igual en cada PR hacia `develop`/`main`.
+Las pruebas viven en `tests/` y validan `_site/` (el HTML real), no los templates.
+Ver `PRUEBAS.md` para la guía completa, incluida la checklist de revisión manual.
 
 > See `ARQUITECTURA.md` for the current-state analysis and the Eleventy migration design.
 > Migration is in progress, phase by phase, on `develop` + feature PRs.

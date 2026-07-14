@@ -1,0 +1,171 @@
+/**
+ * Pruebas del sitio compilado.
+ *
+ * Corren contra `_site/` (la salida real del build), no contra los templates: lo que
+ * se valida es lo que el navegador va a recibir. Se ejecutan con `npm test`, que
+ * compila primero.
+ *
+ * La idea es blindar las cosas que un refactor puede romper en silencio: links rotos,
+ * anclas que ya no existen, el número de WhatsApp cambiado a medias, imágenes sin alt,
+ * o una variable de plantilla que se quedó sin renderizar.
+ */
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const cheerio = require('cheerio');
+
+const SITE = path.join(__dirname, '..', '_site');
+const site = require('../src/_data/site.json');
+
+const PAGINAS = ['index.html', 'portafolio.html', 'visualizador-pastel.html'];
+
+/** Carga una página del build y la devuelve parseada. */
+function cargar(pagina) {
+  const html = fs.readFileSync(path.join(SITE, pagina), 'utf8');
+  return { html, $: cheerio.load(html) };
+}
+
+/** ¿La referencia apunta a un archivo local del sitio (y no a http, mailto, tel, #…)? */
+function esLocal(ref) {
+  if (!ref) return false;
+  return !/^(https?:|mailto:|tel:|data:|#|\/\/)/.test(ref);
+}
+
+test('el build genera las páginas y los assets esperados', () => {
+  for (const pagina of PAGINAS) {
+    assert.ok(fs.existsSync(path.join(SITE, pagina)), `falta ${pagina}`);
+  }
+  for (const asset of ['manifest.json', 'robots.txt', 'sitemap.xml', 'css/styles.css', 'js/script.js', 'images/hero.png']) {
+    assert.ok(fs.existsSync(path.join(SITE, asset)), `falta ${asset}`);
+  }
+});
+
+test('ninguna página deja sintaxis de plantilla sin renderizar', () => {
+  for (const pagina of PAGINAS) {
+    const { html } = cargar(pagina);
+    assert.ok(!html.includes('{{'), `${pagina} tiene {{ }} sin renderizar`);
+    assert.ok(!html.includes('{%'), `${pagina} tiene {% %} sin renderizar`);
+  }
+});
+
+test('todas las referencias locales (css, js, imágenes, páginas) existen en el build', () => {
+  const rotas = [];
+
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+
+    $('[href], [src]').each((_, el) => {
+      const ref = $(el).attr('href') || $(el).attr('src');
+      if (!esLocal(ref)) return;
+
+      const destino = ref.split('#')[0].split('?')[0];
+      if (!destino) return;
+
+      if (!fs.existsSync(path.join(SITE, destino))) {
+        rotas.push(`${pagina} → ${destino}`);
+      }
+    });
+  }
+
+  assert.deepEqual(rotas, [], `referencias rotas:\n  ${rotas.join('\n  ')}`);
+});
+
+test('todos los links de ancla (#seccion) apuntan a un elemento que existe en la página', () => {
+  const rotas = [];
+
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+
+    $('a[href^="#"]').each((_, el) => {
+      const id = $(el).attr('href').slice(1);
+      if (!id) return; // href="#" (el logo del nav) no navega a ningún lado
+      if ($(`#${id}`).length === 0) {
+        rotas.push(`${pagina} → #${id}`);
+      }
+    });
+  }
+
+  assert.deepEqual(rotas, [], `anclas rotas:\n  ${rotas.join('\n  ')}`);
+});
+
+test('todos los links de WhatsApp usan el número de site.json', () => {
+  const numero = site.whatsapp.numero;
+  const encontrados = new Set();
+
+  for (const pagina of PAGINAS) {
+    const { html } = cargar(pagina);
+    for (const [, n] of html.matchAll(/wa\.me\/(\d+)/g)) {
+      encontrados.add(n);
+    }
+  }
+
+  assert.ok(encontrados.size > 0, 'no se encontró ningún link de WhatsApp en el sitio');
+  assert.deepEqual(
+    [...encontrados],
+    [numero],
+    `hay números de WhatsApp que no son el de site.json (${numero})`
+  );
+});
+
+test('el teléfono y el email del sitio son los de site.json', () => {
+  const { html } = cargar('index.html');
+  assert.ok(html.includes(site.telefono.display), 'el teléfono visible no coincide con site.json');
+  assert.ok(html.includes(`tel:${site.telefono.e164}`), 'el link tel: no coincide con site.json');
+  assert.ok(html.includes(`mailto:${site.email}`), 'el link mailto: no coincide con site.json');
+});
+
+test('cada imagen tiene atributo alt (vacío si es decorativa)', () => {
+  const sinAlt = [];
+
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+    $('img').each((_, el) => {
+      if ($(el).attr('alt') === undefined) {
+        sinAlt.push(`${pagina} → ${$(el).attr('src')}`);
+      }
+    });
+  }
+
+  assert.deepEqual(sinAlt, [], `imágenes sin alt:\n  ${sinAlt.join('\n  ')}`);
+});
+
+test('cada página tiene el SEO mínimo: title, description, canonical y Open Graph', () => {
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+
+    assert.ok($('title').text().trim().length > 0, `${pagina}: <title> vacío`);
+    assert.ok(
+      $('meta[name="description"]').attr('content')?.trim().length > 0,
+      `${pagina}: falta meta description`
+    );
+    assert.ok($('link[rel="canonical"]').attr('href'), `${pagina}: falta canonical`);
+    assert.ok($('meta[property="og:title"]').attr('content'), `${pagina}: falta og:title`);
+    assert.ok($('meta[property="og:image"]').attr('content'), `${pagina}: falta og:image`);
+  }
+});
+
+test('el sitemap lista solo páginas que el build realmente genera', () => {
+  const xml = fs.readFileSync(path.join(SITE, 'sitemap.xml'), 'utf8');
+  const urls = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(([, u]) => u);
+
+  assert.ok(urls.length > 0, 'el sitemap no tiene ninguna <loc>');
+
+  const faltantes = urls
+    .map((u) => u.replace(site.url, '').replace(/^\//, ''))
+    .map((ruta) => (ruta === '' ? 'index.html' : ruta))
+    .filter((ruta) => !fs.existsSync(path.join(SITE, ruta)));
+
+  assert.deepEqual(faltantes, [], `el sitemap apunta a páginas que no existen: ${faltantes.join(', ')}`);
+});
+
+test('todas las páginas cargan el header, el footer y el botón flotante de WhatsApp', () => {
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+    assert.equal($('header#header').length, 1, `${pagina}: falta el header`);
+    assert.equal($('nav#mobile-nav').length, 1, `${pagina}: falta el menú móvil`);
+    assert.equal($('button#hamburger').length, 1, `${pagina}: falta el botón hamburguesa`);
+    assert.equal($('footer').length, 1, `${pagina}: falta el footer`);
+    assert.equal($('a.wa-float').length, 1, `${pagina}: falta el botón flotante de WhatsApp`);
+  }
+});
