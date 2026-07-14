@@ -21,7 +21,10 @@ npm test         # compila y valida la salida (links, anclas, WhatsApp, alt, SEO
 
 Corre `npm test` antes de abrir un PR — el CI lo corre igual en cada PR hacia `develop`/`main`.
 Las pruebas viven en `tests/` y validan `_site/` (el HTML real), no los templates.
-Ver `PRUEBAS.md` para la guía completa, incluida la checklist de revisión manual.
+
+Cada PR usa `.github/pull_request_template.md`: llena la checklist de **revisión manual** con
+lo que *ese* PR puede haber roto y la máquina no puede ver (que un CTA abra bien WhatsApp, que
+las flip cards giren, el responsive). No pegues una checklist genérica.
 
 > See `ARQUITECTURA.md` for the current-state analysis and the Eleventy migration design.
 > Migration is in progress, phase by phase, on `develop` + feature PRs.
