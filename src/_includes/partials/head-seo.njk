@@ -71,9 +71,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
 
-  <!-- Hoja de estilos propia -->
+  <!-- Hoja de estilos propia — `pageCss` (opcional) lo declara la página en su front matter -->
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/portafolio.css" />
+  {%- if pageCss %}
+  <link rel="stylesheet" href="{{ pageCss }}" />
+  {%- endif %}
 
   <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu Measurement ID -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>

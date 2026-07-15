@@ -71,22 +71,58 @@ test('todas las referencias locales (css, js, imágenes, páginas) existen en el
   assert.deepEqual(rotas, [], `referencias rotas:\n  ${rotas.join('\n  ')}`);
 });
 
-test('todos los links de ancla (#seccion) apuntan a un elemento que existe en la página', () => {
+test('todas las anclas apuntan a una sección que existe — también las que cruzan de página', () => {
+  // Cubre tanto "#proceso" (misma página) como "index.html#proceso" (otra página).
+  // Esta última es la que se rompe en silencio: el nav de portafolio apuntaba a
+  // "index.html#servicios" mucho después de que la sección Servicios dejó de existir.
   const rotas = [];
 
   for (const pagina of PAGINAS) {
     const { $ } = cargar(pagina);
 
-    $('a[href^="#"]').each((_, el) => {
-      const id = $(el).attr('href').slice(1);
+    $('a[href*="#"]').each((_, el) => {
+      const href = $(el).attr('href');
+      if (/^(https?:|mailto:|tel:)/.test(href)) return;
+
+      const [destino, id] = href.split('#');
       if (!id) return; // href="#" (el logo del nav) no navega a ningún lado
-      if ($(`#${id}`).length === 0) {
-        rotas.push(`${pagina} → #${id}`);
+
+      const paginaDestino = destino === '' ? pagina : destino;
+      if (!fs.existsSync(path.join(SITE, paginaDestino))) return; // ya lo cubre la prueba de refs
+
+      const $destino = paginaDestino === pagina ? $ : cargar(paginaDestino).$;
+      if ($destino(`#${id}`).length === 0) {
+        rotas.push(`${pagina} → ${href}`);
       }
     });
   }
 
   assert.deepEqual(rotas, [], `anclas rotas:\n  ${rotas.join('\n  ')}`);
+});
+
+test('ninguna página deja CSS ni JS inline (todo va en archivos compartidos)', () => {
+  for (const pagina of PAGINAS) {
+    const { $ } = cargar(pagina);
+
+    assert.equal($('style').length, 0, `${pagina}: tiene un <style> inline`);
+
+    // Solo miramos los <script> que el navegador ejecuta como JS: los de datos
+    // (application/json de la config, ld+json del Schema.org) no son lógica.
+    const esJavaScript = (el) => {
+      const type = $(el).attr('type');
+      return !type || type === 'text/javascript' || type === 'module';
+    };
+
+    // Se permiten dos snippets que por naturaleza van inline: el de GA4 y la
+    // llamada a lucide.createIcons() (necesita que el CDN ya haya cargado).
+    const inline = $('script:not([src])')
+      .toArray()
+      .filter(esJavaScript)
+      .map((el) => $(el).html().trim())
+      .filter((js) => !js.includes('lucide.createIcons') && !js.includes('dataLayer'));
+
+    assert.deepEqual(inline, [], `${pagina}: tiene lógica JS inline que debería vivir en un archivo`);
+  }
 });
 
 test('todos los links de WhatsApp usan el número de site.json', () => {

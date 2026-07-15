@@ -2,12 +2,14 @@
        1. HEADER / NAVEGACIÓN
        - Logo (izquierda) · Links de escritorio (centro-derecha) · CTA
        - En mobile muestra botón hamburguesa y oculta el resto
+       `inicio` viene del front matter: "" en la home (los links son anclas de
+       la misma página) e "index.html" en las demás.
   ====================================================================== -->
   <header id="header" role="banner">
     <div class="container">
       <nav class="nav-inner" aria-label="Navegación principal">
 
-        <a href="#" class="nav-logo" aria-label="{{ site.nombre }}">
+        <a href="{{ inicio or '#' }}" class="nav-logo" aria-label="{{ site.nombre }}">
           <img src="images/logos/logo_final_sin_letras.png" alt="" aria-hidden="true" />
           <div class="nav-logo-text">
             {{ site.nombre }}
@@ -16,9 +18,9 @@
         </a>
 
         <ul class="nav-links" role="list">
-          <li><a href="portafolio.html">Portafolio</a></li>
-          <li><a href="#proceso">Proceso</a></li>
-          <li><a href="#contacto">Contacto</a></li>
+          <li><a href="portafolio.html"{% if paginaActiva == 'portafolio' %} class="nav-active"{% endif %}>Portafolio</a></li>
+          <li><a href="{{ inicio }}#proceso">Proceso</a></li>
+          <li><a href="{{ inicio }}#contacto">Contacto</a></li>
         </ul>
 
         <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
@@ -38,11 +40,11 @@
     </div>
   </header>
 
-  <!-- Menú desplegable mobile (controlado por script.js) -->
+  <!-- Menú desplegable mobile (controlado por nav.js) -->
   <nav class="mobile-nav" id="mobile-nav" aria-label="Menú móvil">
     <a href="portafolio.html">Portafolio</a>
-    <a href="#proceso">Proceso</a>
-    <a href="#contacto">Contacto</a>
+    <a href="{{ inicio }}#proceso">Proceso</a>
+    <a href="{{ inicio }}#contacto">Contacto</a>
     <a href="{{ site.whatsapp.mensajes.pedido | waUrl }}"
        class="btn btn-primary" target="_blank" rel="noopener noreferrer">
        Cotizar por WhatsApp

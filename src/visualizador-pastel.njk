@@ -1,0 +1,171 @@
+---
+layout: layouts/base.njk
+permalink: /visualizador-pastel.html
+inicio: "index.html"
+pageScript: "js/visualizador.js"
+pageCss: "css/visualizador.css"
+title: "Pastel Personalizado · Espiral Dulce · Repostería Artesanal CDMX"
+description: "Pide tu pastel personalizado con Espiral Dulce. Cuéntanos los detalles y recibe tu cotización por WhatsApp."
+keywords: "pastel personalizado CDMX, pastel a la medida, pastel de cumpleaños CDMX, pastel de boda, cotizar pastel"
+canonical: "/visualizador-pastel.html"
+ogTitle: "Pastel Personalizado · Espiral Dulce"
+ogDescription: "Diseña tu pastel a medida: sabores, tamaño, decoración. Cotización por WhatsApp."
+ogImage: "/images/hero.png"
+ogImageAlt: "Pastel artesanal personalizado de Espiral Dulce"
+---
+  <!-- =====================================================================
+       HERO
+  ====================================================================== -->
+  <section id="pedido-hero">
+    <div class="container">
+      <nav class="ph-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">›</span>
+        <a href="portafolio.html">Portafolio</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Pastel personalizado</span>
+      </nav>
+      <span class="section-label">Pedido personalizado</span>
+      <h1>Cuéntanos cómo lo Imaginas</h1>
+      <p>Llena los detalles de tu pastel y te enviamos cotización por WhatsApp. Te respondemos en menos de 24 horas.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       FORMULARIO DE PEDIDO
+  ====================================================================== -->
+  <section id="pedido-form">
+    <div class="container">
+      <div class="form-grid">
+
+        <!-- Tarjeta 1: Tamaño + Sabor -->
+        <div class="form-card">
+          <p class="form-card-title">Tamaño y sabor</p>
+
+          <div class="form-field">
+            <label class="form-field-label">¿Para cuántas personas?</label>
+            <div class="chip-group" data-field="size" data-type="single">
+              <div class="chip" data-value="Pequeño · 6 personas (15 cm)">6 personas</div>
+              <div class="chip" data-value="Mediano · 10-12 personas (20 cm)">10-12 personas</div>
+              <div class="chip" data-value="Grande · 15-18 personas (25 cm)">15-18 personas</div>
+              <div class="chip" data-value="Extra grande · 20+ personas (30 cm)">20+ personas</div>
+            </div>
+            <p class="field-error" id="errorSize">Por favor elige un tamaño.</p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">
+              Sabor del bizcocho
+              <span class="form-field-sublabel">(puedes elegir más de uno)</span>
+            </label>
+            <div class="chip-group" data-field="flavor" data-type="multi">
+              <div class="chip" data-value="Vainilla">Vainilla</div>
+              <div class="chip" data-value="Chocolate">Chocolate</div>
+              <div class="chip" data-value="Zanahoria">Zanahoria</div>
+              <div class="chip" data-value="Red Velvet">Red Velvet</div>
+              <div class="chip" data-value="Moka (café)">Moka</div>
+              <div class="chip" data-value="Otro (lo indico en notas)">Otro</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 2: Betún + Relleno -->
+        <div class="form-card">
+          <p class="form-card-title">Betún y relleno</p>
+
+          <div class="form-field">
+            <label class="form-field-label">Tipo de betún</label>
+            <div class="chip-group" data-field="frosting" data-type="single">
+              <div class="chip" data-value="Crema de mantequilla">Crema de mantequilla</div>
+              <div class="chip" data-value="Betún de queso crema">Queso crema</div>
+              <div class="chip" data-value="Fondant">Fondant</div>
+              <div class="chip" data-value="Ganache de chocolate">Ganache</div>
+              <div class="chip" data-value="Otro (lo indico en notas)">Otro</div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label">Relleno</label>
+            <div class="chip-group" data-field="filling" data-type="single">
+              <div class="chip" data-value="Sin relleno">Sin relleno</div>
+              <div class="chip" data-value="Frutos rojos">Frutos rojos</div>
+              <div class="chip" data-value="Cajeta artesanal">Cajeta</div>
+              <div class="chip" data-value="Nutella">Nutella</div>
+              <div class="chip" data-value="Crema pastelera">Crema pastelera</div>
+              <div class="chip" data-value="Otro (lo indico en notas)">Otro</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3: Ocasión + Fecha -->
+        <div class="form-card">
+          <p class="form-card-title">Ocasión y fecha</p>
+
+          <div class="form-field">
+            <label class="form-field-label">¿Para qué ocasión?</label>
+            <div class="chip-group" data-field="occasion" data-type="single">
+              <div class="chip" data-value="Cumpleaños">Cumpleaños</div>
+              <div class="chip" data-value="Boda">Boda</div>
+              <div class="chip" data-value="XV años">XV años</div>
+              <div class="chip" data-value="Baby shower">Baby shower</div>
+              <div class="chip" data-value="Graduación">Graduación</div>
+              <div class="chip" data-value="Aniversario">Aniversario</div>
+              <div class="chip" data-value="Sin ocasión especial">Sin ocasión</div>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label" for="fechaInput">Fecha deseada del evento</label>
+            <input type="date" id="fechaInput" class="date-input" />
+          </div>
+        </div>
+
+        <!-- Tarjeta 4: Fotos + Notas -->
+        <div class="form-card">
+          <p class="form-card-title">Fotos de referencia y notas</p>
+
+          <div class="form-field">
+            <label class="form-field-label">Fotos de referencia <span class="form-field-sublabel">(opcional)</span></label>
+            <div class="photo-drop" id="photoDrop">
+              <input type="file" id="photoInput" accept="image/*" multiple
+                     aria-label="Subir fotos de referencia" />
+              <div class="photo-drop-icon" aria-hidden="true"><i data-lucide="camera"></i></div>
+              <p><strong>Toca para subir fotos</strong><br>o arrastra aquí tus imágenes de inspiración</p>
+            </div>
+            <div class="photo-previews" id="photoPreviews"></div>
+            <p class="photo-count" id="photoCount"></p>
+          </div>
+
+          <div class="form-field">
+            <label class="form-field-label" for="notasInput">Notas adicionales</label>
+            <textarea id="notasInput" class="notes-textarea"
+                      placeholder="Colores, temática, alergias, mensaje en el pastel, detalles de decoración…"
+                      maxlength="500"></textarea>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CTA — ENVIAR POR WHATSAPP
+  ====================================================================== -->
+  <section id="pedido-cta">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">¿Todo listo?</span>
+        <h2>Envía tu Cotización</h2>
+        <p>Te respondemos en menos de 24 horas con precio y disponibilidad.</p>
+        <button class="btn-wa" id="btnEnviar" type="button">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+          </svg>
+          Enviar cotización por WhatsApp
+        </button>
+        <p class="cta-note">Si tienes fotos de referencia, adjúntalas directamente en el chat de WhatsApp después de enviar el mensaje.</p>
+      </div>
+    </div>
+  </section>
