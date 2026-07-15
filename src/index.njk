@@ -12,6 +12,7 @@ ogDescription: "Desde una galleta hasta tu gran evento. Todo hecho a mano y entr
 ogImage: "/images/hero.png"
 ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
 ---
+{% from "partials/producto-card.njk" import productoCard %}
   <!-- =====================================================================
        2. HERO
        Desktop: texto (izquierda) + imagen (derecha)
@@ -78,131 +79,9 @@ ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
       </div>
 
       <div class="portfolio-grid">
-
-        <article class="flip-card" style="--i:0"
-                 role="button" tabindex="0"
-                 aria-label="Panque de Zanahoria — activa para ver ingredientes">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-img">
-                <img src="images/portafolio/panque_zanahoria_sin_fondo.png"
-                     alt="Panque de zanahoria artesanal" loading="lazy" />
-              </div>
-              <div class="card-info">
-                <span class="card-categoria">Panes y Panques</span>
-                <p class="card-nombre">Panque de Zanahoria</p>
-                <p class="card-hint">
-                  <span aria-hidden="true">✦</span>
-                  <span class="card-hint-hover">Clic para ver ingredientes</span>
-                  <span class="card-hint-touch">Toca para ver ingredientes</span>
-                </p>
-              </div>
-            </div>
-            <div class="flip-card-back" aria-hidden="true">
-              <span class="back-label">Ingredientes</span>
-              <p class="back-nombre">Panque de Zanahoria</p>
-              <p class="back-desc">Tierno, húmedo y lleno de sabor natural.</p>
-              <p class="ingredientes-title">Hecho con:</p>
-              <ul class="ingredientes-list">
-                <li>Harina de trigo</li>
-                <li>Zanahoria rallada fresca</li>
-                <li>Huevo</li>
-                <li>Aceite vegetal</li>
-                <li>Azúcar mascabado</li>
-                <li>Canela molida</li>
-                <li>Nuez</li>
-              </ul>
-              <a href="{{ 'Panque de Zanahoria' | waProducto }}"
-                 class="back-cta" target="_blank" rel="noopener noreferrer"
-                 tabindex="-1" aria-label="Pedir Panque de Zanahoria por WhatsApp">
-                Pedir este producto →
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="flip-card" style="--i:1"
-                 role="button" tabindex="0"
-                 aria-label="Gelatina Artesanal — activa para ver ingredientes">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-img">
-                <img src="images/portafolio/gelatina_sin_fondo.png"
-                     alt="Gelatina artesanal de Espiral Dulce" loading="lazy" />
-              </div>
-              <div class="card-info">
-                <span class="card-categoria">Postres</span>
-                <p class="card-nombre">Gelatina Artesanal</p>
-                <p class="card-hint">
-                  <span aria-hidden="true">✦</span>
-                  <span class="card-hint-hover">Clic para ver ingredientes</span>
-                  <span class="card-hint-touch">Toca para ver ingredientes</span>
-                </p>
-              </div>
-            </div>
-            <div class="flip-card-back" aria-hidden="true">
-              <span class="back-label">Ingredientes</span>
-              <p class="back-nombre">Gelatina Artesanal</p>
-              <p class="back-desc">Postre refrescante con frutas naturales.</p>
-              <p class="ingredientes-title">Hecho con:</p>
-              <ul class="ingredientes-list">
-                <li>Grenetina natural</li>
-                <li>Leche entera</li>
-                <li>Crema</li>
-                <li>Frutas de temporada</li>
-                <li>Azúcar</li>
-                <li>Extracto de vainilla</li>
-              </ul>
-              <a href="{{ 'Gelatina Artesanal' | waProducto }}"
-                 class="back-cta" target="_blank" rel="noopener noreferrer"
-                 tabindex="-1" aria-label="Pedir Gelatina Artesanal por WhatsApp">
-                Pedir este producto →
-              </a>
-            </div>
-          </div>
-        </article>
-
-        <article class="flip-card" style="--i:2"
-                 role="button" tabindex="0"
-                 aria-label="Tiramisú Cuchareable — activa para ver ingredientes">
-          <div class="flip-card-inner">
-            <div class="flip-card-front">
-              <div class="card-img">
-                <img src="images/portafolio/tiramisu_cuchareable_sin_fondo.png"
-                     alt="Tiramisú artesanal italiano" loading="lazy" />
-              </div>
-              <div class="card-info">
-                <span class="card-categoria">Postres</span>
-                <p class="card-nombre">Tiramisú Cuchareable</p>
-                <p class="card-hint">
-                  <span aria-hidden="true">✦</span>
-                  <span class="card-hint-hover">Clic para ver ingredientes</span>
-                  <span class="card-hint-touch">Toca para ver ingredientes</span>
-                </p>
-              </div>
-            </div>
-            <div class="flip-card-back" aria-hidden="true">
-              <span class="back-label">Ingredientes</span>
-              <p class="back-nombre">Tiramisú Cuchareable</p>
-              <p class="back-desc">Clásico italiano, intenso y cremoso.</p>
-              <p class="ingredientes-title">Hecho con:</p>
-              <ul class="ingredientes-list">
-                <li>Queso mascarpone</li>
-                <li>Café espresso</li>
-                <li>Huevo</li>
-                <li>Azúcar glass</li>
-                <li>Cocoa en polvo</li>
-                <li>Galleta savoiardi</li>
-              </ul>
-              <a href="{{ 'Tiramisú Cuchareable' | waProducto }}"
-                 class="back-cta" target="_blank" rel="noopener noreferrer"
-                 tabindex="-1" aria-label="Pedir Tiramisú por WhatsApp">
-                Pedir este producto →
-              </a>
-            </div>
-          </div>
-        </article>
-
+        {%- for producto in productos | selectattr("destacado") %}
+{{ productoCard(producto, loop.index0) }}
+        {%- endfor %}
       </div>
 
       <div class="portfolio-more reveal">

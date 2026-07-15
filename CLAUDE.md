@@ -35,10 +35,11 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 |------|---------|
 | `src/index.njk`, `src/portafolio.njk`, `src/visualizador-pastel.njk` | Las 3 páginas — **solo el cuerpo**; el chrome sale del layout |
 | `src/_includes/layouts/base.njk` | `<head>` + header + footer + botón flotante + scripts — compartido por las 3 páginas |
-| `src/_includes/partials/` | `head-seo`, `header-nav`, `footer`, `whatsapp-float`, `scripts` |
+| `src/_includes/partials/` | `head-seo`, `header-nav`, `footer`, `whatsapp-float`, `scripts`, `producto-card` (macro de tarjeta) |
 | `src/_data/site.json` | **Única fuente** del número de WhatsApp, mensajes prellenados, email, dirección y redes |
+| `src/_data/productos.json` | **Única fuente** de los productos. La usan el index (destacados) y el portafolio (catálogo), renderizados en build-time |
 | `src/js/nav.js` | Chrome compartido: menú hamburguesa, sombra del header, smooth scroll, scroll reveal. Define `window.SITE` y `window.waUrl()` |
-| `src/js/script.js`, `portafolio.js`, `visualizador.js` | Lo específico de cada página (flip cards, catálogo+filtros, cotizador) |
+| `src/js/script.js`, `portafolio.js`, `visualizador.js` | Lo específico de cada página (flip cards del index, filtros+flip+tilt del catálogo, cotizador) |
 | `src/css/styles.css` | Estilos base; secciones numeradas y comentadas igual que el HTML |
 | `.eleventy.js` | Build config + filtros `waUrl` / `waProducto` (arman los links de WhatsApp desde `site.json`) |
 
@@ -52,6 +53,9 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 - Cada página declara en su front matter: `inicio` (`""` en la home, `"index.html"` en las demás —
   hace que los links del nav apunten al ancla correcta), `pageScript`, y su SEO
   (`title`, `description`, `canonical`, `ogTitle`, …).
+- **Para agregar/editar un producto**: toca solo `src/_data/productos.json`. Aparece en el
+  catálogo del portafolio automáticamente; marca `"destacado": true` (máx. 3) para que salga
+  también en la vista previa del index. El markup de la tarjeta es la macro `producto-card.njk`.
 
 ## Architecture
 

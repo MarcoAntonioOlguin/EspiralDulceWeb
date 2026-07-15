@@ -1,0 +1,57 @@
+{#
+  Tarjeta flip de un producto — fuente única del markup de tarjeta.
+  La usan tanto el index (3 destacados) como el portafolio (catálogo completo),
+  renderizando en build-time desde src/_data/productos.json.
+
+  Parámetros:
+    producto  objeto de productos.json
+    i         índice para el retraso escalonado de la animación de entrada (--i)
+#}
+{%- macro productoCard(producto, i) -%}
+        <article class="flip-card" data-categoria="{{ producto.categoria }}" style="--i:{{ i }}"
+                 role="button" tabindex="0"
+                 aria-label="{{ producto.nombre }} — activa para ver ingredientes">
+          <div class="flip-card-inner">
+
+            <div class="flip-card-front">
+              <div class="card-img">
+                <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" loading="lazy" />
+              </div>
+              <div class="card-info">
+                <span class="card-categoria">{{ producto.categoriaLabel }}</span>
+                <p class="card-nombre">{{ producto.nombre }}</p>
+                <p class="card-hint">
+                  <span aria-hidden="true">✦</span>
+                  <span class="card-hint-hover">Clic para ver ingredientes</span>
+                  <span class="card-hint-touch">Toca para ver ingredientes</span>
+                </p>
+              </div>
+            </div>
+
+            <div class="flip-card-back" aria-hidden="true">
+              <span class="back-label">Ingredientes</span>
+              <p class="back-nombre">{{ producto.nombre }}</p>
+              <p class="back-desc">{{ producto.descripcion }}</p>
+              <p class="ingredientes-title">Hecho con:</p>
+              <ul class="ingredientes-list">
+                {%- for ing in producto.ingredientes %}
+                <li>{{ ing }}</li>
+                {%- endfor %}
+              </ul>
+              {%- if producto.ctaUrl %}
+              <a href="{{ producto.ctaUrl }}" class="back-cta"
+                 tabindex="-1" aria-label="{{ producto.ctaText }}">
+                {{ producto.ctaText }}
+              </a>
+              {%- else %}
+              <a href="{{ producto.nombre | waProducto }}" class="back-cta"
+                 target="_blank" rel="noopener noreferrer"
+                 tabindex="-1" aria-label="Pedir {{ producto.nombre }} por WhatsApp">
+                Pedir este producto →
+              </a>
+              {%- endif %}
+            </div>
+
+          </div>
+        </article>
+{%- endmacro -%}
