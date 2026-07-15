@@ -205,3 +205,37 @@ test('todas las páginas cargan el header, el footer y el botón flotante de Wha
     assert.equal($('a.wa-float').length, 1, `${pagina}: falta el botón flotante de WhatsApp`);
   }
 });
+
+test('las tarjetas de producto se generan desde productos.json (fuente única)', () => {
+  // Blinda la extracción de datos de la Fase 3: el portafolio renderiza TODOS los
+  // productos y el index renderiza exactamente los marcados como destacado. Si
+  // alguien agrega un producto al JSON, aparece solo; si rompe el render, esto falla.
+  const productos = require('../src/_data/productos.json');
+  const destacados = productos.filter((p) => p.destacado);
+
+  assert.ok(productos.length >= 20, 'productos.json trae sospechosamente pocos productos');
+  assert.equal(destacados.length, 3, 'el index espera exactamente 3 productos destacados');
+
+  const catalogo = cargar('portafolio.html').$;
+  assert.equal(
+    catalogo('#catalogo-grid .flip-card').length,
+    productos.length,
+    'el portafolio no renderiza todos los productos de productos.json'
+  );
+
+  const home = cargar('index.html').$;
+  assert.equal(
+    home('.portfolio-grid .flip-card').length,
+    destacados.length,
+    'el index no renderiza los 3 productos destacados'
+  );
+
+  // Cada producto del catálogo muestra su nombre y todos sus ingredientes.
+  for (const p of productos) {
+    const html = catalogo.html();
+    assert.ok(html.includes(p.nombre), `el portafolio no muestra "${p.nombre}"`);
+    for (const ing of p.ingredientes) {
+      assert.ok(html.includes(ing), `"${p.nombre}" no muestra su ingrediente "${ing}"`);
+    }
+  }
+});

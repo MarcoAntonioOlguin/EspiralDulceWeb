@@ -13,6 +13,7 @@ ogDescription: "Descubre todos nuestros productos artesanales. Todo hecho a mano
 ogImage: "/images/hero.png"
 ogImageAlt: "Repostería artesanal de Espiral Dulce"
 ---
+{% from "partials/producto-card.njk" import productoCard %}
   <!-- =====================================================================
        HERO DE LA PÁGINA
   ====================================================================== -->
@@ -45,8 +46,13 @@ ogImageAlt: "Repostería artesanal de Espiral Dulce"
         <button class="filtro-btn" data-categoria="galletas">Galletas</button>
       </div>
 
-      <!-- Grid de tarjetas flip — generado por portafolio.js -->
-      <div class="catalogo-grid" id="catalogo-grid" aria-live="polite"></div>
+      <!-- Grid de tarjetas flip — renderizado en build-time desde _data/productos.json.
+           portafolio.js solo maneja filtros, flip y tilt sobre este DOM. -->
+      <div class="catalogo-grid" id="catalogo-grid">
+        {%- for producto in productos %}
+{{ productoCard(producto, loop.index0) }}
+        {%- endfor %}
+      </div>
 
     </div>
   </section>
