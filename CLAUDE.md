@@ -41,7 +41,8 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 | `src/js/nav.js` | Chrome compartido: menú hamburguesa, sombra del header, smooth scroll, scroll reveal. Define `window.SITE` y `window.waUrl()` |
 | `src/js/flip-cards.js` | Flip por clic/teclado + tilt 3D de las `.flip-card` (index y portafolio). Se carga en todas las páginas; no-op si no hay tarjetas. Expone `window.unflipCard()` |
 | `src/js/portafolio.js`, `visualizador.js` | Lo específico de cada página (filtros del catálogo, cotizador). El index no tiene `pageScript` |
-| `src/css/styles.css` | Estilos base; secciones numeradas y comentadas igual que el HTML |
+| `src/css/tokens.css` → `base.css` → `componentes.css` → `secciones.css` | Estilos globales, en orden de cascada: variables del design system → reset/tipografía/utilidades → botones y chrome (nav, footer, wa-float) → cada sección de la página |
+| `src/css/portafolio.css` | Las flip cards (compartidas por index y portafolio) + lo propio del catálogo |
 | `.eleventy.js` | Build config + filtros `waUrl` / `waProducto` (arman los links de WhatsApp desde `site.json`) |
 
 ### Reglas al agregar o tocar una página
@@ -60,9 +61,9 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 
 ## Architecture
 
-The page is a single scrollable document with 8 sections (in order): Header/Nav → Hero → Portafolio → Servicios → Testimonios → CTA Principal → Proceso → Contacto → Footer.
+The home page is a single scrollable document with these sections (in order): Header/Nav → Hero → Portafolio → Testimonios → CTA Principal → Proceso → Contacto → Footer.
 
-**CSS** uses CSS custom properties (`:root` variables) for the design system: pink (`--pink`), gold (`--gold`), dark (`--dark`/`--dark-2`), and shared spacing/shadow/typography tokens. All responsive breakpoints are inline in each section's block — not centralized.
+**CSS** uses CSS custom properties for the design system, all defined in `tokens.css`: amber (`--amber`), cocoa (`--cocoa`), ink (`--ink`/`--ink-2`), cream (`--cream`), and shared radius/shadow/typography tokens. All responsive breakpoints are inline in each section's block — not centralized.
 
 **JavaScript** is plain browser JS — no imports, no classes, no bundler. Shared behavior
 lives in `nav.js` (chrome) and `flip-cards.js` (tarjetas); each page may add its own

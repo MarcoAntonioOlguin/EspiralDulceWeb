@@ -36,7 +36,7 @@ test('el build genera las páginas y los assets esperados', () => {
   for (const pagina of PAGINAS) {
     assert.ok(fs.existsSync(path.join(SITE, pagina)), `falta ${pagina}`);
   }
-  for (const asset of ['manifest.json', 'robots.txt', 'sitemap.xml', 'css/styles.css', 'js/nav.js', 'js/flip-cards.js', 'images/hero.png']) {
+  for (const asset of ['manifest.json', 'robots.txt', 'sitemap.xml', 'css/tokens.css', 'css/base.css', 'css/componentes.css', 'css/secciones.css', 'js/nav.js', 'js/flip-cards.js', 'images/hero.png']) {
     assert.ok(fs.existsSync(path.join(SITE, asset)), `falta ${asset}`);
   }
 });
