@@ -26,6 +26,9 @@ Cada PR usa `.github/pull_request_template.md`: llena la checklist de **revisió
 lo que *ese* PR puede haber roto y la máquina no puede ver (que un CTA abra bien WhatsApp, que
 las flip cards giren, el responsive). No pegues una checklist genérica.
 
+El flujo de ramas (`develop` como integración, `main` como producción) está en
+`CONTRIBUTING.md`. Cada PR agrega su línea al `CHANGELOG.md` bajo **[Sin publicar]**.
+
 > See `ARQUITECTURA.md` for the current-state analysis and the Eleventy migration design.
 > Migration is in progress, phase by phase, on `develop` + feature PRs.
 
