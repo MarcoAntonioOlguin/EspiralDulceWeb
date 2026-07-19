@@ -33,7 +33,7 @@
   padding: 28px 26px;
 }
 .form-card-title {
-  font-family: var(--font-heading);
+  font-family: var(--font-display);
   font-size: 1.05rem; font-weight: 600; font-style: italic;
   color: #41342A; margin-bottom: 20px;
   padding-bottom: 14px; border-bottom: 1px solid #EAD9BE;
