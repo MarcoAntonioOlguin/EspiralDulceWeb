@@ -1,0 +1,138 @@
+/**
+ * visualizador.css — Espiral Dulce
+ *
+ * Estilos propios de la página "Diseña tu pastel" (visualizador-pastel.html).
+ * Depende de los tokens de :root definidos en styles.css — no redefine ninguno.
+ */
+
+/* ── HERO ───────────────────────────────────────────────── */
+#pedido-hero {
+  background: linear-gradient(135deg, #F5ECD7 0%, var(--white) 60%, #F9F0E3 100%);
+  padding: calc(70px + 64px) 0 60px;
+}
+#pedido-hero h1 { font-style: italic; color: var(--ink); margin-bottom: 0.75rem; }
+#pedido-hero > .container > p {
+  font-size: 1rem; color: var(--muted); max-width: 540px; line-height: 1.7;
+}
+
+/* ── FORM SECTION ───────────────────────────────────────── */
+#pedido-form { padding: 56px 0 72px; }
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px;
+}
+@media (max-width: 760px) { .form-grid { grid-template-columns: 1fr; } }
+
+.form-card {
+  background: #FFFCF5;
+  border: 1px solid #EAD9BE;
+  border-radius: 26px;
+  box-shadow: 0 18px 40px -22px rgba(74,52,32,.35);
+  padding: 28px 26px;
+}
+.form-card-title {
+  font-family: var(--font-heading);
+  font-size: 1.05rem; font-weight: 600; font-style: italic;
+  color: #41342A; margin-bottom: 20px;
+  padding-bottom: 14px; border-bottom: 1px solid #EAD9BE;
+}
+.form-field { margin-bottom: 22px; }
+.form-field:last-child { margin-bottom: 0; }
+.form-field-label {
+  display: block; font-size: 11.5px; font-weight: 600;
+  letter-spacing: .08em; text-transform: uppercase;
+  color: #A2907B; margin-bottom: 10px;
+}
+.form-field-sublabel {
+  font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px;
+}
+
+/* chips */
+.chip-group { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip {
+  padding: 6px 14px;
+  border: 1.5px solid #EAD9BE;
+  border-radius: 999px; background: #fff;
+  color: #41342A; font-size: 13.5px; font-weight: 500;
+  cursor: pointer; user-select: none;
+  transition: border-color .14s, background .14s, color .14s;
+  font-family: var(--font-body);
+}
+.chip:hover { border-color: #CF6A82; }
+.chip.sel {
+  border-color: #CF6A82; background: #F6DCE2;
+  color: #CF6A82; font-weight: 600;
+}
+
+/* date + textarea */
+.date-input, .notes-textarea {
+  width: 100%; border: 1.5px solid #EAD9BE; border-radius: 14px;
+  padding: 11px 15px; font-size: 15px;
+  font-family: var(--font-body); color: #41342A; background: #fff;
+  transition: border-color .15s;
+}
+.date-input:focus, .notes-textarea:focus { outline: none; border-color: #CF6A82; }
+.notes-textarea { resize: vertical; min-height: 96px; }
+
+/* photo upload */
+.photo-drop {
+  border: 2px dashed #D0BEAD; border-radius: 16px;
+  padding: 22px 18px; text-align: center; cursor: pointer;
+  transition: border-color .15s, background .15s;
+  background: #fff; position: relative;
+}
+.photo-drop:hover, .photo-drop.drag-over { border-color: #CF6A82; background: #FDF4F7; }
+.photo-drop input[type=file] {
+  position: absolute; inset: 0; opacity: 0;
+  cursor: pointer; width: 100%; height: 100%;
+}
+.photo-drop-icon { font-size: 26px; margin-bottom: 6px; display: flex; justify-content: center; }
+.photo-drop-icon svg { width: 26px; height: 26px; }
+.photo-drop p { font-size: 13px; color: #A2907B; line-height: 1.5; }
+.photo-drop strong { color: #CF6A82; }
+.photo-previews { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.photo-thumb {
+  width: 60px; height: 60px; border-radius: 10px;
+  object-fit: cover; border: 2px solid #EAD9BE;
+}
+.photo-count { font-size: 12px; color: #A2907B; margin-top: 8px; }
+
+/* validación */
+.field-error { color: #CF6A82; font-size: 12px; margin-top: 6px; display: none; }
+.field-error.visible { display: block; }
+.chip-group.has-error .chip { border-color: rgba(207,106,130,.5); }
+
+/* ── CTA SECTION ────────────────────────────────────────── */
+#pedido-cta { padding: 0 0 80px; }
+.cta-box {
+  background: linear-gradient(135deg, #1C1008, #3A1F0A);
+  border-radius: 28px; padding: 52px 40px; text-align: center;
+}
+@media (max-width: 600px) { .cta-box { padding: 40px 24px; } }
+.cta-box .section-label { color: #CF6A82; }
+.cta-box h2 { color: #FFF6E6; margin: 12px 0 16px; }
+.cta-box > p {
+  color: rgba(255,246,230,.65); font-size: 15px;
+  max-width: 480px; margin: 0 auto 30px; line-height: 1.65;
+}
+
+.btn-wa {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: #25D366; color: #fff; border: none; border-radius: 999px;
+  padding: 16px 36px; font-size: 16px; font-weight: 700;
+  font-family: var(--font-body); cursor: pointer;
+  transition: transform .15s, box-shadow .15s; text-decoration: none;
+}
+.btn-wa:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(37,211,102,.4);
+  color: #fff;
+}
+.btn-wa svg { width: 22px; height: 22px; flex: none; }
+
+.cta-note {
+  font-size: 12.5px; color: rgba(255,246,230,.45);
+  margin-top: 16px; line-height: 1.55;
+}

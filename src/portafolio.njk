@@ -1,0 +1,82 @@
+---
+layout: layouts/base.njk
+permalink: /portafolio.html
+inicio: "index.html"
+paginaActiva: "portafolio"
+pageScript: "js/portafolio.js"
+title: "Portafolio — Espiral Dulce · Repostería Artesanal CDMX"
+description: "Portafolio completo de Espiral Dulce — Repostería artesanal a pedido en CDMX. Panques, postres, chocolates y más."
+keywords: "repostería artesanal CDMX, panque zanahoria, brownie, tiramisú, gelatina artesanal, postres a pedido"
+canonical: "/portafolio.html"
+ogTitle: "Portafolio — Espiral Dulce · Repostería Artesanal CDMX"
+ogDescription: "Descubre todos nuestros productos artesanales. Todo hecho a mano y a pedido."
+ogImage: "/images/hero.png"
+ogImageAlt: "Repostería artesanal de Espiral Dulce"
+---
+{% from "partials/producto-card.njk" import productoCard %}
+  <!-- =====================================================================
+       HERO DE LA PÁGINA
+  ====================================================================== -->
+  <section id="portafolio-hero">
+    <div class="container">
+      <nav class="ph-breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Inicio</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page">Portafolio</span>
+      </nav>
+      <span class="section-label">Portafolio</span>
+      <h1>Nuestros Productos</h1>
+      <p>Todo elaborado a mano y a pedido. Pasa el cursor o toca cada tarjeta para descubrir sus ingredientes.</p>
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CATÁLOGO CON FILTROS
+  ====================================================================== -->
+  <section id="portafolio-catalogo" class="section-pad">
+    <div class="container">
+
+      <!-- Filtros por categoría -->
+      <div class="filtros" role="group" aria-label="Filtrar por categoría">
+        <button class="filtro-btn active" data-categoria="todos">Todos</button>
+        <button class="filtro-btn" data-categoria="panes">Panes y Panques</button>
+        <button class="filtro-btn" data-categoria="postres">Postres</button>
+        <button class="filtro-btn" data-categoria="chocolates">Chocolates</button>
+        <button class="filtro-btn" data-categoria="galletas">Galletas</button>
+      </div>
+
+      <!-- Grid de tarjetas flip — renderizado en build-time desde _data/productos.json.
+           portafolio.js solo maneja filtros, flip y tilt sobre este DOM. -->
+      <div class="catalogo-grid" id="catalogo-grid">
+        {%- for producto in productos %}
+{{ productoCard(producto, loop.index0) }}
+        {%- endfor %}
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- =====================================================================
+       CTA FINAL
+  ====================================================================== -->
+  <section id="portafolio-cta">
+    <div class="container">
+      <div class="pcta-content">
+        <span class="section-label">¿No ves lo que buscas?</span>
+        <h2>Lo Hacemos a tu Medida</h2>
+        <p>Si tienes en mente algo que no aparece aquí, escríbenos. Creamos cualquier producto a pedido: pasteles, galletas decoradas, cupcakes, postres temáticos y más.</p>
+        <div class="pcta-actions">
+          <a href="visualizador-pastel.html" class="btn btn-white btn-lg">
+            Diseña tu pastel personalizado →
+          </a>
+          <a href="{{ 'Hola, quisiera un producto personalizado' | waUrl }}"
+             class="btn btn-white-outline btn-lg"
+             target="_blank" rel="noopener noreferrer">
+            Cotizar otro producto
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>

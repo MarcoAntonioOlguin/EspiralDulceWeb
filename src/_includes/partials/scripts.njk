@@ -1,0 +1,11 @@
+  <!-- Config del sitio para el JS del cliente: el MISMO site.json que usan los
+       templates. Así el número de WhatsApp tampoco se hardcodea en el JS. -->
+  <script id="site-config" type="application/json">{{ site | dump | safe }}</script>
+
+  <!-- JS al final del body: el DOM ya está listo cuando el JS lo intenta acceder.
+       nav.js trae el chrome compartido y define window.SITE; después va el script
+       propio de cada página (`pageScript` en su front matter). -->
+  <script src="js/nav.js"></script>
+  <script src="{{ pageScript }}"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>lucide.createIcons();</script>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+{% include "partials/head-seo.njk" %}
+</head>
+
+<body>
+
+{% include "partials/header-nav.njk" %}
+
+
+{{ content | safe }}
+
+
+{% include "partials/footer.njk" %}
+
+
+{% include "partials/whatsapp-float.njk" %}
+
+
+{% include "partials/scripts.njk" %}
+
+</body>
+</html>

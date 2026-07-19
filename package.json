@@ -1,0 +1,28 @@
+{
+  "name": "espiraldulceweb",
+  "version": "1.0.0",
+  "description": "Sitio de Espiral Dulce — repostería artesanal en CDMX. Sitio estático generado con Eleventy.",
+  "private": true,
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "clean": "rm -rf _site",
+    "test": "npm run build && node --test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarcoAntonioOlguin/EspiralDulceWeb.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/MarcoAntonioOlguin/EspiralDulceWeb/issues"
+  },
+  "homepage": "https://github.com/MarcoAntonioOlguin/EspiralDulceWeb#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "cheerio": "^1.2.0"
+  }
+}
