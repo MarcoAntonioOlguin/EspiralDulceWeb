@@ -14,6 +14,12 @@ con la fecha del despliegue y se abre un **[Sin publicar]** nuevo.
 ## [Sin publicar] — en `develop`
 
 ### Agregado
+- **Formulario de pedido real** (#12): en la sección Contacto del index, con
+  validación en vivo, respaldo en `localStorage` y envío a Google Apps Script
+  (los pedidos caen en una Google Sheet + aviso por correo — receta en
+  `SETUP_FORMULARIO.md`). La URL del backend y el ID de GA4 ahora se inyectan en
+  el build desde el `.env` (ver `.env.example`); sin configurar, el formulario
+  solo guarda el respaldo local y GA4 ni se carga.
 - `CHANGELOG.md` y `CONTRIBUTING.md` para llevar control de cambios y documentar el flujo de trabajo.
 
 ### Cambiado

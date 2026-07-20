@@ -239,3 +239,26 @@ test('las tarjetas de producto se generan desde productos.json (fuente única)',
     }
   }
 });
+
+test('el formulario de contacto existe con los campos que espera la Google Sheet', () => {
+  const { $ } = cargar('index.html');
+
+  const form = $('#contact-form');
+  assert.equal(form.length, 1, 'el index no tiene el formulario #contact-form');
+
+  // Los name= coinciden con las columnas de la Sheet (ver SETUP_FORMULARIO.md)
+  for (const campo of ['nombre', 'email', 'tipo_evento', 'fecha_evento', 'personas', 'descripcion']) {
+    assert.equal(
+      form.find(`[name="${campo}"]`).length, 1,
+      `el formulario no tiene el campo name="${campo}"`
+    );
+  }
+
+  assert.equal(form.find('button[type="submit"]').length, 1, 'falta el botón de enviar');
+  assert.equal($('#form-success').length, 1, 'falta el mensaje de éxito #form-success');
+
+  // La URL del backend nunca se hardcodea en templates ni JS: viene del .env
+  // vía la config inyectada (#site-config). Sin .env, queda cadena vacía.
+  const config = JSON.parse($('#site-config').html());
+  assert.ok('appsScriptUrl' in config, 'la config del cliente no incluye appsScriptUrl');
+});

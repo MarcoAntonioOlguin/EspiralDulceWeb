@@ -83,11 +83,13 @@
   <link rel="stylesheet" href="{{ pageCss }}" />
   {%- endif %}
 
-  <!-- Google Analytics 4 — reemplaza G-XXXXXXXXXX con tu Measurement ID -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  {%- if env.GA4_ID %}
+  <!-- Google Analytics 4 — el ID viene de GA4_ID en el .env; sin ID no se carga nada -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ env.GA4_ID }}"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
+    gtag('config', '{{ env.GA4_ID }}');
   </script>
+  {%- endif %}

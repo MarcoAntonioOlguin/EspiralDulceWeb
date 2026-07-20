@@ -1,6 +1,9 @@
 # Setup del formulario de contacto — Google Sheets + Apps Script
 
-Pasos para que los pedidos del formulario lleguen a una Google Sheet en tu cuenta de Google business.
+Pasos para que los pedidos del formulario (sección Contacto del index) lleguen a una
+Google Sheet en tu cuenta de Google business. Mientras `APPS_SCRIPT_URL` no esté
+configurada, el formulario funciona igual pero solo guarda el respaldo en
+`localStorage` del navegador del visitante.
 
 ## 1. Crea la Google Sheet
 
@@ -83,16 +86,23 @@ function doPost(e) {
 6. **Copia la URL** que te da. Se ve así:
    `https://script.google.com/macros/s/AKfycb.../exec`
 
-## 4. Pega la URL en el código del sitio
+## 4. Pega la URL en el `.env`
 
-1. Abre `js/script.js`.
-2. Busca la línea `const APPS_SCRIPT_URL = 'PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT';`
-3. Reemplaza `'PEGA_AQUI_LA_URL_DE_TU_APPS_SCRIPT'` con la URL real entre comillas.
-4. Guarda.
+La URL **no se pega en el código** — se inyecta en el build desde el `.env`:
+
+1. En la raíz del proyecto, copia `.env.example` a `.env` (si no lo has hecho):
+   `cp .env.example .env`
+2. Abre `.env` y pega la URL en la línea de `APPS_SCRIPT_URL`:
+   `APPS_SCRIPT_URL=https://script.google.com/macros/s/AKfycb.../exec`
+3. Guarda. El `.env` no se commitea (está en `.gitignore`).
+
+> Cuando el sitio se publique, la URL se configura como variable de entorno
+> `APPS_SCRIPT_URL` en el hosting/CI — misma variable, mismo efecto.
 
 ## 5. Prueba
 
-1. Abre `index.html` en el navegador.
+1. Corre `npm start` y abre http://localhost:8080 (el build lee el `.env` al arrancar —
+   si ya estaba corriendo, reinícialo).
 2. Llena el formulario de contacto y envía.
 3. Revisa tu Google Sheet — debería aparecer una fila nueva.
 4. Si pusiste correo de notificación, revisa tu Gmail.
