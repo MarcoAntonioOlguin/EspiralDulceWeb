@@ -481,3 +481,91 @@
   background: rgba(37, 211, 102, 0.2);
   border-color: rgba(37, 211, 102, 0.55);
 }
+
+/* Formulario de pedido — debajo de las tarjetas, mismo fondo oscuro */
+.contact-form-wrap {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius);
+  padding: 2.5rem;
+  max-width: 720px;
+  margin: 3rem auto 0;
+}
+.contact-form-wrap h3  { font-size: 1.2rem; color: var(--white); margin-bottom: 0.5rem; font-family: var(--font-body); font-weight: 600; }
+.contact-form-wrap > p { color: rgba(255, 255, 255, 0.5); font-size: 0.85rem; margin-bottom: 1.75rem; }
+
+.form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+
+.form-group label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.05em;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  padding: 0.75rem 1rem;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  min-height: 48px;
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255, 255, 255, 0.3); }
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: rgba(200, 121, 65, 0.6);
+  background: rgba(255, 255, 255, 0.08);
+}
+.form-group select         { cursor: pointer; }
+.form-group select option  { background: var(--ink-2); color: var(--white); }
+.form-group textarea       { resize: vertical; min-height: 110px; }
+
+/* Validación: .valid la pone el JS en vivo; .invalid al intentar enviar vacío */
+.form-group input.valid,
+.form-group select.valid,
+.form-group textarea.valid {
+  border-color: rgba(34, 197, 94, 0.55);
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+}
+.form-group input.invalid,
+.form-group textarea.invalid {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15);
+}
+
+.form-promise {
+  font-size: 0.78rem;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.form-success {
+  display: none;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  border-radius: var(--radius-sm);
+  padding: 1rem 1.25rem;
+  color: #6ee798;
+  font-size: 0.9rem;
+  margin-top: 1rem;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row          { grid-template-columns: 1fr; }
+  .contact-form-wrap { padding: 1.5rem; }
+}

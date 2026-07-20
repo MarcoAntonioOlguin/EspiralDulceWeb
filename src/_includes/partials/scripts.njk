@@ -1,6 +1,7 @@
   <!-- Config del sitio para el JS del cliente: el MISMO site.json que usan los
-       templates. Así el número de WhatsApp tampoco se hardcodea en el JS. -->
-  <script id="site-config" type="application/json">{{ site | dump | safe }}</script>
+       templates (+ la URL del Apps Script, que viene del .env). Así ni el número
+       de WhatsApp ni la URL del backend se hardcodean en el JS. -->
+  <script id="site-config" type="application/json">{{ site | clientConfig | safe }}</script>
 
   <!-- JS al final del body: el DOM ya está listo cuando el JS lo intenta acceder.
        nav.js trae el chrome compartido y define window.SITE; flip-cards.js trae
