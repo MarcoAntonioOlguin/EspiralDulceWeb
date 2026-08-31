@@ -1,0 +1,37 @@
+/* ============================================================
+   tokens.css — Espiral Dulce
+   Design system: todas las variables CSS del sitio.
+   Se carga antes que cualquier otra hoja — aquí no hay reglas,
+   solo tokens.
+============================================================ */
+:root {
+  /* Colores */
+  --amber:        #C87941;   /* color de acción principal */
+  --amber-light:  #D4956B;
+  --amber-soft:   #E8B87A;
+  --cocoa:        #8B4513;   /* marrón sello */
+  --cocoa-light:  #6B3A1F;
+  --ink:          #3D2314;
+  --ink-2:        #2A1709;
+  --cream:        #F5ECD7;
+  --cream-soft:   #F9F0E3;
+
+  --muted:       #A07855;
+  --white:       #FFFFFF;
+
+  /* Forma */
+  --radius:      12px;
+  --radius-sm:   8px;
+
+  /* Sombras */
+  --shadow:      0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-md:   0 8px 40px rgba(0, 0, 0, 0.14);
+  --shadow-lg:   0 20px 60px rgba(0, 0, 0, 0.18);
+
+  /* Animación */
+  --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Tipografías */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'DM Sans', -apple-system, sans-serif;
+}

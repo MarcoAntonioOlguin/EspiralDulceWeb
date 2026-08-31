@@ -26,6 +26,9 @@ Cada PR usa `.github/pull_request_template.md`: llena la checklist de **revisió
 lo que *ese* PR puede haber roto y la máquina no puede ver (que un CTA abra bien WhatsApp, que
 las flip cards giren, el responsive). No pegues una checklist genérica.
 
+El flujo de ramas (`develop` como integración, `main` como producción) está en
+`CONTRIBUTING.md`. Cada PR agrega su línea al `CHANGELOG.md` bajo **[Sin publicar]**.
+
 > See `ARQUITECTURA.md` for the current-state analysis and the Eleventy migration design.
 > Migration is in progress, phase by phase, on `develop` + feature PRs.
 
@@ -39,9 +42,11 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 | `src/_data/site.json` | **Única fuente** del número de WhatsApp, mensajes prellenados, email, dirección y redes |
 | `src/_data/productos.json` | **Única fuente** de los productos. La usan el index (destacados) y el portafolio (catálogo), renderizados en build-time |
 | `src/js/nav.js` | Chrome compartido: menú hamburguesa, sombra del header, smooth scroll, scroll reveal. Define `window.SITE` y `window.waUrl()` |
-| `src/js/script.js`, `portafolio.js`, `visualizador.js` | Lo específico de cada página (flip cards del index, filtros+flip+tilt del catálogo, cotizador) |
-| `src/css/styles.css` | Estilos base; secciones numeradas y comentadas igual que el HTML |
-| `.eleventy.js` | Build config + filtros `waUrl` / `waProducto` (arman los links de WhatsApp desde `site.json`) |
+| `src/js/flip-cards.js` | Flip por clic/teclado + tilt 3D de las `.flip-card` (index y portafolio). Se carga en todas las páginas; no-op si no hay tarjetas. Expone `window.unflipCard()` |
+| `src/js/contacto.js`, `portafolio.js`, `visualizador.js` | Lo específico de cada página (formulario de pedido del index, filtros del catálogo, cotizador) |
+| `src/css/tokens.css` → `base.css` → `componentes.css` → `secciones.css` | Estilos globales, en orden de cascada: variables del design system → reset/tipografía/utilidades → botones y chrome (nav, footer, wa-float) → cada sección de la página |
+| `src/css/portafolio.css` | Las flip cards (compartidas por index y portafolio) + lo propio del catálogo |
+| `.eleventy.js` | Build config + filtros `waUrl` / `waProducto` (links de WhatsApp desde `site.json`) + lectura del `.env` (`GA4_ID`, `APPS_SCRIPT_URL` — ver `.env.example`) |
 
 ### Reglas al agregar o tocar una página
 
@@ -51,23 +56,31 @@ las flip cards giren, el responsive). No pegues una checklist genérica.
 - **Nada de CSS ni JS inline**: van a `src/css/*.css` (declarado con `pageCss`) y `src/js/*.js`
   (declarado con `pageScript`). Hay una prueba que lo verifica.
 - Cada página declara en su front matter: `inicio` (`""` en la home, `"index.html"` en las demás —
-  hace que los links del nav apunten al ancla correcta), `pageScript`, y su SEO
-  (`title`, `description`, `canonical`, `ogTitle`, …).
+  hace que los links del nav apunten al ancla correcta), `pageScript` (opcional — solo si la
+  página tiene JS propio), y su SEO (`title`, `description`, `canonical`, `ogTitle`, …).
 - **Para agregar/editar un producto**: toca solo `src/_data/productos.json`. Aparece en el
   catálogo del portafolio automáticamente; marca `"destacado": true` (máx. 3) para que salga
   también en la vista previa del index. El markup de la tarjeta es la macro `producto-card.njk`.
 
 ## Architecture
 
-The page is a single scrollable document with 8 sections (in order): Header/Nav → Hero → Portafolio → Servicios → Testimonios → CTA Principal → Proceso → Contacto → Footer.
+The home page is a single scrollable document with these sections (in order): Header/Nav → Hero → Portafolio → Testimonios → CTA Principal → Proceso → Contacto → Footer.
 
-**CSS** uses CSS custom properties (`:root` variables) for the design system: pink (`--pink`), gold (`--gold`), dark (`--dark`/`--dark-2`), and shared spacing/shadow/typography tokens. All responsive breakpoints are inline in each section's block — not centralized.
+**CSS** uses CSS custom properties for the design system, all defined in `tokens.css`: amber (`--amber`), cocoa (`--cocoa`), ink (`--ink`/`--ink-2`), cream (`--cream`), and shared radius/shadow/typography tokens. All responsive breakpoints are inline in each section's block — not centralized.
 
-**JavaScript** is structured as 6 independent, clearly-commented modules at the top of the file. No imports, no classes. The contact form saves submissions to `localStorage` under the key `mipasteleria_submissions`; it does **not** POST to a backend.
+**JavaScript** is plain browser JS — no imports, no classes, no bundler. Shared behavior
+lives in `nav.js` (chrome) and `flip-cards.js` (tarjetas); each page may add its own
+`pageScript` on top.
 
-**WhatsApp CTAs** use the `wa.me/525610003837` number en todos lados (CTAs visibles, botón flotante y helper de JS).
+**Contact form** (sección Contacto del index, `contacto.js`): valida en vivo, guarda
+un respaldo en `localStorage` (`espiraldulce_submissions`) y postea a Google Apps
+Script (`SETUP_FORMULARIO.md`). La URL llega como `window.SITE.appsScriptUrl`,
+inyectada en el build desde `APPS_SCRIPT_URL` del `.env` — vacía = solo respaldo local.
+Nunca se hardcodea en templates ni JS.
 
-**Scroll animations** use the `.reveal` / `.reveal-delay-N` CSS classes together with an `IntersectionObserver` in `script.js`. Elements animate in once and are then unobserved.
+**WhatsApp CTAs** salen todos de `site.json` — nunca se hardcodea el número (ver reglas arriba).
+
+**Scroll animations** use the `.reveal` / `.reveal-delay-N` CSS classes together with an `IntersectionObserver` in `nav.js`. Elements animate in once and are then unobserved.
 
 ## Language
 

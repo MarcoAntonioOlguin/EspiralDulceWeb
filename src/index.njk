@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 permalink: /index.html
 inicio: ""
-pageScript: "js/script.js"
+pageScript: "js/contacto.js"
 title: "Espiral Dulce — Repostería Artesanal a Pedido · CDMX"
 description: "Repostería artesanal a pedido en CDMX. Galletas, pasteles y postres para cumpleaños, bodas, fiestas y eventos corporativos. Entregamos en tu domicilio. Anzures, Miguel Hidalgo."
 keywords: "repostería artesanal CDMX, pasteles a pedido, galletas personalizadas, pasteles cumpleaños CDMX, pasteles boda CDMX, Anzures, Miguel Hidalgo"
@@ -311,6 +311,63 @@ ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
           <p class="contact-card-note">Entregamos en toda la CDMX · Sin costo adicional · Sin tienda física</p>
         </div>
 
+      </div>
+
+      <!-- Formulario de pedido — postea al Apps Script (ver SETUP_FORMULARIO.md).
+           Los campos coinciden con las columnas de la Google Sheet. -->
+      <div class="contact-form-wrap reveal">
+        <h3>O cuéntanos tu pedido por escrito</h3>
+        <p>Déjanos los detalles y te contactamos nosotros — el mismo día, de lunes a sábado.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre *</label>
+              <input type="text" id="nombre" name="nombre" placeholder="¿Cómo te llamas?" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email *</label>
+              <input type="email" id="email" name="email" placeholder="tu@correo.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="tipo-evento">Tipo de evento</label>
+              <select id="tipo-evento" name="tipo_evento">
+                <option value="">Elige una opción…</option>
+                <option>Cumpleaños</option>
+                <option>Boda</option>
+                <option>Evento corporativo</option>
+                <option>Reunión familiar</option>
+                <option>Solo un antojo</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fecha-evento">Fecha de entrega</label>
+              <input type="date" id="fecha-evento" name="fecha_evento" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="personas">Número de personas</label>
+            <input type="number" id="personas" name="personas" min="1" placeholder="¿Para cuántos?" />
+          </div>
+
+          <div class="form-group">
+            <label for="descripcion">Cuéntanos tu idea *</label>
+            <textarea id="descripcion" name="descripcion" placeholder="Qué producto te interesa, sabores, tamaño, alguna referencia…" required></textarea>
+          </div>
+
+          <p class="form-promise">Tus datos solo se usan para responderte — no hacemos spam.</p>
+
+          <button type="submit" class="btn btn-primary">Enviar Pedido</button>
+
+          <div id="form-success" class="form-success" role="status">
+            ✓ ¡Recibimos tu pedido! Te contactamos muy pronto.
+          </div>
+        </form>
       </div>
 
     </div>
