@@ -113,6 +113,11 @@ module.exports = function (eleventyConfig) {
         [150, 300],
         { sizes: '150px' }
       ),
+      // El "0" de la página 404 — decorativo, alt vacío (el contenedor ya lleva aria-hidden).
+      error404: await imagenHTML('images/portafolio/alfajores_sin_fondo.png', '', [140, 280], {
+        sizes: '(max-width: 480px) 64px, 112px',
+        loading: 'eager',
+      }),
     };
   });
 
