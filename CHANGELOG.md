@@ -13,6 +13,10 @@ con la fecha del despliegue y se abre un **[Sin publicar]** nuevo.
 
 ## [Sin publicar] — en `develop`
 
+## [2026-08-30] — develop → main (#15)
+
+Tercer despliegue de la migración a Eleventy: optimización de imágenes.
+
 ### Agregado
 - **Optimización de imágenes** (#14): `@11ty/eleventy-img` redimensiona cada
   imagen al ancho real en que se muestra y genera WebP (con PNG como fallback,
