@@ -3,6 +3,9 @@ _site/
 dist/
 build/
 
+# Caché de imágenes procesadas (@11ty/eleventy-img)
+.cache/
+
 # Dependencias
 node_modules/
 

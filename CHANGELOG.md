@@ -13,6 +13,21 @@ con la fecha del despliegue y se abre un **[Sin publicar]** nuevo.
 
 ## [Sin publicar] — en `develop`
 
+## [2026-08-30] — develop → main (#15)
+
+Tercer despliegue de la migración a Eleventy: optimización de imágenes.
+
+### Agregado
+- **Optimización de imágenes** (#14): `@11ty/eleventy-img` redimensiona cada
+  imagen al ancho real en que se muestra y genera WebP (con PNG como fallback,
+  ambos con canal alfa) en build-time — antes se servían tal cual, hasta 50x
+  más grandes que su tamaño en pantalla (`_site/` bajó de ~64MB a ~10MB de
+  imágenes). Los íconos de favicon/PWA y la imagen de Open Graph también se
+  generan comprimidos en vez de reusar el logo de 4.2MB. Nueva prueba que
+  blinda `og:image`, `apple-touch-icon`, `manifest.json` y el `image`/`logo`
+  del JSON-LD contra rutas rotas (no las cubría la prueba de referencias
+  locales, al no usar `href`/`src`).
+
 ## [2026-08-30] — develop → main (#13)
 
 Segundo despliegue de la migración a Eleventy: Fases 4-5, CHANGELOG/CONTRIBUTING y formulario de pedido real.

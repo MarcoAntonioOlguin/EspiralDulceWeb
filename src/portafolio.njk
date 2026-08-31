@@ -10,10 +10,9 @@ keywords: "repostería artesanal CDMX, panque zanahoria, brownie, tiramisú, gel
 canonical: "/portafolio.html"
 ogTitle: "Portafolio — Espiral Dulce · Repostería Artesanal CDMX"
 ogDescription: "Descubre todos nuestros productos artesanales. Todo hecho a mano y a pedido."
-ogImage: "/images/hero.png"
+ogImage: "/images/og-image.png"
 ogImageAlt: "Repostería artesanal de Espiral Dulce"
 ---
-{% from "partials/producto-card.njk" import productoCard %}
   <!-- =====================================================================
        HERO DE LA PÁGINA
   ====================================================================== -->
@@ -50,7 +49,7 @@ ogImageAlt: "Repostería artesanal de Espiral Dulce"
            portafolio.js solo maneja filtros, flip y tilt sobre este DOM. -->
       <div class="catalogo-grid" id="catalogo-grid">
         {%- for producto in productos %}
-{{ productoCard(producto, loop.index0) }}
+{% include "partials/producto-card.njk" %}
         {%- endfor %}
       </div>
 

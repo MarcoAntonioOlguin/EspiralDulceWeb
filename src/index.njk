@@ -9,10 +9,9 @@ keywords: "repostería artesanal CDMX, pasteles a pedido, galletas personalizada
 canonical: "/"
 ogTitle: "Espiral Dulce — Repostería Artesanal a Pedido en CDMX"
 ogDescription: "Desde una galleta hasta tu gran evento. Todo hecho a mano y entregado en tu domicilio dentro de CDMX."
-ogImage: "/images/hero.png"
+ogImage: "/images/og-image.png"
 ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
 ---
-{% from "partials/producto-card.njk" import productoCard %}
   <!-- =====================================================================
        2. HERO
        Desktop: texto (izquierda) + imagen (derecha)
@@ -48,11 +47,7 @@ ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
 
         <!-- Imagen principal -->
         <div class="hero-image">
-          <img
-            src="images/hero.png"
-            alt="Cheesecake de zarzamora artesanal de Espiral Dulce"
-            loading="eager"
-          />
+          {{ imagenes.hero | safe }}
           <div class="hero-image-badge">
             <div class="stars-gold">★★★★★</div>
             <strong>100% a pedido</strong>
@@ -80,7 +75,7 @@ ogImageAlt: "Cheesecake de zarzamora artesanal de Espiral Dulce"
 
       <div class="portfolio-grid">
         {%- for producto in productos | selectattr("destacado") %}
-{{ productoCard(producto, loop.index0) }}
+{% include "partials/producto-card.njk" %}
         {%- endfor %}
       </div>
 
