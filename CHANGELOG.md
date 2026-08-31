@@ -13,6 +13,10 @@ con la fecha del despliegue y se abre un **[Sin publicar]** nuevo.
 
 ## [Sin publicar] — en `develop`
 
+## [2026-08-30] — develop → main (#13)
+
+Segundo despliegue de la migración a Eleventy: Fases 4-5, CHANGELOG/CONTRIBUTING y formulario de pedido real.
+
 ### Agregado
 - **Formulario de pedido real** (#12): en la sección Contacto del index, con
   validación en vivo, respaldo en `localStorage` y envío a Google Apps Script
