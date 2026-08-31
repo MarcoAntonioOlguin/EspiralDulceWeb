@@ -10,7 +10,7 @@
       <nav class="nav-inner" aria-label="Navegación principal">
 
         <a href="{{ inicio or '#' }}" class="nav-logo" aria-label="{{ site.nombre }}">
-          <img src="images/logos/logo_final_sin_letras.png" alt="" aria-hidden="true" />
+          {{ imagenes.navLogo | safe }}
           <div class="nav-logo-text">
             {{ site.nombre }}
             <span>{{ site.tagline }}</span>

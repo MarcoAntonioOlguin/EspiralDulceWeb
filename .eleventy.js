@@ -5,6 +5,7 @@
  * sin runtime de framework). Ver ARQUITECTURA.md para el diseño completo.
  */
 const fs = require('fs');
+const Image = require('@11ty/eleventy-img').default;
 const site = require('./src/_data/site.json');
 
 /**
@@ -45,10 +46,105 @@ module.exports = function (eleventyConfig) {
   // Assets: se copian tal cual, sin procesar.
   eleventyConfig.addPassthroughCopy('src/css');
   eleventyConfig.addPassthroughCopy('src/js');
-  eleventyConfig.addPassthroughCopy('src/images');
   eleventyConfig.addPassthroughCopy('src/manifest.json');
   eleventyConfig.addPassthroughCopy('src/robots.txt');
   eleventyConfig.addPassthroughCopy('src/sitemap.xml');
+
+  // El favicon SVG se sirve tal cual (ya es vectorial, no hay nada que optimizar).
+  eleventyConfig.addPassthroughCopy('src/images/logos/logo_minimalista.svg');
+
+  /**
+   * Imágenes: en vez de copiar src/images tal cual (las fotos de producto pesan
+   * 1.6-4.2MB cada una, muy por encima del tamaño real al que se muestran),
+   * @11ty/eleventy-img las redimensiona al ancho que realmente se usa en pantalla
+   * y genera WebP (con PNG como fallback, ambos con canal alfa) en build-time.
+   *
+   * Se resuelve por completo en addGlobalData (no como shortcode de Nunjucks):
+   * los shortcodes async de Nunjucks no sobreviven dentro de {% include %} ni
+   * {% macro %} (limitación conocida de Eleventy/Nunjucks) y producto-card.njk
+   * es justo un include dentro de un for. addGlobalData sí espera promesas de
+   * forma nativa, así que el <picture> de cada imagen se arma una vez al
+   * arrancar el build y los templates solo hacen una lectura síncrona.
+   */
+  async function imagenHTML(src, alt, widths, atributosExtra = {}) {
+    const metadata = await Image(`src/${src}`, {
+      widths,
+      formats: ['webp', 'png'],
+      outputDir: '_site/images/optimizadas/',
+      urlPath: 'images/optimizadas/',
+      sharpPngOptions: { compressionLevel: 9, quality: 80 },
+      sharpWebpOptions: { quality: 75 },
+    });
+    return Image.generateHTML(metadata, {
+      alt,
+      sizes: '100vw',
+      loading: 'lazy',
+      decoding: 'async',
+      ...atributosExtra,
+    });
+  }
+
+  eleventyConfig.addGlobalData('imagenes', async () => {
+    const productos = require('./src/_data/productos.json');
+
+    const sizesProducto =
+      '(max-width: 480px) 88vw, (max-width: 780px) 44vw, (max-width: 1100px) 30vw, 300px';
+    const porProducto = {};
+    for (const p of productos) {
+      porProducto[p.id] = await imagenHTML(p.imagen, p.nombre, [420, 760], { sizes: sizesProducto });
+    }
+
+    return {
+      productos: porProducto,
+      hero: await imagenHTML(
+        'images/hero.png',
+        'Cheesecake de zarzamora artesanal de Espiral Dulce',
+        [600, 1000],
+        { sizes: '(max-width: 900px) 90vw, 550px', loading: 'eager' }
+      ),
+      navLogo: await imagenHTML('images/logos/logo_final_sin_letras.png', '', [84], {
+        sizes: '42px',
+        loading: 'eager',
+        'aria-hidden': 'true',
+      }),
+      footerLogo: await imagenHTML(
+        'images/logos/logo_final.png',
+        `${site.nombre} — Repostería Artesanal`,
+        [150, 300],
+        { sizes: '150px' }
+      ),
+    };
+  });
+
+  /**
+   * Íconos de PWA/favicon: el logo fuente es 2048×2048 (4.2MB) pero
+   * apple-touch-icon y el ícono del manifest solo necesitan 180px/512px.
+   *
+   * Imagen de Open Graph: crawlers de redes sociales (WhatsApp, Facebook) piden
+   * la URL de `og:image` directamente — no leen srcset — así que necesita una
+   * ruta fija y predecible, igual que los íconos.
+   *
+   * Ambas se generan una vez al inicio del build con nombres fijos (manifest.json
+   * y el front matter de `ogImage` no son plantillas, necesitan rutas conocidas).
+   */
+  eleventyConfig.on('eleventy.before', async () => {
+    await Image('src/images/logos/logo_final_sin_letras.png', {
+      widths: [180, 512],
+      formats: ['png'],
+      outputDir: '_site/images/logos/',
+      urlPath: 'images/logos/',
+      filenameFormat: (id, srcPath, width, format) => `icon-${width}.${format}`,
+      sharpPngOptions: { compressionLevel: 9, quality: 80 },
+    });
+    await Image('src/images/hero.png', {
+      widths: [1200],
+      formats: ['png'],
+      outputDir: '_site/images/',
+      urlPath: 'images/',
+      sharpPngOptions: { compressionLevel: 9, quality: 80 },
+      filenameFormat: () => 'og-image.png',
+    });
+  });
 
   /**
    * Link de WhatsApp con mensaje prellenado.

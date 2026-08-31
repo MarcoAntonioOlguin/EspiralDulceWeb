@@ -32,11 +32,17 @@ function esLocal(ref) {
   return !/^(https?:|mailto:|tel:|data:|#|\/\/)/.test(ref);
 }
 
+/** Extrae las URLs de un atributo srcset ("a.webp 400w, b.webp 800w" → ["a.webp", "b.webp"]). */
+function refsDeSrcset(srcset) {
+  if (!srcset) return [];
+  return srcset.split(',').map((entrada) => entrada.trim().split(/\s+/)[0]);
+}
+
 test('el build genera las páginas y los assets esperados', () => {
   for (const pagina of PAGINAS) {
     assert.ok(fs.existsSync(path.join(SITE, pagina)), `falta ${pagina}`);
   }
-  for (const asset of ['manifest.json', 'robots.txt', 'sitemap.xml', 'css/tokens.css', 'css/base.css', 'css/componentes.css', 'css/secciones.css', 'js/nav.js', 'js/flip-cards.js', 'images/hero.png']) {
+  for (const asset of ['manifest.json', 'robots.txt', 'sitemap.xml', 'css/tokens.css', 'css/base.css', 'css/componentes.css', 'css/secciones.css', 'js/nav.js', 'js/flip-cards.js', 'images/logos/logo_minimalista.svg', 'images/logos/icon-180.png', 'images/logos/icon-512.png']) {
     assert.ok(fs.existsSync(path.join(SITE, asset)), `falta ${asset}`);
   }
 });
@@ -55,15 +61,22 @@ test('todas las referencias locales (css, js, imágenes, páginas) existen en el
   for (const pagina of PAGINAS) {
     const { $ } = cargar(pagina);
 
-    $('[href], [src]').each((_, el) => {
-      const ref = $(el).attr('href') || $(el).attr('src');
-      if (!esLocal(ref)) return;
+    $('[href], [src], [srcset]').each((_, el) => {
+      const refs = [
+        $(el).attr('href'),
+        $(el).attr('src'),
+        ...refsDeSrcset($(el).attr('srcset')),
+      ].filter(Boolean);
 
-      const destino = ref.split('#')[0].split('?')[0];
-      if (!destino) return;
+      for (const ref of refs) {
+        if (!esLocal(ref)) continue;
 
-      if (!fs.existsSync(path.join(SITE, destino))) {
-        rotas.push(`${pagina} → ${destino}`);
+        const destino = ref.split('#')[0].split('?')[0];
+        if (!destino) continue;
+
+        if (!fs.existsSync(path.join(SITE, destino))) {
+          rotas.push(`${pagina} → ${destino}`);
+        }
       }
     });
   }
@@ -164,6 +177,48 @@ test('cada imagen tiene atributo alt (vacío si es decorativa)', () => {
   }
 
   assert.deepEqual(sinAlt, [], `imágenes sin alt:\n  ${sinAlt.join('\n  ')}`);
+});
+
+test('las imágenes con URL absoluta (og:image, favicon, Schema.org) apuntan a un archivo real', () => {
+  // og:image, apple-touch-icon, manifest.json y el image/logo del JSON-LD no se
+  // arman con href/src normales (uno es meta[content], otro vive dentro de un
+  // <script type="application/ld+json">) — la prueba de "referencias locales"
+  // no los toca. Se rompieron en silencio una vez al pasar a imágenes optimizadas
+  // con nombre generado: og:image y el logo del JSON-LD seguían apuntando al
+  // PNG plano que dejó de copiarse tal cual.
+  const rotas = [];
+
+  for (const pagina of PAGINAS) {
+    const { $, html } = cargar(pagina);
+
+    const ogImage = $('meta[property="og:image"]').attr('content');
+    if (ogImage) {
+      const destino = ogImage.replace(site.url, '').replace(/^\//, '');
+      if (!fs.existsSync(path.join(SITE, destino))) rotas.push(`${pagina} → og:image ${ogImage}`);
+    }
+
+    const appleTouchIcon = $('link[rel="apple-touch-icon"]').attr('href');
+    if (appleTouchIcon && !fs.existsSync(path.join(SITE, appleTouchIcon))) {
+      rotas.push(`${pagina} → apple-touch-icon ${appleTouchIcon}`);
+    }
+
+    const ldJson = $('script[type="application/ld+json"]').html();
+    if (ldJson) {
+      const datos = JSON.parse(ldJson);
+      for (const campo of ['image', 'logo']) {
+        if (!datos[campo]) continue;
+        const destino = datos[campo].replace(site.url, '').replace(/^\//, '');
+        if (!fs.existsSync(path.join(SITE, destino))) rotas.push(`${pagina} → JSON-LD ${campo} ${datos[campo]}`);
+      }
+    }
+  }
+
+  const manifest = JSON.parse(fs.readFileSync(path.join(SITE, 'manifest.json'), 'utf8'));
+  for (const icono of manifest.icons) {
+    if (!fs.existsSync(path.join(SITE, icono.src))) rotas.push(`manifest.json → ${icono.src}`);
+  }
+
+  assert.deepEqual(rotas, [], `referencias absolutas rotas:\n  ${rotas.join('\n  ')}`);
 });
 
 test('cada página tiene el SEO mínimo: title, description, canonical y Open Graph', () => {
