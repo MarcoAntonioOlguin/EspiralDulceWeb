@@ -1,21 +1,24 @@
 {#
   Tarjeta flip de un producto — fuente única del markup de tarjeta.
   La usan tanto el index (3 destacados) como el portafolio (catálogo completo),
-  renderizando en build-time desde src/_data/productos.json.
+  incluida dentro de un {% for producto in ... %}, renderizando en build-time
+  desde src/_data/productos.json. El <picture> optimizado (@11ty/eleventy-img)
+  ya viene resuelto en el global data `imagenes.productos[id]` (ver
+  .eleventy.js) — se arma ahí y no acá porque los shortcodes async de
+  Nunjucks no sobreviven dentro de {% include %} ni {% macro %}.
 
-  Parámetros:
-    producto  objeto de productos.json
-    i         índice para el retraso escalonado de la animación de entrada (--i)
+  Usa del contexto del llamador:
+    producto      objeto de productos.json
+    loop.index0   índice para el retraso escalonado de la animación de entrada
 #}
-{%- macro productoCard(producto, i) -%}
-        <article class="flip-card" data-categoria="{{ producto.categoria }}" style="--i:{{ i }}"
+        <article class="flip-card" data-categoria="{{ producto.categoria }}" style="--i:{{ loop.index0 }}"
                  role="button" tabindex="0"
                  aria-label="{{ producto.nombre }} — activa para ver ingredientes">
           <div class="flip-card-inner">
 
             <div class="flip-card-front">
               <div class="card-img">
-                <img src="{{ producto.imagen }}" alt="{{ producto.nombre }}" loading="lazy" />
+                {{ imagenes.productos[producto.id] | safe }}
               </div>
               <div class="card-info">
                 <span class="card-categoria">{{ producto.categoriaLabel }}</span>
@@ -54,4 +57,3 @@
 
           </div>
         </article>
-{%- endmacro -%}
