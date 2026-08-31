@@ -13,6 +13,10 @@ con la fecha del despliegue y se abre un **[Sin publicar]** nuevo.
 
 ## [Sin publicar] — en `develop`
 
+## [2026-08-30] — develop → main (#17)
+
+Cuarto despliegue de la migración a Eleventy: página 404 personalizada.
+
 ### Agregado
 - **Página 404 personalizada** (#16): `src/404.njk`, con el mismo header/footer/
   botón flotante de WhatsApp que el resto del sitio. Reusa una foto de producto
