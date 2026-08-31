@@ -1,0 +1,35 @@
+---
+layout: layouts/base.njk
+permalink: /404.html
+inicio: "index.html"
+pageCss: "css/404.css"
+title: "Página no encontrada · Espiral Dulce"
+description: "Esta página no existe o ya no está disponible. Vuelve al inicio o explora el portafolio de Espiral Dulce."
+canonical: "/404.html"
+ogTitle: "Página no encontrada · Espiral Dulce"
+ogDescription: "Esta página no existe o ya no está disponible. Vuelve al inicio o explora el portafolio de Espiral Dulce."
+ogImage: "/images/og-image.png"
+ogImageAlt: "Repostería artesanal de Espiral Dulce"
+---
+  <!-- =====================================================================
+       404 — PÁGINA NO ENCONTRADA
+  ====================================================================== -->
+  <section id="error-404">
+    <div class="container error-404">
+
+      <div class="error-404-numero" aria-hidden="true">
+        <span class="error-404-digito">4</span>
+        {{ imagenes.error404 | safe }}
+        <span class="error-404-digito">4</span>
+      </div>
+
+      <h1>Esta Página se nos Perdió en el Horno</h1>
+      <p class="subtitle">El enlace que buscas no existe o ya no está disponible. Pero tenemos muchas otras cosas ricas esperándote.</p>
+
+      <div class="error-404-actions">
+        <a href="index.html" class="btn btn-primary btn-lg">Volver al Inicio</a>
+        <a href="portafolio.html" class="btn btn-outline btn-lg">Ver el Portafolio</a>
+      </div>
+
+    </div>
+  </section>

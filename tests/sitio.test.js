@@ -18,7 +18,7 @@ const cheerio = require('cheerio');
 const SITE = path.join(__dirname, '..', '_site');
 const site = require('../src/_data/site.json');
 
-const PAGINAS = ['index.html', 'portafolio.html', 'visualizador-pastel.html'];
+const PAGINAS = ['index.html', 'portafolio.html', 'visualizador-pastel.html', '404.html'];
 
 /** Carga una página del build y la devuelve parseada. */
 function cargar(pagina) {
